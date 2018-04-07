@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SpeedoModels.Models;
@@ -75,7 +76,7 @@ namespace SpeedoModels.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -151,21 +152,95 @@ namespace SpeedoModels.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new Customer
+                {
+                    Email = model.Email,
+                    UserName = model.UserName,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    FirstLineOfAddress = model.FirstLineOfAddress,
+                    SecondLineOfAddress = model.SecondLineOfAddress,
+                    Postcode = model.Postcode,
+                    PhoneNumber = model.PhoneNumber
+                };
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    //Temp code used to create admin user
+                    // var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                    // var roleManager = new RoleManager<IdentityRole>(roleStore);
+                    // await roleManager.CreateAsync(new IdentityRole("Admin"));
+                    // await UserManager.AddToRoleAsync(user.Id, "Admin");
+
+                    // await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+
+                    var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                    var roleManager = new RoleManager<IdentityRole>(roleStore);
+                    await roleManager.CreateAsync(new IdentityRole("Customer"));
+                    await UserManager.AddToRoleAsync(user.Id, "Customer");
+
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        
+        [AllowAnonymous]
+        public ActionResult RegisterStaff()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterStaff(RegisterViewModel model)
+        {
+            if (User.IsInRole("Admin"))
+            {
+                if (ModelState.IsValid)
+                {
+                    var user = new Staff
+                    {
+                        Email = model.Email,
+                        UserName = model.UserName,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        FirstLineOfAddress = model.FirstLineOfAddress,
+                        SecondLineOfAddress = model.SecondLineOfAddress,
+                        Postcode = model.Postcode,
+                        PhoneNumber = model.PhoneNumber
+                    };
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                        var roleManager = new RoleManager<IdentityRole>(roleStore);
+                        await roleManager.CreateAsync(new IdentityRole("Staff"));
+                        await UserManager.AddToRoleAsync(user.Id, "Staff");
+
+                        // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                        // Send an email with this link
+                        // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                        return RedirectToAction("Index", "Home");
+                    }
+                    AddErrors(result);
+                }
+            
             }
 
             // If we got this far, something failed, redisplay form
@@ -367,7 +442,18 @@ namespace SpeedoModels.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new Customer
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    FirstLineOfAddress = model.FirstLineOfAddress,
+                    SecondLineOfAddress = model.SecondLineOfAddress,
+                    Postcode = model.Postcode,
+                    PhoneNumber = model.PhoneNumber
+
+                };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Security.AccessControl;
 
 namespace SpeedoModels.Models
 {
@@ -8,6 +9,36 @@ namespace SpeedoModels.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "Username")]
+        [StringLength(255)]
+        public string UserName { get; set; }
+
+        [Required]
+        [Phone]
+        [Display(Name = "Telephone Number")]
+        public string PhoneNumber { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "First Line of Address")]
+        public string FirstLineOfAddress { get; set; }
+
+        [Required]
+        [Display(Name = "Second Line of Address")]
+        public string SecondLineOfAddress { get; set; }
+
+        [Required]
+        [Display(Name = "Postcode")]
+        public string Postcode { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -49,9 +80,9 @@ namespace SpeedoModels.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "Username")]
+        [StringLength(255)]
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -70,6 +101,11 @@ namespace SpeedoModels.Models
         public string Email { get; set; }
 
         [Required]
+        [Display(Name = "Username")]
+        [StringLength(255)]
+        public string UserName { get; set; }
+
+        [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
@@ -79,6 +115,32 @@ namespace SpeedoModels.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Phone]
+        [Display(Name = "Telephone Number")]
+        public string PhoneNumber { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "First Line of Address")]
+        public string FirstLineOfAddress { get; set; }
+
+        [Required]
+        [Display(Name = "Second Line of Address")]
+        public string SecondLineOfAddress { get; set; }
+
+        [Required]
+        [Display(Name = "Postcode")]
+        public string Postcode { get; set; }
+
     }
 
     public class ResetPasswordViewModel

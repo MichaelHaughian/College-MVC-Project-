@@ -50,19 +50,21 @@ namespace SpeedoModels
             //    clientId: "",
             //    clientSecret: "");
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+            app.UseTwitterAuthentication(
+               consumerKey: "gAXcwNOIjH2PLTQrwAnwyFuWk",
+               consumerSecret: "6HurnJluTRr8tIECKuekEtUaM44lx18dXHyB85MRZN4wuJ5dtM");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+   
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseFacebookAuthentication(
+               appId: "568175026890779",
+               appSecret: "cdad8b1b414fd679f73b84cdbc9d703a");
+
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "217837619903-a8hlcpqpgn9ms3qpr9srln0jo7f764hf.apps.googleusercontent.com",
+                ClientSecret = "vnsGvX-MaeXTp83OfohvIIp0"
+            });
         }
     }
 }
