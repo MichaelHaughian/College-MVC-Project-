@@ -1,0 +1,66 @@
+﻿@model IEnumerable<SpeedoModels.Models.Product>
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Product</h2>
+
+
+<form id="newProduct">
+    <div class="form-group">
+        <label>Product Name</label>
+        <input id ="productName" name="productName" required type="text" value="" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label>Product Description</label>
+        <input id="productDescription" name="productDescription" required type="text" value="" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Product Price</label>
+        <input id="productPrice" name="productPrice" required type="number" value="" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Product Quantity</label>
+        <input id="productQuantity" name="productQuantity" required type="number" value="" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Product Supplier</label>
+        <input id="productSupplier" name="productSupplier" required type="number" value="" class="form-control" />
+    </div>
+    
+    <button id="submitForm" class="btn btn-primary">submit</button>
+</form>
+
+
+@section Scripts
+{ 
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+        $(document).ready(function () {
+            var vm = {
+
+            }
+
+            $("#newProduct").slideToggle(500).slideToggle(500);
+            $("#newProduct").submit(function () {
+                $.ajax({
+                    url: "/api/product",
+                    method: "post",
+                    data: vm,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success:function(data) {
+                        console.log(data);
+                    }
+                });
+
+            });
+        });
+    </script>
+    
+}
+
+
+
