@@ -229,6 +229,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\ProductController.cs" />
+    <Compile Include="Controllers\Api\SupplierController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -264,6 +265,14 @@
     <Compile Include="Migrations\201804091237213_AddProduct.cs" />
     <Compile Include="Migrations\201804091237213_AddProduct.Designer.cs">
       <DependentUpon>201804091237213_AddProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804111512008_UpdateSupplier.cs" />
+    <Compile Include="Migrations\201804111512008_UpdateSupplier.Designer.cs">
+      <DependentUpon>201804111512008_UpdateSupplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804111536518_UpdateSupplierAgain.cs" />
+    <Compile Include="Migrations\201804111536518_UpdateSupplierAgain.Designer.cs">
+      <DependentUpon>201804111536518_UpdateSupplierAgain.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -624,6 +633,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804091237213_AddProduct.resx">
       <DependentUpon>201804091237213_AddProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804111512008_UpdateSupplier.resx">
+      <DependentUpon>201804111512008_UpdateSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804111536518_UpdateSupplierAgain.resx">
+      <DependentUpon>201804111536518_UpdateSupplierAgain.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

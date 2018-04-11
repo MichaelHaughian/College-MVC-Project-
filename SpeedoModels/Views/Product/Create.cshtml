@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SpeedoModels.Models.Product>
+﻿@model dynamic
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,24 +10,28 @@
 <form id="newProduct">
     <div class="form-group">
         <label>Product Name</label>
-        <input id ="productName" name="productName" required type="text" value="" class="form-control"/>
+        <input id ="name" name="Name" value="" class="form-control"/>
     </div>
     <div class="form-group">
         <label>Product Description</label>
-        <input id="productDescription" name="productDescription" required type="text" value="" class="form-control" />
+        <input id="description" name="Description" value="" class="form-control" />
     </div>
     <div class="form-group">
         <label>Product Price</label>
-        <input id="productPrice" name="productPrice" required type="number" value="" class="form-control" />
+        <input id="price" name="Price" value="" class="form-control" />
     </div>
     <div class="form-group">
         <label>Product Quantity</label>
-        <input id="productQuantity" name="productQuantity" required type="number" value="" class="form-control" />
+        <input id="quantity" name="Quantity" value="" class="form-control" />
     </div>
+
     <div class="form-group">
-        <label>Product Supplier</label>
-        <input id="productSupplier" name="productSupplier" required type="number" value="" class="form-control" />
+        <label>Supplier</label>
+        <select id="supplier" name="SupplierId" class="form-control">
+
+        </select>
     </div>
+
     
     <button id="submitForm" class="btn btn-primary">submit</button>
 </form>
@@ -37,23 +41,35 @@
 { 
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    
     <script>
         $(document).ready(function () {
-            var vm = {
 
-            }
+            $.ajax({
+                url: "/api/supplier",
+                method: "GET",
+                success: function(result) {
+                    $.each(result,
+                        function(k, v) {
+                            $("#supplier").append("<option value='" + v.Id + "'>" + v.Name + "</option>");
+                        });
+                }
+                
+            });
 
-            $("#newProduct").slideToggle(500).slideToggle(500);
-            $("#newProduct").submit(function () {
+            $("#submitForm").click(function (e, product) {
+                e.preventDefault();
+
+                var data = $("#newProduct").serialize() + '&Supplier.Id=' + $("#supplier").find(":selected").val();
                 $.ajax({
                     url: "/api/product",
-                    method: "post",
-                    data: vm,
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success:function(data) {
-                        console.log(data);
-                    }
+                    method: "POST",
+                    data: data
+                }).done(function () {
+                    toastr.success("Product Created");
+                }).fail(function () {
+                    toastr.error("Something unexpected happened");
                 });
 
             });
