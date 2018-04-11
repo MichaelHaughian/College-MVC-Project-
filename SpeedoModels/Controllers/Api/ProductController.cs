@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using AutoMapper;
 using SpeedoModels.Dtos;
 using SpeedoModels.Models;
@@ -25,18 +27,12 @@ namespace SpeedoModels.Controllers.Api
             _context.Dispose();
         }
 
-        public IHttpActionResult GetProducts(string query = null)
+        public IHttpActionResult GetProducts()
         {
-            var productsQuery = _context.Products.Include(c => c.);
+            var productDtos = _context.Products.Include(c => c.Supplier).ToList()
+                .Select(Mapper.Map<Product, ProductDto>);
 
-            if (!String.IsNullOrWhiteSpace(query))
-                productsQuery = productsQuery.Where(c => c.Name.Contains(query));
-
-            var customerDtos = productsQuery
-                .ToList()
-                .Select(Mapper.Map<Customer, CustomerDto>);
-
-            return Ok(customerDtos);
+            return Ok(productDtos);
         }
 
         [HttpPost]
@@ -49,8 +45,17 @@ namespace SpeedoModels.Controllers.Api
 
             var product = Mapper.Map<ProductDto, Product>(productDto);
 
-            _context.Products.Add(product);
-            _context.SaveChanges();
+            var supplier = _context.Suppliers.Single(c => c.Id == product.SupplierId);
+            product.Supplier = supplier;
+            _context.Products.AddOrUpdate(product);
+
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine("AN ERROR HAS OCCURED: '{0}'", ex.InnerException.ToString()); }
+
+            
 
             productDto.Id = product.Id;
 

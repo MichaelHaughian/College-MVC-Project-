@@ -21,7 +21,9 @@ namespace SpeedoModels
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/bootbox.js",
+                      "~/Scripts/respond.js",
+                      "~/Scripts/toastr.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-simplex.css",

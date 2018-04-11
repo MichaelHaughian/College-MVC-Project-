@@ -30,6 +30,7 @@ namespace SpeedoModels.Controllers
             return View(product);
         }
 
+        [HttpGet]
         public ActionResult Create()
         {
 

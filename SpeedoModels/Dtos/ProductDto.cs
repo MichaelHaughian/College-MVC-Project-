@@ -27,10 +27,8 @@ namespace SpeedoModels.Dtos
 
         public int? ReorderQuantity { get; set; }
 
-        public SupplierDto SupplierDto { get; set; }
+        public SupplierDto Supplier { get; set; }
 
         public DateTime? DeliveryLeadTimes { get; set; }
-
-        public int SupplierId { get; set; }
     }
 }
