@@ -36,18 +36,27 @@ namespace SpeedoModels.Controllers
             return View(product);
         }
 
-        public ActionResult Edit(int id)
-        {
-            var product = _context.Products.Include(c => c.Supplier).Single(c => c.Id == id);
-
-            return View(product);
-        }
-
         [HttpGet]
         public ActionResult Create()
         {
 
             return View();
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var product = _context.Products.SingleOrDefault(c => c.Id == id);
+
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+
+            var viewModel = new ProductViewModel(product)
+            {
+                Suppliers = _context.Suppliers.ToList()
+            };
+            return View(viewModel);
         }
 
         /*[HttpPost]

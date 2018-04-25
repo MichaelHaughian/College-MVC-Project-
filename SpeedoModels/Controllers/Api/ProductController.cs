@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
+using System.Web.UI.WebControls;
 using AutoMapper;
 using SpeedoModels.Dtos;
 using SpeedoModels.Models;
@@ -34,6 +35,18 @@ namespace SpeedoModels.Controllers.Api
                 .Select(Mapper.Map<Product, ProductDto>);
 
             return Ok(productDtos);
+        }
+
+        public IHttpActionResult GetProduct(int id)
+        {
+            var product = _context.Products.Include(c => c.Supplier).SingleOrDefault(c => c.Id == id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(Mapper.Map<Product, ProductDto>(product));
         }
 
         [HttpPost]
@@ -74,6 +87,26 @@ namespace SpeedoModels.Controllers.Api
             }
 
             _context.Products.Remove(productInDb);
+            _context.SaveChanges();
+        }
+
+        [HttpPut]
+        public void EditProduct(int id, ProductDto productDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            var product = _context.Products.SingleOrDefault(c => c.Id == id);
+
+            if (product == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+
+            Mapper.Map(productDto, product);
+
             _context.SaveChanges();
         }
     }
