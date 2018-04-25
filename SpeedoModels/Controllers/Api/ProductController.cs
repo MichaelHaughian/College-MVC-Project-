@@ -27,6 +27,7 @@ namespace SpeedoModels.Controllers.Api
             _context.Dispose();
         }
 
+
         public IHttpActionResult GetProducts()
         {
             var productDtos = _context.Products.Include(c => c.Supplier).ToList()
@@ -60,6 +61,20 @@ namespace SpeedoModels.Controllers.Api
             productDto.Id = product.Id;
 
             return Created(new Uri(Request.RequestUri + "/" + product.Id), productDto);
+        }
+
+        [HttpDelete]
+        public void DeleteProduct(int id)
+        {
+            var productInDb = _context.Products.SingleOrDefault(c => c.Id == id);
+
+            if (productInDb == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+
+            _context.Products.Remove(productInDb);
+            _context.SaveChanges();
         }
     }
 }

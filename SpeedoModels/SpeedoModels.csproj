@@ -234,7 +234,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Dtos\ProductDto.cs" />
-    <Compile Include="Dtos\SupplierDto.cs" />
+    <Compile Include="Models\SupplierDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -600,6 +600,8 @@
     <Content Include="Views\Account\RegisterStaff.cshtml" />
     <Content Include="Views\Product\View.cshtml" />
     <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Product\StaffProductList.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

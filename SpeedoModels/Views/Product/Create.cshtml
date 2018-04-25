@@ -53,14 +53,15 @@
                 method: "GET",
                 success: function(result) {
                     $.each(result,
-                        function(k, v) {
+                        function (k, v) {
+                            
                             $("#supplier").append("<option value='" + v.Id + "'>" + v.Name + "</option>");
                         });
                 }
                 
             });
 
-            $("#submitForm").click(function (e, product) {
+            $("#submitForm").click(function (e) {
                 e.preventDefault();
 
                 var data = $("#newProduct").serialize() + '&Supplier.Id=' + $("#supplier").find(":selected").val();

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using SpeedoModels.Models;
 using SpeedoModels.ViewModels;
+using System.Data.Entity;
 
 namespace SpeedoModels.Controllers
 {
@@ -23,9 +24,21 @@ namespace SpeedoModels.Controllers
             _context.Dispose();
         }
 
+        public ActionResult Index()
+        {
+            return View("StaffProductList");
+        }
+
         public ActionResult View(int id)
         {
             var product = _context.Products.Single(c => c.Id == id);
+
+            return View(product);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var product = _context.Products.Include(c => c.Supplier).Single(c => c.Id == id);
 
             return View(product);
         }

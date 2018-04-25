@@ -1,0 +1,56 @@
+﻿@model SpeedoModels.Models.Product
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+<form id="editProduct">
+    <div class="form-group">
+        <label>Product Name</label>
+        <input id="name" name="Name" value="" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Product Description</label>
+        <input id="description" name="Description" value="" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Product Colour</label>
+        <input id="colour" name="Colour" value="" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Product Price</label>
+        <input id="price" name="Price" value="" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Product Quantity</label>
+        <input id="quantity" name="Quantity" value="" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Supplier</label>
+        <select id="supplier" name="SupplierId" class="form-control"></select>
+    </div>
+
+
+    <button id="submitForm" class="btn btn-primary">submit</button>
+</form>
+
+@section scripts
+{
+    <script>
+    $(document).ready(function () {
+
+            $.ajax({
+                url: "/api/product",
+                method: "GET",
+                success: function(result) {
+                    $.each(result,
+                        function(k, v) {
+                            $('#name').append(v); 
+                        });
+                }
+                
+            });
+    </script>
+}
