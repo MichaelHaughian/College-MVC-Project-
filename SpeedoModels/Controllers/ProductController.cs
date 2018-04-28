@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using SpeedoModels.Models;
 using SpeedoModels.ViewModels;
 using System.Data.Entity;
+using System.Net.Http;
 
 namespace SpeedoModels.Controllers
 {
@@ -45,18 +46,9 @@ namespace SpeedoModels.Controllers
 
         public ActionResult Edit(int id)
         {
-            var product = _context.Products.SingleOrDefault(c => c.Id == id);
+            ViewBag.productId = id;
 
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-
-            var viewModel = new ProductViewModel(product)
-            {
-                Suppliers = _context.Suppliers.ToList()
-            };
-            return View(viewModel);
+            return View();
         }
 
         /*[HttpPost]

@@ -14,14 +14,5 @@ namespace SpeedoModels.ViewModels
 
         public Product Product { get; set; }
 
-        public CreateProductViewModel(Product product)
-        {
-            Mapper.Map<Product, Product>(product);
-        }
-
-        public CreateProductViewModel()
-        {
-            
-        }
     }
 }

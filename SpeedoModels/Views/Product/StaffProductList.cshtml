@@ -1,6 +1,5 @@
-﻿@model IEnumerable<SpeedoModels.Models.Product>
-@{
-    ViewBag.Title = "StaffProductList";
+﻿@{
+    ViewBag.Title = "Staff Product List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -31,7 +30,7 @@
                 columns: [
                     {
                         data: "Name",
-                        render: function (data, type, product) {
+                        render: function (data, type, product) {                         
                             return "<a href='/product/edit/" + product.Id + "'>" + product.Name + "</a>";
                         }
                     },

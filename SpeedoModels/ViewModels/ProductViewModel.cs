@@ -7,17 +7,17 @@ using SpeedoModels.Models;
 
 namespace SpeedoModels.ViewModels
 {
-    public class ProductViewModel
+    public class EditProductViewModel
     {
-        public IEnumerable<Supplier> Suppliers { get; set; }
+        public Supplier Supplier { get; set; }
         public Product Product { get; set; }
 
-        public ProductViewModel()
+        public EditProductViewModel()
         {
             
         }
 
-        public ProductViewModel(Product product)
+        public EditProductViewModel(Product product)
         {
             Mapper.Map<Product, Product>(product);
         }

@@ -49,7 +49,51 @@ namespace SpeedoModels.Controllers.Api
             return Ok(Mapper.Map<Product, ProductDto>(product));
         }
 
-        [HttpPost]
+        public IHttpActionResult SaveProduct(ProductDto productDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            if (productDto.Id == 0)
+            {
+                var product = Mapper.Map<ProductDto, Product>(productDto);
+
+                var supplier = _context.Suppliers.Single(c => c.Id == product.SupplierId);
+                product.Supplier = supplier;
+                _context.Products.Add(product);
+
+                try
+                {
+                    _context.SaveChanges();
+                }
+                catch (Exception ex) { System.Diagnostics.Debug.WriteLine("AN ERROR HAS OCCURED: '{0}'", ex.InnerException.ToString()); }
+
+
+
+                productDto.Id = product.Id;
+
+                return Created(new Uri(Request.RequestUri + "/" + product.Id), productDto);
+            }
+            else
+            {
+                var product = _context.Products.SingleOrDefault(c => c.Id == productDto.Id);
+
+                if (product == null)
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
+
+                Mapper.Map(productDto, product);
+
+                _context.SaveChanges();
+
+                return Ok();
+            }
+        }
+
+        /*[HttpPost]
         public IHttpActionResult CreateProduct(ProductDto productDto)
         {
             if (!ModelState.IsValid)
@@ -61,7 +105,7 @@ namespace SpeedoModels.Controllers.Api
 
             var supplier = _context.Suppliers.Single(c => c.Id == product.SupplierId);
             product.Supplier = supplier;
-            _context.Products.AddOrUpdate(product);
+            _context.Products.Add(product);
 
             try
             {
@@ -74,7 +118,7 @@ namespace SpeedoModels.Controllers.Api
             productDto.Id = product.Id;
 
             return Created(new Uri(Request.RequestUri + "/" + product.Id), productDto);
-        }
+        }*/
 
         [HttpDelete]
         public void DeleteProduct(int id)
@@ -90,15 +134,15 @@ namespace SpeedoModels.Controllers.Api
             _context.SaveChanges();
         }
 
-        [HttpPut]
-        public void EditProduct(int id, ProductDto productDto)
+        /*[HttpPost]
+        public void EditProduct(ProductDto productDto)
         {
             if (!ModelState.IsValid)
             {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
             }
 
-            var product = _context.Products.SingleOrDefault(c => c.Id == id);
+            var product = _context.Products.SingleOrDefault(c => c.Id == productDto.Id);
 
             if (product == null)
             {
@@ -108,6 +152,6 @@ namespace SpeedoModels.Controllers.Api
             Mapper.Map(productDto, product);
 
             _context.SaveChanges();
-        }
+        }*/
     }
 }
