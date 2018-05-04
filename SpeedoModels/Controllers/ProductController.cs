@@ -30,11 +30,18 @@ namespace SpeedoModels.Controllers
             return View("StaffProductList");
         }
 
-        public ActionResult View(int id)
+        public ActionResult ViewProducts()
         {
-            var product = _context.Products.Single(c => c.Id == id);
+            
 
-            return View(product);
+            return View();
+        }
+
+        public ActionResult ViewProduct(int id)
+        {
+            ViewBag.productId = id;
+
+            return View();
         }
 
         [HttpGet]

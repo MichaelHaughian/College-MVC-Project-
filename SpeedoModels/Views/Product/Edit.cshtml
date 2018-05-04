@@ -8,31 +8,31 @@
 
 
 <form id="editProduct">
-    <div class="form-group">
-        <label>Product Name</label>
-        <input id="name" name="Name" value="" class="form-control"/>
-    </div>
-    <div class="form-group">
-        <label>Product Description</label>
-        <input id="description" name="Description" value="" class="form-control"/>
-    </div>
-    <div class="form-group">
-        <label>Product Colour</label>
-        <input id="colour" name="Colour" value="" class="form-control"/>
-    </div>
-    <div class="form-group">
-        <label>Product Price</label>
-        <input id="price" name="Price" value="" class="form-control"/>
-    </div>
-    <div class="form-group">
-        <label>Product Quantity</label>
-        <input id="quantity" name="Quantity" value="" class="form-control"/>
-    </div>
-    <div class="form-group">
-        <input id="productId" name="Id" type="hidden" value="" class="form-control"/>
-    </div>
+        <div class="form-group">
+            <label>Product Name</label>
+            <input id="name" name="Name" value="" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Product Description</label>
+            <input id="description" name="Description" value="" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Product Colour</label>
+            <input id="colour" name="Colour" value="" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label>Product Price</label>
+            <input id="price" name="Price" value="" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Product Quantity</label>
+            <input id="quantity" name="Quantity" value="" class="form-control" />
+        </div>
+        <div class="form-group">
+            <input id="productId" name="Id" type="hidden" value="" class="form-control" />
+        </div>
 
-    <button id="submitForm" class="btn btn-primary">submit</button>
+        <button id="submitForm" class="btn btn-primary">submit</button>
 </form>
 
 @section scripts
@@ -43,7 +43,7 @@
                 url: "/api/product/" + @ViewBag.productId,
                 method: "GET",
                 success: function (product) {
-                    console.log(product.Name);
+                    
                     $("#name").val(product.Name);
                     $("#description").val(product.Description);
                     $("#colour").val(product.Colour);

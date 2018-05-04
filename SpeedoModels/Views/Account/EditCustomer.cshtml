@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "EditCustomer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>EditCustomer</h2>
+
+<form id="editCustomer">
+    <div class="form-group">
+        <label>Email</label>
+        <input id="email" name="Email" value="" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Username</label>
+        <input id="username" name="Username" value="" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>First Name</label>
+        <input id="firstName" name="FirstName" value="" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Last Name</label>
+        <input id="lastName" name="LastName" value="" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>First Line of Address</label>
+        <input id="firstLineOfAddress" name="FirstLineOfAddress" value="" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Second Line of Address</label>
+        <input id="secondLineOfAddress" name="SecondLineOfAddress" value="" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Postcode</label>
+        <input id="postcode" name="Postcode" value="" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Phone Number</label>
+        <input id="phoneNumber" name="PhoneNumber" value="" class="form-control" />
+    </div>
+    
+
+    <div class="form-group">
+        <input id="customerId" name="Id" type="hidden" value="@ViewBag.customerId" class="form-control" />
+    </div>
+
+    <button id="submitForm" class="btn btn-primary">submit</button>
+</form>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "/api/customer/" + $("#customerId").val(),
+                method: "GET",
+                success: function (customer) {
+                    $("#email").val(customer.Email);
+                    console.log(customer.UserName);
+                    $("#username").val(customer.UserName);
+                    $("#firstName").val(customer.FirstName);
+                    $("#lastName").val(customer.LastName);
+                    $("#firstLineOfAddress").val(customer.FirstLineOfAddress);
+                    $("#secondLineOfAddress").val(customer.SecondLineOfAddress);
+                    $("#postcode").val(customer.Postcode);
+                    $("#phoneNumber").val(customer.PhoneNumber);
+                    $("#customerId").val(customer.Id);
+                }
+            });
+
+            $("#submitForm").click(function (e) {
+                e.preventDefault();
+
+                var data = $("#editCustomer").serialize()  + '&Customer.Id=' + $("#customerId").val();
+                $.ajax({
+                    url: "/api/customer/" + $("#customerId").val(),
+                    method: "POST",
+                    data: data
+                }).done(function () {
+                    toastr.success("Customer Edited");
+                }).fail(function () {
+                    toastr.error("Something unexpected happened");
+                });
+
+            });
+        })
+    </script>
+}
+

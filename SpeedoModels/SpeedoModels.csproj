@@ -228,11 +228,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\CustomerController.cs" />
     <Compile Include="Controllers\Api\ProductController.cs" />
     <Compile Include="Controllers\Api\SupplierController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Dtos\CustomerDto.cs" />
     <Compile Include="Dtos\ProductDto.cs" />
     <Compile Include="Dtos\SupplierDto.cs" />
     <Compile Include="Global.asax.cs">
@@ -274,11 +276,18 @@
     <Compile Include="Migrations\201804111536518_UpdateSupplierAgain.Designer.cs">
       <DependentUpon>201804111536518_UpdateSupplierAgain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805011641529_AddOrdersAndOrderLines.cs" />
+    <Compile Include="Migrations\201805011641529_AddOrdersAndOrderLines.Designer.cs">
+      <DependentUpon>201805011641529_AddOrdersAndOrderLines.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Basket.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Orderline.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\Supplier.cs" />
@@ -603,6 +612,9 @@
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Product\StaffProductList.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Product\ViewProducts.cshtml" />
+    <Content Include="Views\Product\ViewProduct.cshtml" />
+    <Content Include="Views\Account\EditCustomer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -642,6 +654,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804111536518_UpdateSupplierAgain.resx">
       <DependentUpon>201804111536518_UpdateSupplierAgain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805011641529_AddOrdersAndOrderLines.resx">
+      <DependentUpon>201805011641529_AddOrdersAndOrderLines.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

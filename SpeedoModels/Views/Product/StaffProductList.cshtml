@@ -9,7 +9,11 @@
     <thead>
         <tr>
             <th>Product</th>
+            <th>Description</th>
+            <th>Colour</th>
             <th>Supplier</th>
+            <th>Price</th>
+            <th>Quantity</th>
             <th>Delete</th>
         </tr>
     </thead>
@@ -35,13 +39,25 @@
                         }
                     },
                     {
+                        data: "Description"
+                    },
+                    {
+                        data: "Colour"
+                    },
+                    {
                         data: "Supplier.Name"
+                    },
+                    {
+                        data: "Price"
+                    },
+                    {
+                        data: "Quantity"
                     },
                     {
                         data: "Id",
                         render: function (data) {
                             console.log(data);
-                            return "<button class='btn-link js-delete' data-product-id=" + data + ">Delete</button>";
+                            return "<button class='btn-primary js-delete' data-product-id=" + data + ">Delete</button>";
                         }
                     }
                 ]

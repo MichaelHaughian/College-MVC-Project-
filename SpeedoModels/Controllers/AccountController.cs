@@ -196,6 +196,13 @@ namespace SpeedoModels.Controllers
             return View(model);
         }
 
+        public ActionResult EditCustomer(string id)
+        {
+            ViewBag.customerId = id;
+
+            return View();
+        }
+
         
         [AllowAnonymous]
         public ActionResult RegisterStaff()
