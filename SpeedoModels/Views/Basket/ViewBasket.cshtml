@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "ViewBasket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewBasket</h2>
+
+<form id="basket">
+    <label>Product Name: </label><label id="name" name="Name"></label>
+    <label>Product Description: </label><label id="description" name="Description"></label>
+    <label>Product Price: </label><label id="price" name="Price"></label>
+    <label>Quantity: </label><label id="quantity" name="Quantity"></label>
+</form>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: "/basket/getbasket/",
+                method: "GET",
+                success: function (basket) {
+                    for (p in basket) {
+                        console.log(basket[p].name);
+                    }
+                }
+            });
+        });
+    </script>
+}
+

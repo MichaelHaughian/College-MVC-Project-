@@ -28,6 +28,7 @@
                     <li>@Html.ActionLink("New Product", "Create", "Product")</li>
                     <li>@Html.ActionLink("Staff View Products", "Index", "Product")</li>
                     <li>@Html.ActionLink("View Products", "ViewProducts", "Product")</li>
+                    <li id="basket" name="Basket">@Html.ActionLink("Basket(" + 0 + ")", "ViewBasket", "Basket")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

@@ -30,6 +30,7 @@ namespace SpeedoModels
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-simplex.css",
+                      "~/Content/toastr.css",
                       "~/Content/Site.css"));
         }
     }

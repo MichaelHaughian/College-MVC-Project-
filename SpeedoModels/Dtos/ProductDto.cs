@@ -22,8 +22,10 @@ namespace SpeedoModels.Dtos
         [Required]
         public double Price { get; set; }
 
-        [Required]
         public int Quantity { get; set; }
+
+        [Required]
+        public int Stock { get; set; }
 
         public int? ReorderQuantity { get; set; }
 

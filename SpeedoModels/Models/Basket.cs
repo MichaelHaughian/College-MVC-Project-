@@ -8,12 +8,6 @@ namespace SpeedoModels.Models
 {
     public class Basket
     {
-        public ArrayList Products { get; set; }
-
-        public decimal OrderTotal { get; set; }
-
-
-
-
+        public List<Product> Products { get; set; }
     }
 }

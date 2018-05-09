@@ -231,6 +231,7 @@
     <Compile Include="Controllers\Api\CustomerController.cs" />
     <Compile Include="Controllers\Api\ProductController.cs" />
     <Compile Include="Controllers\Api\SupplierController.cs" />
+    <Compile Include="Controllers\BasketController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -279,6 +280,10 @@
     <Compile Include="Migrations\201805011641529_AddOrdersAndOrderLines.cs" />
     <Compile Include="Migrations\201805011641529_AddOrdersAndOrderLines.Designer.cs">
       <DependentUpon>201805011641529_AddOrdersAndOrderLines.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805071253387_UpdateProductWithStock.cs" />
+    <Compile Include="Migrations\201805071253387_UpdateProductWithStock.Designer.cs">
+      <DependentUpon>201805071253387_UpdateProductWithStock.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Basket.cs" />
@@ -615,6 +620,7 @@
     <Content Include="Views\Product\ViewProducts.cshtml" />
     <Content Include="Views\Product\ViewProduct.cshtml" />
     <Content Include="Views\Account\EditCustomer.cshtml" />
+    <Content Include="Views\Basket\ViewBasket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -657,6 +663,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805011641529_AddOrdersAndOrderLines.resx">
       <DependentUpon>201805011641529_AddOrdersAndOrderLines.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805071253387_UpdateProductWithStock.resx">
+      <DependentUpon>201805071253387_UpdateProductWithStock.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

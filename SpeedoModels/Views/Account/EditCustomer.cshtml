@@ -51,13 +51,12 @@
 @section scripts
 {
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $.ajax({
                 url: "/api/customer/" + $("#customerId").val(),
                 method: "GET",
-                success: function (customer) {
+                success: function(customer) {
                     $("#email").val(customer.Email);
-                    console.log(customer.UserName);
                     $("#username").val(customer.UserName);
                     $("#firstName").val(customer.FirstName);
                     $("#lastName").val(customer.LastName);
@@ -69,17 +68,24 @@
                 }
             });
 
-            $("#submitForm").click(function (e) {
+            $("#submitForm").click(function(e) {
                 e.preventDefault();
 
-                var data = $("#editCustomer").serialize()  + '&Customer.Id=' + $("#customerId").val();
+                var data = $("#editCustomer").serialize() + '&Customer.Id=' + $("#customerId").val();
                 $.ajax({
                     url: "/api/customer/" + $("#customerId").val(),
                     method: "POST",
                     data: data
-                }).done(function () {
+                }).done(function() {
                     toastr.success("Customer Edited");
-                }).fail(function () {
+                    setTimeout(
+                        function () {
+                            var baseUrl="@Url.Action("Index","Manage")";
+                            window.location.href=baseUrl;
+                        }, 2000);
+
+
+                }).fail(function() {
                     toastr.error("Something unexpected happened");
                 });
 

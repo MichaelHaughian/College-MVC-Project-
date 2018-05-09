@@ -20,10 +20,12 @@ namespace SpeedoModels.Models
         public string Colour { get; set; }
 
         [Required]
-        public double Price { get; set; }
+        public decimal Price { get; set; }
+
+        public int Quantity { get; set; }
 
         [Required]
-        public int Quantity { get; set; }
+        public int Stock { get; set; }
 
         public int? ReorderQuantity { get; set; }
 
