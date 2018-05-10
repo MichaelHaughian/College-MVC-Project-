@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -25,10 +27,8 @@ namespace SpeedoModels.Controllers.Api
         }
 
         [System.Web.Http.HttpPost]
-        public void CreateOrder(JsonResult basketJsonResult)
+        public void CreateOrder(Basket basket)
         {
-            string basketString = basketJsonResult.ToString();
-            Basket basket = new JavaScriptSerializer().Deserialize<Basket>(basketString);
             Order order = new Order();
             List<Orderline> orderlines = new List<Orderline>();
 
@@ -42,13 +42,34 @@ namespace SpeedoModels.Controllers.Api
                 order.OrderTotal += orderline.LineTotal;
 
                 orderlines.Add(orderline);
+                
             }
-
-            order.OrderLines = orderlines;
 
             _context.Orders.Add(order);
 
-            _context.SaveChanges();
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("ERROR: " + ex);
+            }
+
+            foreach (Orderline orderline in orderlines)
+            {
+                orderline.OrderId = order.Id;
+                _context.Orderlines.Add(orderline);
+            }
+
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("ERROR: " + ex);
+            }
         }
     }
 }

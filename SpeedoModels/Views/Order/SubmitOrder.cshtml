@@ -15,17 +15,18 @@
                 method: "GET",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function (basketJson) {
-                        $.ajax({
-                            url: "/api/order/",
-                            method: "POST",
-                            contentType: "application/json; charset=utf-8",
-                            dataType: "json",
-                            data: basketJson,
-                            success: function () {
-                                
-                            }
-                        });
+                success: function (basket) {
+                    console.log(basket);
+                    $.ajax({
+                        url: "/api/order/",
+                        method: "POST",
+                        data: JSON.stringify(basket),
+                        contentType: "application/json",
+                        traditional: true,
+                        processData: false
+                    }).done(function() {
+                        console.log("please work");
+                    });
                 }
             });
         });

@@ -16,18 +16,9 @@
         $(document).ready(function() {
             $("#submitOrder").click(function (e) {
                 e.preventDefault();
-                $.ajax({
-                    url: "/basket/getbasket/",
-                    method: "GET",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json"
-                }).done(function () {
-                    var baseUrl = "@Url.Action("SubmitOrder","Order")";
-                    window.location.href = baseUrl;
-                }).fail(function () {
-                    toastr.error("Something unexpected happened");
-                });
-
+                var baseUrl = "@Url.Action("SubmitOrder","Order")";
+                window.location.href = baseUrl;
+                    
             });
         });
     </script>
