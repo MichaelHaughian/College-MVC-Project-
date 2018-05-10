@@ -287,6 +287,10 @@
     <Compile Include="Migrations\201805071253387_UpdateProductWithStock.Designer.cs">
       <DependentUpon>201805071253387_UpdateProductWithStock.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805101552272_UpdateOrderlineModel.cs" />
+    <Compile Include="Migrations\201805101552272_UpdateOrderlineModel.Designer.cs">
+      <DependentUpon>201805101552272_UpdateOrderlineModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Basket.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -670,6 +674,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805071253387_UpdateProductWithStock.resx">
       <DependentUpon>201805071253387_UpdateProductWithStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805101552272_UpdateOrderlineModel.resx">
+      <DependentUpon>201805101552272_UpdateOrderlineModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

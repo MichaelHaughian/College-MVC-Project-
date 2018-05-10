@@ -102,3 +102,4 @@ D:\CollegeStuff\HND\GradedUnit\SpeedoModels\SpeedoModels\obj\Debug\SpeedoModels.
 D:\CollegeStuff\HND\GradedUnit\SpeedoModels\SpeedoModels\obj\Debug\SpeedoModels.csprojResolveAssemblyReference.cache
 D:\CollegeStuff\HND\GradedUnit\SpeedoModels\SpeedoModels\obj\Debug\SpeedoModels.Migrations.AddOrdersAndOrderLines.resources
 D:\CollegeStuff\HND\GradedUnit\SpeedoModels\SpeedoModels\obj\Debug\SpeedoModels.Migrations.UpdateProductWithStock.resources
+D:\CollegeStuff\HND\GradedUnit\SpeedoModels\SpeedoModels\obj\Debug\SpeedoModels.Migrations.UpdateOrderlineModel.resources

@@ -59,6 +59,8 @@ namespace SpeedoModels.Controllers.Api
             foreach (Orderline orderline in orderlines)
             {
                 orderline.OrderId = order.Id;
+                orderline.ProductId = orderline.Product.Id;
+                orderline.Product = null;
                 _context.Orderlines.Add(orderline);
             }
 

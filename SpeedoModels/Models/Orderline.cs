@@ -17,8 +17,9 @@ namespace SpeedoModels.Models
         [Required]
         public decimal LineTotal { get; set; }
 
-        [Required]
         public Product Product { get; set; }
+
+        public int ProductId { get; set; }
 
         public int OrderId { get; set; }
     }
