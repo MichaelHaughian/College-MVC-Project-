@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "OrderPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>OrderPage</h2>
+
+<form id="orderForm">
+    <button type="submit" id="submitOrder" name="SubmitOrder" class="btn btn-primary">Finalise Order</button>
+</form>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#submitOrder").click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: "/basket/getbasket/",
+                    method: "GET",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json"
+                }).done(function () {
+                    var baseUrl = "@Url.Action("SubmitOrder","Order")";
+                    window.location.href = baseUrl;
+                }).fail(function () {
+                    toastr.error("Something unexpected happened");
+                });
+
+            });
+        });
+    </script>
+}
+

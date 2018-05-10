@@ -18,7 +18,9 @@ namespace SpeedoModels.Controllers
             Basket basket = new Basket();
             List<Product> products = new List<Product>();
 
-            if (GetBasket().Products == null)
+            JsonResult basketJsonResult = GetBasket();
+            Basket loadedBasket = (Basket)basketJsonResult.Data;
+            if (loadedBasket.Products == null)
             {
                 products.Add(product);
                 basket.Products = products;
@@ -52,7 +54,7 @@ namespace SpeedoModels.Controllers
             
         }
 
-        public Basket GetBasket()
+        public JsonResult GetBasket()
         {
             Basket basket;
             var cookie = Request.Cookies["Basket"];
@@ -66,7 +68,7 @@ namespace SpeedoModels.Controllers
                 basket = new Basket();
             }
 
-            return (basket);
+            return Json(basket, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ViewBasket()
