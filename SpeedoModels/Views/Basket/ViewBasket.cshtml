@@ -28,6 +28,7 @@
                             "<label>Product Price: </label> <input id='price" + k + "' name='Price' disabled> </input>",
                             "<label>Quantity: </label> <input id='quantity" + k + "' name='Quantity' disabled> </input>",
                             "</div>",
+                            "<button id='delete' name='Delete' class='btn btn-primary' value='"+k+"'></button>",
                             "<br>");
                         $('#name' + k).val(v.Name);
                         $("#description" + k).val(v.Description);
@@ -47,6 +48,19 @@
                 }).done(function () {
                     var baseUrl = "@Url.Action("OrderPage","Order")";
                     window.location.href = baseUrl;
+                }).fail(function () {
+                    toastr.error("Something unexpected happened");
+                });
+
+            });
+
+            $("#delete").click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: "/basket/removeitemfrombasket/" + $("#delete").val(),
+                    method: "POST"
+                }).done(function () {
+                    location.reload();
                 }).fail(function () {
                     toastr.error("Something unexpected happened");
                 });

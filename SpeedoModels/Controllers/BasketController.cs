@@ -71,6 +71,11 @@ namespace SpeedoModels.Controllers
             return Json(basket, JsonRequestBehavior.AllowGet);
         }
 
+        public void RemoveItemFromBasket(int id, int quantity)
+        {
+
+        }
+
         public ActionResult ViewBasket()
         { 
             return View();
