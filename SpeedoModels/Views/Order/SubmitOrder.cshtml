@@ -6,6 +6,8 @@
 
 <h1>ORDER SUBMITTED</h1>
 
+<text>You will be redirected soon</text>
+
 @section scripts
 {
     <script>
@@ -15,8 +17,7 @@
                 method: "GET",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function (basket) {
-                    console.log(basket);
+                success: function(basket) {
                     $.ajax({
                         url: "/api/order/",
                         method: "POST",
@@ -25,7 +26,18 @@
                         traditional: true,
                         processData: false
                     }).done(function() {
-                        console.log("please work");
+                        $.ajax({
+                            url: "/basket/clearbasket",
+                            method: "POST"
+                        }).done(function() {
+                            setTimeout(
+                                function () {
+                                    var baseUrl="@Url.Action("Index","Home")";
+                                    window.location.href=baseUrl;
+                                }, 2000);
+                        });
+                    }).fail(function() {
+                        toastr.error("NOPE");
                     });
                 }
             });

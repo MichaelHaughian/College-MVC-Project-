@@ -23,17 +23,17 @@
                 success: function (basket) {
                     $.each(basket.Products, function(k, v) {
                         $("#basketForm").append("<div id='productDiv'>",
-                            "<label>Product Name: </label> <input id='name" + k + "' name='Name' disabled> </input>",
-                            "<label>Product Description: </label> <input id='description" + k + "' name='Description' disabled> </input>",
-                            "<label>Product Price: </label> <input id='price" + k + "' name='Price' disabled> </input>",
-                            "<label>Quantity: </label> <input id='quantity" + k + "' name='Quantity' disabled> </input>",
+                            "<label>Product Name: </label> <input id='name" + v.Id + "' name='Name' disabled> </input>",
+                            "<label>Product Description: </label> <input id='description" + v.Id + "' name='Description' disabled> </input>",
+                            "<label>Product Price: </label> <input id='price" + v.Id + "' name='Price' disabled> </input>",
+                            "<label>Quantity: </label> <input id='quantity" + v.Id + "' name='Quantity' disabled> </input>",
                             "</div>",
-                            "<button id='delete' name='Delete' class='btn btn-primary' value='"+k+"'></button>",
+                            "<button id='delete" + v.Id + "' name='Delete' class='btn btn-primary js-delete' value='" + v.Id + "'>Remove</button>",
                             "<br>");
-                        $('#name' + k).val(v.Name);
-                        $("#description" + k).val(v.Description);
-                        $("#price" + k).val(v.Price);
-                        $("#quantity" + k).val(v.Quantity);
+                        $('#name' + v.Id).val(v.Name);
+                        $("#description" + v.Id).val(v.Description);
+                        $("#price" + v.Id).val(v.Price);
+                        $("#quantity" + v.Id).val(v.Quantity);
                     });
                 }
             });
@@ -54,10 +54,13 @@
 
             });
 
-            $("#delete").click(function (e) {
+            $("#basketForm").on("click", ".js-delete",function (e) {
                 e.preventDefault();
+                var clickedButton = $(this).attr('value');
+                console.log(clickedButton);
+                console.log($(this).val());
                 $.ajax({
-                    url: "/basket/removeitemfrombasket/" + $("#delete").val(),
+                    url: "/basket/removeitemfrombasket/" + clickedButton,
                     method: "POST"
                 }).done(function () {
                     location.reload();

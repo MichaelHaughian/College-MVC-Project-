@@ -6,44 +6,80 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @if (ViewBag.basketQuantity == null)
+    {
+        ViewBag.basketQuantity = 0;
+    }
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Speedo Models", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("New Staff", "RegisterStaff", "Account")</li>
-                    <li>@Html.ActionLink("New Product", "Create", "Product")</li>
-                    <li>@Html.ActionLink("Staff View Products", "Index", "Product")</li>
-                    <li>@Html.ActionLink("View Products", "ViewProducts", "Product")</li>
-                    <li id="basket" name="Basket">@Html.ActionLink("Basket(" + 0 + ")", "ViewBasket", "Basket")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Speedo Models", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                <li>@Html.ActionLink("New Staff", "RegisterStaff", "Account")</li>
+                <li>@Html.ActionLink("New Product", "Create", "Product")</li>
+                <li>@Html.ActionLink("Staff View Products", "Index", "Product")</li>
+                <li>@Html.ActionLink("View Products", "ViewProducts", "Product")</li>
+                <li id="basket" name="Basket">@Html.ActionLink("Basket(" + (int)ViewBag.basketQuantity + ")", "ViewBasket", "Basket")</li>
+            </ul>
+            @Html.Partial("_LoginPartial")
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Speedo Models</p>
-        </footer>
-    </div>
+</div>
+<div class="container body-content">
+    @RenderBody()
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Speedo Models</p>
+    </footer>
+</div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
 </body>
 </html>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: "/basket/getbasket/",
+                method: "GET",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(basket) {
+                    var quantity = 0;
+                    $.each(basket.Products, function (k, v) {
+                        quantity += v.Quantity;
+                    });
+
+                    @ViewBag.basketQuantity = quantity;
+                    console.log("HELLO");
+                    console.log(@ViewBag.basketQuantity);
+                }
+            });
+        });
+    </script>
+}
+
+
+
+
+
+
+
+

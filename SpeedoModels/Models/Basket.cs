@@ -9,5 +9,7 @@ namespace SpeedoModels.Models
     public class Basket
     {
         public List<Product> Products { get; set; }
+
+        public string CustomerId { get; set; }
     }
 }

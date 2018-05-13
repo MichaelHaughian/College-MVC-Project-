@@ -14,6 +14,9 @@ namespace SpeedoModels.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+        [Required]
+        public int CustomerId { get; set; }
+
         public int TrackingNumber { get; set; }
 
         public DateTime DateOfReturn { get; set; }

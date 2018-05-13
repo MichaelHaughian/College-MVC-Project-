@@ -25,6 +25,7 @@ namespace SpeedoModels.Controllers
             _context.Dispose();
         }
 
+        [Authorize(Roles = "Admin, Staff")]
         public ActionResult Index()
         {
             return View("StaffProductList");

@@ -74,7 +74,7 @@
 
             $("#submitForm").click(function(e) {
                 e.preventDefault();
-
+                var data = $("#viewProduct").serialize() + '&Quantity=' + $("#quantity").find(":selected").val();
                 $.ajax({
                     url: "/basket/AddToBasket/",
                     method: "POST",

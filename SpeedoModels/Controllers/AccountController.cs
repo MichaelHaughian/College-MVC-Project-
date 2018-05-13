@@ -168,12 +168,12 @@ namespace SpeedoModels.Controllers
                 if (result.Succeeded)
                 {
                     //Temp code used to create admin user
-                    // var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
-                    // var roleManager = new RoleManager<IdentityRole>(roleStore);
-                    // await roleManager.CreateAsync(new IdentityRole("Admin"));
-                    // await UserManager.AddToRoleAsync(user.Id, "Admin");
+                     //var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                     //var roleManager = new RoleManager<IdentityRole>(roleStore);
+                     //await roleManager.CreateAsync(new IdentityRole("Admin"));
+                     //await UserManager.AddToRoleAsync(user.Id, "Admin");
 
-                    // await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                     //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
                     var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
                     var roleManager = new RoleManager<IdentityRole>(roleStore);
@@ -204,7 +204,7 @@ namespace SpeedoModels.Controllers
         }
 
         
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         public ActionResult RegisterStaff()
         {
             return View();
@@ -485,6 +485,14 @@ namespace SpeedoModels.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+
+            //clear cookie when logging off
+            var cookie = new HttpCookie("Basket")
+            {
+                Expires = DateTime.Now.AddHours(-1)
+            };
+            HttpContext.Response.SetCookie(cookie);
+
             return RedirectToAction("Index", "Home");
         }
 
