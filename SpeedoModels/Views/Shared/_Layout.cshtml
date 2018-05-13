@@ -52,10 +52,9 @@
 </body>
 </html>
 
-@section scripts
-{
-    <script>
+    <script type="text/javascript">
         $(document).ready(function() {
+            console.log("HI");
             $.ajax({
                 url: "/basket/getbasket/",
                 method: "GET",
@@ -68,13 +67,11 @@
                     });
 
                     @ViewBag.basketQuantity = quantity;
-                    console.log("HELLO");
-                    console.log(@ViewBag.basketQuantity);
+ 
                 }
             });
         });
     </script>
-}
 
 
 
