@@ -22,5 +22,12 @@ namespace SpeedoModels.Controllers
         {
             return View();
         }
+
+        public ActionResult ViewOrders(string id)
+        {
+            ViewBag.userId = id;
+
+            return View();
+        }
     }
 }

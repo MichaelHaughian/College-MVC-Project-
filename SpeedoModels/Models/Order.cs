@@ -15,7 +15,7 @@ namespace SpeedoModels.Models
         public int Id { get; set; }
 
         [Required]
-        public int CustomerId { get; set; }
+        public string CustomerId { get; set; }
 
         public int TrackingNumber { get; set; }
 

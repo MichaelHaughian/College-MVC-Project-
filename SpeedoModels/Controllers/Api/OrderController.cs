@@ -26,6 +26,13 @@ namespace SpeedoModels.Controllers.Api
             _context.Dispose();
         }
 
+        public IHttpActionResult ViewOrders(string id)
+        {
+            var orders = _context.Orders.Where(c => c.CustomerId == id);
+
+            return Ok(orders);
+        }
+
         [System.Web.Http.HttpPost]
         public void CreateOrder(Basket basket)
         {

@@ -15,6 +15,10 @@
         <dd>
             @Html.ActionLink("Edit your details", "EditCustomer", "Account", new {id = HttpContext.Current.User.Identity.GetUserId()}, null)
         </dd>
+        <dt>View Orders:</dt>
+        <dd>
+            @Html.ActionLink("View Orders", "ViewOrders", "Order", new { id = HttpContext.Current.User.Identity.GetUserId() }, null)
+        </dd>
         <dt>Password:</dt>
         <dd>
             [

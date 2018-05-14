@@ -295,6 +295,10 @@
     <Compile Include="Migrations\201805131417486_AddCustomerIdToOrder.Designer.cs">
       <DependentUpon>201805131417486_AddCustomerIdToOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805141148311_UpdateCustomerIdInOrder.cs" />
+    <Compile Include="Migrations\201805141148311_UpdateCustomerIdInOrder.Designer.cs">
+      <DependentUpon>201805141148311_UpdateCustomerIdInOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Basket.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -633,6 +637,7 @@
     <Content Include="Views\Basket\ViewBasket.cshtml" />
     <Content Include="Views\Order\OrderPage.cshtml" />
     <Content Include="Views\Order\SubmitOrder.cshtml" />
+    <Content Include="Views\Order\ViewOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -684,6 +689,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805131417486_AddCustomerIdToOrder.resx">
       <DependentUpon>201805131417486_AddCustomerIdToOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805141148311_UpdateCustomerIdInOrder.resx">
+      <DependentUpon>201805141148311_UpdateCustomerIdInOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

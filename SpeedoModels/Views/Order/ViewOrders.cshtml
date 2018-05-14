@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "ViewOrders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>View Orders</h2>
+<table id="orders" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th>Order Id</th>
+        <th>Tracking Number</th>
+        <th>Order Total</th>
+        <th>View</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+
+            var table = $("#orders").DataTable({
+                ajax: {
+                    url: "/api/vieworders/" + $("#userId").val(),
+                    method: "GET",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "Id"
+                    },
+                    {
+                        data: "TrackingNumber"
+                    },
+                    {
+                        data: "OrderTotal"
+                    },
+                    {
+                        data: "Id",
+                        render: function(data) {
+                            console.log(data);
+                            return "<a href='/product/viewproduct/" + data + "' class='btn-primary'>Buy</a>";
+                        }
+                    }
+                ]
+            });
+        });
+            
+
+
+    </script>
+}
+
