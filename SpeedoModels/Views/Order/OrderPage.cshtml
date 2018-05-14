@@ -8,6 +8,8 @@
 
 <form id="orderForm">
     <button type="submit" id="submitOrder" name="SubmitOrder" class="btn btn-primary">Finalise Order</button>
+    <br/>
+    <label>Order Total: </label><input id="orderTotal" name="OrderTotal" value="" disabled />
 </form>
 
 @section scripts
@@ -19,7 +21,35 @@
                 var baseUrl = "@Url.Action("SubmitOrder","Order")";
                 window.location.href = baseUrl;
             });
+
+            $.ajax({
+                url: "/basket/getbasket/",
+                method: "GET",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (basket) {
+                    var orderTotal = 0;
+                    $.each(basket.Products, function (k, v) {
+                        $("#orderForm").append("<div id='productDiv'>",
+                            "<label>Product Name: </label> <input id='name" + v.Id + "' name='Name' disabled> </input>",
+                            "<label>Product Description: </label> <input id='description" + v.Id + "' name='Description' disabled> </input>",
+                            "<label>Product Price: </label> <input id='price" + v.Id + "' name='Price' disabled> </input>",
+                            "<label>Quantity: </label> <input id='quantity" + v.Id + "' name='Quantity' disabled> </input>",
+                            "</div>",
+                            "<br>");
+                        $('#name' + v.Id).val(v.Name);
+                        $("#description" + v.Id).val(v.Description);
+                        $("#price" + v.Id).val(v.Price);
+                        $("#quantity" + v.Id).val(v.Quantity);
+                        orderTotal += (v.Price * v.Quantity);
+                    });
+
+                    $("#orderTotal").val(orderTotal);
+                }
+            });
         });
+
+        
     </script>
 }
 

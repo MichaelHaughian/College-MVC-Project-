@@ -42,7 +42,11 @@ namespace SpeedoModels.Controllers.Api
                 order.OrderTotal += orderline.LineTotal;
 
                 orderlines.Add(orderline);
-                
+
+                Product loadedProduct = _context.Products.SingleOrDefault(c => c.Id == product.Id);
+
+                loadedProduct.Stock -= product.Quantity;
+
             }
 
             _context.Orders.Add(order);

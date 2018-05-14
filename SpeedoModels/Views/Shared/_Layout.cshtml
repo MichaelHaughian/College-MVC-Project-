@@ -10,7 +10,7 @@
     {
         ViewBag.basketQuantity = 0;
     }
-
+    
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -44,6 +44,7 @@
     <footer>
         <p>&copy; @DateTime.Now.Year - Speedo Models</p>
     </footer>
+    <input type="hidden" id="basketQuantity" />
 </div>
 
 @Scripts.Render("~/bundles/jquery")
