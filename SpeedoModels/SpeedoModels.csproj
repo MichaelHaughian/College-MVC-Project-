@@ -638,6 +638,7 @@
     <Content Include="Views\Order\OrderPage.cshtml" />
     <Content Include="Views\Order\SubmitOrder.cshtml" />
     <Content Include="Views\Order\ViewOrders.cshtml" />
+    <Content Include="Views\Order\ViewOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

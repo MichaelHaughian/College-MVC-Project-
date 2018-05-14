@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Newtonsoft.Json;
 
 namespace SpeedoModels.Controllers
 {
@@ -25,7 +26,14 @@ namespace SpeedoModels.Controllers
 
         public ActionResult ViewOrders(string id)
         {
-            ViewBag.userId = id;
+            ViewBag.userId = JsonConvert.SerializeObject(id);
+
+            return View();
+        }
+
+        public ActionResult ViewOrder(int id)
+        {
+
 
             return View();
         }

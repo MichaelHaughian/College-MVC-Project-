@@ -29,7 +29,7 @@ namespace SpeedoModels.Controllers.Api
         [System.Web.Http.HttpGet]
         public IHttpActionResult ViewOrders(string id)
         {
-            var orders = _context.Orders.Where(c => c.CustomerId == id);
+            var orders = _context.Orders.Where(c => c.CustomerId == id).ToList();
 
             return Ok(orders);
         }
@@ -41,6 +41,9 @@ namespace SpeedoModels.Controllers.Api
             List<Orderline> orderlines = new List<Orderline>();
 
             order.CustomerId = basket.CustomerId;
+
+            Random rnd = new Random();
+            order.TrackingNumber = rnd.Next(100000000, 999999999);
             foreach (Product product in basket.Products)
             {
                 Orderline orderline = new Orderline();
