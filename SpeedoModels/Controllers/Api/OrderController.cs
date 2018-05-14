@@ -26,6 +26,7 @@ namespace SpeedoModels.Controllers.Api
             _context.Dispose();
         }
 
+        [System.Web.Http.HttpGet]
         public IHttpActionResult ViewOrders(string id)
         {
             var orders = _context.Orders.Where(c => c.CustomerId == id);
@@ -39,6 +40,7 @@ namespace SpeedoModels.Controllers.Api
             Order order = new Order();
             List<Orderline> orderlines = new List<Orderline>();
 
+            order.CustomerId = basket.CustomerId;
             foreach (Product product in basket.Products)
             {
                 Orderline orderline = new Orderline();
@@ -53,6 +55,8 @@ namespace SpeedoModels.Controllers.Api
                 Product loadedProduct = _context.Products.SingleOrDefault(c => c.Id == product.Id);
 
                 loadedProduct.Stock -= product.Quantity;
+
+                _context.SaveChanges();
 
             }
 
