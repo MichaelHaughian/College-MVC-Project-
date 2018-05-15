@@ -26,6 +26,8 @@ namespace SpeedoModels.Controllers.Api
             _context.Dispose();
         }
 
+        
+
         [System.Web.Http.HttpGet]
         public IHttpActionResult ViewOrders(string id)
         {
@@ -41,7 +43,7 @@ namespace SpeedoModels.Controllers.Api
             List<Orderline> orderlines = new List<Orderline>();
 
             order.CustomerId = basket.CustomerId;
-
+            order.OrderDate = DateTime.Now.Date;
             Random rnd = new Random();
             order.TrackingNumber = rnd.Next(100000000, 999999999);
             foreach (Product product in basket.Products)

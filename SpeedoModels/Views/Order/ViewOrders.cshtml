@@ -11,6 +11,7 @@
         <th>Order Id</th>
         <th>Tracking Number</th>
         <th>Order Total</th>
+        <th>Order Date</th>
         <th>View</th>
     </tr>
     </thead>
@@ -20,6 +21,8 @@
 
 @section scripts
 {
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
+
     <script>
         $(document).ready(function () {
             var table = $("#orders").DataTable({
@@ -37,6 +40,12 @@
                     },
                     {
                         data: "OrderTotal"
+                    },
+                    {
+                        data: "OrderDate",
+                        render: function(d){
+                            return moment(d).format("DD/MM/YYYY");
+                        }
                     },
                     {
                         data: "Id",

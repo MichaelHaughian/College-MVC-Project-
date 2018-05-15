@@ -230,6 +230,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\CustomerController.cs" />
     <Compile Include="Controllers\Api\OrderController.cs" />
+    <Compile Include="Controllers\Api\OrderlineController.cs" />
     <Compile Include="Controllers\Api\ProductController.cs" />
     <Compile Include="Controllers\Api\SupplierController.cs" />
     <Compile Include="Controllers\BasketController.cs" />
@@ -298,6 +299,10 @@
     <Compile Include="Migrations\201805141148311_UpdateCustomerIdInOrder.cs" />
     <Compile Include="Migrations\201805141148311_UpdateCustomerIdInOrder.Designer.cs">
       <DependentUpon>201805141148311_UpdateCustomerIdInOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805151011204_AddedDateToOrder.cs" />
+    <Compile Include="Migrations\201805151011204_AddedDateToOrder.Designer.cs">
+      <DependentUpon>201805151011204_AddedDateToOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Basket.cs" />
@@ -583,6 +588,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\toastr.js" />
@@ -693,6 +702,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805141148311_UpdateCustomerIdInOrder.resx">
       <DependentUpon>201805141148311_UpdateCustomerIdInOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805151011204_AddedDateToOrder.resx">
+      <DependentUpon>201805151011204_AddedDateToOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

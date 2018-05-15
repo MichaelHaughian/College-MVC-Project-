@@ -33,7 +33,7 @@ namespace SpeedoModels.Controllers
 
         public ActionResult ViewOrder(int id)
         {
-
+            ViewBag.orderId = JsonConvert.SerializeObject(id);
 
             return View();
         }

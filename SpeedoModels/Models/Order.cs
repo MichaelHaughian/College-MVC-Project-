@@ -19,6 +19,9 @@ namespace SpeedoModels.Models
 
         public int TrackingNumber { get; set; }
 
+        [DataType(DataType.Date)]
+        public DateTime OrderDate { get; set; }
+
         public DateTime DateOfReturn { get; set; }
 
         public string ReasonForReturn { get; set; }
@@ -33,6 +36,7 @@ namespace SpeedoModels.Models
         public Order()
         {
             DateOfReturn = DateTime.Parse("01/01/2000");
+            OrderDate = DateTime.Parse("01/01/2000");
             TrackingNumber = 0;
             ReasonForReturn = "";
             ConditionOfItem = "";

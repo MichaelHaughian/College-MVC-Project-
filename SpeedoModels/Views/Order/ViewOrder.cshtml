@@ -1,16 +1,21 @@
-﻿
+﻿@using Microsoft.AspNet.Identity
+
 @{
     ViewBag.Title = "ViewOrder";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ViewOrder</h2>
+<h2>View Order</h2>
+
+<button class="btn btn-primary" id="return" name="Return">Return to Orders</button>
 
 <table id="orderLines" class="table table-bordered table-hover">
     <thead>
         <tr>
             <th>Product</th>
+            <th>Description</th>
             <th>Quantity</th>
+            <th>Price</th>
             <th>Total</th>
         </tr>
     </thead>
@@ -21,34 +26,39 @@
 @section scripts
 {
     <script>
-        $(document).ready(function () {
-            var table = $("#orders").DataTable({
+        $(document).ready(function() {
+            console.log("HELLO");
+            var table = $("#orderLines").DataTable({
                 ajax: {
-                    url: "/api/order/" + @Html.Raw(ViewBag.userId),
+                    url: "/api/orderline/" + @Html.Raw(ViewBag.orderId),
                     method: "GET",
                     dataSrc: ""
                 },
                 columns: [
                     {
-                        data: "Id"
+                        data: "Product.Name"
                     },
                     {
-                        data: "TrackingNumber"
+                        data: "Product.Description"
                     },
                     {
-                        data: "OrderTotal"
+                        data: "Quantity"
                     },
                     {
-                        data: "Id",
-                        render: function(data) {
-                            console.log(data);
-                            return "<a href='/order/vieworder/" + data + "' class='btn-primary'>View</a>";
-                        }
+                        data: "Product.Price"
+                    },
+                    {
+                        data: "LineTotal"
                     }
                 ]
             });
-        });
 
+            $("#return").click(function(e) {
+                e.preventDefault();
+                var baseUrl="@Url.Action("ViewOrders","Order", new { id = HttpContext.Current.User.Identity.GetUserId() },null)";
+                window.location.href=baseUrl;
+            });
+        });
 
 
     </script>

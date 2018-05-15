@@ -51,6 +51,7 @@ namespace SpeedoModels.Controllers
                     else
                     {
                         basket.Products.Add(product);
+                        break;
                     }
                 }
                 

@@ -20,7 +20,10 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (basket) {
-                    $.each(basket.Products, function(k, v) {
+                    console.log(basket);
+                    $.each(basket.Products, function (k, v) {
+                        console.log(k);
+                        console.log(v);
                         $("#basketForm").append("<div id='productDiv'>",
                             "<label>Product Name: </label> <input id='name" + v.Id + "' name='Name' disabled> </input>",
                             "<label>Product Description: </label> <input id='description" + v.Id + "' name='Description' disabled> </input>",
