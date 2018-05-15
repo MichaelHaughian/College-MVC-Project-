@@ -81,6 +81,11 @@
                     data: data
                 }).done(function() {
                     toastr.success("Product added to basket");
+                    setTimeout(
+                        function () {
+                            var baseUrl="@Url.Action("ViewProducts","Product")";
+                            window.location.href=baseUrl;
+                        }, 2000);
                 }).fail(function() {
                     toastr.error("Something unexpected happened");
                 });

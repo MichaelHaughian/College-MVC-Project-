@@ -26,6 +26,11 @@ namespace SpeedoModels.Controllers
 
         public ActionResult ViewOrders(string id)
         {
+            if (id.Equals("0"))
+            {
+                id = User.Identity.GetUserId();
+            }
+
             ViewBag.userId = JsonConvert.SerializeObject(id);
 
             return View();

@@ -80,6 +80,10 @@ namespace SpeedoModels.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    if (returnUrl == null)
+                    {
+                        returnUrl = "/Product/ViewProducts";
+                    }
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -415,6 +419,10 @@ namespace SpeedoModels.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    if (returnUrl == null)
+                    {
+                        returnUrl = "/Product/ViewProducts";
+                    }
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -493,7 +501,7 @@ namespace SpeedoModels.Controllers
             };
             HttpContext.Response.SetCookie(cookie);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("ViewProducts", "Product");
         }
 
         //

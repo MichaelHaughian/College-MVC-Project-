@@ -10,14 +10,21 @@
 <div>
     <h4>Change your account settings</h4>
     <hr />
+    
+    @if (User.IsInRole("Admin"))
+    {
+        <button id="createStaff" class="btn btn-primary">Create Staff</button>
+    }
+    
+    @if (User.IsInRole("Admin")||User.IsInRole("Staff"))
+    {
+        <button id="createProduct" class="btn btn-primary">Create Product</button>
+        <button id="viewProducts" class="btn btn-primary">View Products</button>
+    }
     <dl class="dl-horizontal">
         <dt>Edit Details:</dt>
         <dd>
             @Html.ActionLink("Edit your details", "EditCustomer", "Account", new {id = HttpContext.Current.User.Identity.GetUserId()}, null)
-        </dd>
-        <dt>View Orders:</dt>
-        <dd>
-            @Html.ActionLink("View Orders", "ViewOrders", "Order", new { id = HttpContext.Current.User.Identity.GetUserId() }, null)
         </dd>
         <dt>Password:</dt>
         <dd>
@@ -94,3 +101,33 @@
         </dd>
     </dl>
 </div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+
+            $("#viewProducts").click(function(e) {
+                e.preventDefault();
+                var baseUrl="@Url.Action("Index","Product")";
+                window.location.href=baseUrl;
+            });
+
+            $("#createStaff").click(function(e) {
+                e.preventDefault();
+                var baseUrl="@Url.Action("RegisterStaff","Account")";
+                window.location.href=baseUrl;
+            });
+
+            $("#createProduct").click(function(e) {
+                e.preventDefault();
+                var baseUrl="@Url.Action("Create","Product")";
+                window.location.href=baseUrl;
+            });
+        });
+
+
+    </script>
+}
+
+

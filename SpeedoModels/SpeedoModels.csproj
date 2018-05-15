@@ -636,7 +636,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\RegisterStaff.cshtml" />
-    <Content Include="Views\Product\View.cshtml" />
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Product\StaffProductList.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />

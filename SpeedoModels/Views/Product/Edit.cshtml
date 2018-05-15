@@ -62,7 +62,12 @@
                     method: "POST",
                     data: data
                 }).done(function () {
-                    toastr.success("Product Added to Basket");
+                    toastr.success("Product Edited");
+                    setTimeout(
+                        function () {
+                            var baseUrl="@Url.Action("Index","Product")";
+                            window.location.href=baseUrl;
+                        }, 2000);
                 }).fail(function () {
                     toastr.error("Something unexpected happened");
                 });

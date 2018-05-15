@@ -21,18 +21,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @Html.ActionLink("Speedo Models", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Speedo Models", "ViewProducts", "Product", new { area = "" }, new { @class = "navbar-brand" })
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("About", "About", "Home")</li>
-                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                <li>@Html.ActionLink("New Staff", "RegisterStaff", "Account")</li>
-                <li>@Html.ActionLink("New Product", "Create", "Product")</li>
-                <li>@Html.ActionLink("Staff View Products", "Index", "Product")</li>
-                <li>@Html.ActionLink("View Products", "ViewProducts", "Product")</li>
-                <li id="basket" name="Basket">@Html.ActionLink("Basket(" + (int)ViewBag.basketQuantity + ")", "ViewBasket", "Basket")</li>
+                
             </ul>
             @Html.Partial("_LoginPartial")
         </div>
