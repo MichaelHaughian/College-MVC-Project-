@@ -6,10 +6,6 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @if (ViewBag.basketQuantity == null)
-    {
-        ViewBag.basketQuantity = 0;
-    }
     
 </head>
 <body>
@@ -58,8 +54,6 @@
                     $.each(basket.Products, function (k, v) {
                         quantity += v.Quantity;
                     });
-
-                    @ViewBag.basketQuantity = quantity;
  
                 }
             });

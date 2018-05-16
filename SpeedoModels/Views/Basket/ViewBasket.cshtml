@@ -33,7 +33,7 @@
                                 "<label>Product Price: </label> <input id='price" +
                                 v.Id +
                                 "' name='Price' readonly> </input>",
-                                "<label>Quantity: </label> <select id='quantity' name='Quantity' class='dropdownQuantity'>" +
+                                "<label>Quantity: </label> <select id='quantity"+v.Id+"' data-internalid='"+v.Id+"' value='' name='Quantity' class='js-dropdownQuantity'>" +
                                 "<option value='1'>1</option>" +
                                 "<option value='2'>2</option>" +
                                 "<option value='3'>3</option>" +
@@ -53,7 +53,7 @@
                                 "'>Remove</button>",
                                 "<input id='product" +
                                 v.Id +
-                                "' name='Id' type='hidden' value='"+v.Id+"' class='form-control' readonly/>",
+                                "' name='Id' type='hidden' value='"+v.Id+"'/>",
                                 "<br>");
                             $('#name' + v.Id).val(v.Name);
                             $("#description" + v.Id).val(v.Description);
@@ -64,8 +64,21 @@
                 }
             });
 
-            $(".dropdownQuantity").change(function () {
-                alert("IT WORKS");
+            $("#basketForm").on("change", "select", function () {
+                var id = $(this).attr('data-internalid');
+                $.ajax({
+                    url: "/api/product/" + id,
+                    method: "GET",
+                    success: function (product) {
+                        product.Quantity = $("#quantity" + id).find(":selected").val();
+                        $.ajax({
+                            url: "/basket/AddToBasket/",
+                            method: "POST",
+                            data: product
+                        });
+                    }
+                });
+                
             });
 
             $("#basketForm").on("click",
