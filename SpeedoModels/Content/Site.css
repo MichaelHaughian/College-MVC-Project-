@@ -22,3 +22,8 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/*.dropdown-menu {
+    width: 300px !important;
+    height: 400px !important;
+}*/

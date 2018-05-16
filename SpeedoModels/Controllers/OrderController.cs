@@ -15,7 +15,9 @@ namespace SpeedoModels.Controllers
         // GET: Order
         
         public ActionResult OrderPage()
-        {            
+        {
+            Session["Referrer"] = "";
+
             return View();
         }
 

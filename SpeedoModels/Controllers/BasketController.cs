@@ -18,6 +18,7 @@ namespace SpeedoModels.Controllers
         {
             Basket basket = new Basket();
             List<Product> products = new List<Product>();
+            string previousPage = (string)Session["Referrer"];
 
             basket.CustomerId = User.Identity.GetUserId();
             JsonResult basketJsonResult = GetBasket();
@@ -44,11 +45,16 @@ namespace SpeedoModels.Controllers
 
                 foreach (Product productLoop in basket.Products.ToList())
                 {
-                    if (product.Id == productLoop.Id)
+                    if (previousPage != null && previousPage.Equals("ViewBasket") && product.Id == productLoop.Id)
+                    {
+                        productLoop.Quantity = product.Quantity;
+                       
+                    }
+                    else if (product.Id == productLoop.Id)
                     {
                         productLoop.Quantity += product.Quantity;
                     }
-                    else
+                    else if(previousPage.Equals(Convert.ToString(product.Id)))
                     {
                         basket.Products.Add(product);
                         break;
@@ -61,7 +67,7 @@ namespace SpeedoModels.Controllers
                     Expires = DateTime.Now.AddHours(1)
                 };
 
-                HttpContext.Response.SetCookie(cookie);
+                Response.Cookies.Add(cookie);
             }
 
             

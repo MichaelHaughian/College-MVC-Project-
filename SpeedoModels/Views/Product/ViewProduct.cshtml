@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "ViewProduct";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    Session["Referrer"] = System.IO.Path.GetFileName(Request.Url.AbsolutePath);
 }
 
 <h2>ViewProduct</h2>

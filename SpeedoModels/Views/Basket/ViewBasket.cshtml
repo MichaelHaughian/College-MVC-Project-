@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "ViewBasket";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    Session["Referrer"] = System.IO.Path.GetFileName(Request.Url.AbsolutePath);
 }
 
 <h2>View Basket</h2>
@@ -19,59 +20,107 @@
                 method: "GET",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function (basket) {
-                    console.log(basket);
-                    $.each(basket.Products, function (k, v) {
-                        console.log(k);
-                        console.log(v);
-                        $("#basketForm").append("<div id='productDiv'>",
-                            "<label>Product Name: </label> <input id='name" + v.Id + "' name='Name' disabled> </input>",
-                            "<label>Product Description: </label> <input id='description" + v.Id + "' name='Description' disabled> </input>",
-                            "<label>Product Price: </label> <input id='price" + v.Id + "' name='Price' disabled> </input>",
-                            "<label>Quantity: </label> <input id='quantity" + v.Id + "' name='Quantity' disabled> </input>",
-                            "</div>",
-                            "<button id='delete" + v.Id + "' name='Delete' class='btn btn-primary js-delete' value='" + v.Id + "'>Remove</button>",
-                            "<br>");
-                        $('#name' + v.Id).val(v.Name);
-                        $("#description" + v.Id).val(v.Description);
-                        $("#price" + v.Id).val(v.Price);
-                        $("#quantity" + v.Id).val(v.Quantity);
-                    });
+                success: function(basket) {
+                    $.each(basket.Products,
+                        function(k, v) {
+                            $("#basketForm").append("<div id='productDiv'>",
+                                "<label>Product Name: </label> <input id='name" +
+                                v.Id +
+                                "' name='Name' readonly> </input>",
+                                "<label>Product Description: </label> <input id='description" +
+                                v.Id +
+                                "' name='Description' readonly> </input>",
+                                "<label>Product Price: </label> <input id='price" +
+                                v.Id +
+                                "' name='Price' readonly> </input>",
+                                "<label>Quantity: </label> <select id='quantity" +
+                                v.Id +
+                                "' name='Quantity' value='' class='form-control'>" +
+                                "<option value='1'>1</option>" +
+                                "<option value='2'>2</option>" +
+                                "<option value='3'>3</option>" +
+                                "<option value='4'>4</option>" +
+                                "<option value='5'>5</option>" +
+                                "<option value='6'>6</option>" +
+                                "<option value='7'>7</option>" +
+                                "<option value='8'>8</option>" +
+                                "<option value='9'>9</option>" +
+                                "<option value='10'>10</option>" +
+                                "</select>",
+                                "</div>",
+                                "<button id='delete" +
+                                v.Id +
+                                "' name='Delete' class='btn btn-primary js-delete' value='" +
+                                v.Id +
+                                "'>Remove</button>",
+                                "<input id='product" +
+                                v.Id +
+                                "' name='Id' type='hidden' value='' class='form-control' readonly/>",
+                                "<br>");
+                            $('#name' + v.Id).val(v.Name);
+                            $("#description" + v.Id).val(v.Description);
+                            $("#price" + v.Id).val(v.Price);
+                            $("#quantity" + v.Id).val(v.Quantity);
+                            $("#product" + v.Id).val(v.Id);
+                        });
                 }
             });
 
-            $("#checkout").click(function (e) {
+            $("#checkout").click(function(e) {
                 e.preventDefault();
+
                 $.ajax({
                     url: "/basket/getbasket/",
                     method: "GET",
                     contentType: "application/json; charset=utf-8",
-                    dataType: "json"
-                }).done(function () {
-                    var baseUrl = "@Url.Action("OrderPage","Order")";
-                    window.location.href = baseUrl;
-                }).fail(function () {
-                    toastr.error("Something unexpected happened");
+                    dataType: "json",
+                    success: function(basket) {
+                        $.each(basket.Products,
+                        function (k, v) {
+                            v.Quantity = $("#quantity" + v.Id).find(":selected").val();
+                            $.ajax({
+                                url: "/basket/AddToBasket/",
+                                method: "POST",
+                                data: v
+                            });
+                            
+                        }).done(function() {
+                            var baseUrl = "@Url.Action("OrderPage", "Order")";
+                            window.location.href = baseUrl;
+                        }).fail(function() {
+                            toastr.error("Something unexpected happened");
+                        });
+                    }
                 });
+
+                
 
             });
 
-            $("#basketForm").on("click", ".js-delete",function (e) {
-                e.preventDefault();
-                var clickedButton = $(this).attr('value');
-                console.log(clickedButton);
-                console.log($(this).val());
-                $.ajax({
-                    url: "/basket/removeitemfrombasket/" + clickedButton,
-                    method: "POST"
-                }).done(function () {
-                    location.reload();
-                }).fail(function () {
-                    toastr.error("Something unexpected happened");
-                });
+            $("#basketForm").on("click",
+                ".js-delete",
+                function(e) {
+                    e.preventDefault();
+                    var clickedButton = $(this).attr('value');
+                    console.log(clickedButton);
+                    console.log($(this).val());
+                    $.ajax({
+                        url: "/basket/removeitemfrombasket/" + clickedButton,
+                        method: "POST"
+                    }).done(function() {
+                        location.reload();
+                    }).fail(function() {
+                        toastr.error("Something unexpected happened");
+                    });
 
-            });
+                });
         });
     </script>
+
+
 }
+
+
+
+
 
