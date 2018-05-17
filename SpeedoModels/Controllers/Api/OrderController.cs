@@ -9,6 +9,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using SpeedoModels.Models;
+using Microsoft.AspNet.Identity;
 
 namespace SpeedoModels.Controllers.Api
 {
@@ -26,14 +27,40 @@ namespace SpeedoModels.Controllers.Api
             _context.Dispose();
         }
 
-        
-
         [System.Web.Http.HttpGet]
         public IHttpActionResult ViewOrders(string id)
         {
+
             var orders = _context.Orders.Where(c => c.CustomerId == id).ToList();
 
+            if (User.IsInRole("Admin") || User.IsInRole("Staff"))
+            {
+                orders = _context.Orders.ToList();
+
+                return Ok(orders);
+            }
+            else 
+            {
+                foreach (Order order in orders.ToList())
+                {
+                    if (order.IsCancelled)
+                    {
+                        orders.Remove(order);
+                    }
+                }
+            }
+            
+
             return Ok(orders);
+        }
+
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("api/order/vieworder/{id}")]
+        public IHttpActionResult ViewOrder(int id)
+        {
+            var order = _context.Orders.SingleOrDefault(c => c.Id== id);
+
+            return Ok(order);
         }
 
         [System.Web.Http.HttpPost]
@@ -92,6 +119,16 @@ namespace SpeedoModels.Controllers.Api
             {
                 Debug.WriteLine("ERROR: " + ex);
             }
+        }
+
+        [System.Web.Http.HttpDelete]
+        public void CancelOrder(int id)
+        {
+            var order = _context.Orders.SingleOrDefault(c => c.Id == id);
+
+            order.IsCancelled = true;
+
+            _context.SaveChanges();
         }
     }
 }

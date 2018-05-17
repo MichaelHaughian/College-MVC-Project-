@@ -26,9 +26,10 @@ namespace SpeedoModels.Controllers.Api
         [HttpGet]
         public IHttpActionResult ViewOrder(int id)
         {
-            var orderlines = _context.Orderlines.Where(c => c.OrderId == id).Include(c => c.Product).ToList();
 
-            return Ok(orderlines);
+            var order = _context.Orderlines.Where(c => c.OrderId == id).Include(c => c.Product).ToList();
+
+            return Ok(order);
         }
     }
 }

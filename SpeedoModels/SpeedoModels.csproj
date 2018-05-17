@@ -304,6 +304,10 @@
     <Compile Include="Migrations\201805151011204_AddedDateToOrder.Designer.cs">
       <DependentUpon>201805151011204_AddedDateToOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805171317474_UpdateOrderWithIsCancelled.cs" />
+    <Compile Include="Migrations\201805171317474_UpdateOrderWithIsCancelled.Designer.cs">
+      <DependentUpon>201805171317474_UpdateOrderWithIsCancelled.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Basket.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -703,6 +707,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805151011204_AddedDateToOrder.resx">
       <DependentUpon>201805151011204_AddedDateToOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805171317474_UpdateOrderWithIsCancelled.resx">
+      <DependentUpon>201805171317474_UpdateOrderWithIsCancelled.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

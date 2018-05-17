@@ -33,6 +33,8 @@ namespace SpeedoModels.Models
         [Required]
         public decimal OrderTotal { get; set; }
 
+        public bool IsCancelled { get; set; }
+
         public Order()
         {
             DateOfReturn = DateTime.Parse("01/01/2000");

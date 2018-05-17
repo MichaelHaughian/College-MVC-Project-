@@ -13,6 +13,7 @@
         <th>Order Total</th>
         <th>Order Date</th>
         <th>View</th>
+        <th>Cancel Order</th>
     </tr>
     </thead>
     <tbody></tbody>
@@ -51,11 +52,52 @@
                         data: "Id",
                         render: function(data) {
                             console.log(data);
-                            return "<a href='/order/vieworder/" + data + "' class='btn-primary'>View</a>";
+                            return "<a href='/order/vieworder/" + data + "' class='btn btn-primary'>View</a>";
+                        }
+                    },
+                    {
+                        data: "Id",
+                        render: function(data) {
+                            return "<button id='cancel' data-internalid='"+data+"' class='btn btn-primary js-cancel'>Cancel</button>";
                         }
                     }
                 ]
             });
+
+            $(document).on("click", ".js-cancel",
+                function() {
+                    var buttonId = $(this).attr("data-internalid");
+                    $.ajax({
+                        url: "/api/order/vieworder/" + buttonId,
+                        method: "GET"
+                    }).done(function(order) {
+                        var d = new Date();
+                        var od = new Date(order.OrderDate);
+                        od.setDate(od.getDate() + 2);
+                        if (d > od) {
+                            bootbox.alert("Unable to cancel order after 48 hours");
+                            
+                        } 
+                        else if(d < od)
+                        {
+                            bootbox.confirm("Are you sure you want to cancel this order?",
+                                function(confirmed) {
+                                    if (confirmed) {
+                                        $.ajax({
+                                            url: "/api/order/" + buttonId,
+                                            method: "DELETE"
+                                        }).done(function() {
+                                            window.location.reload();
+                                        }).fail(function() {
+                                            toastr.error("Something unexpected happened");
+                                        });
+                                    }
+                                });
+                        };
+
+                    });
+                    
+                });
         });
             
 

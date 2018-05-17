@@ -81,6 +81,12 @@
                 
             });
 
+            $("#checkout").on("click",
+                function() {
+                    var baseUrl="@Url.Action("OrderPage","Order")";
+                    window.location.href=baseUrl;
+                });
+
             $("#basketForm").on("click",
                 ".js-delete",
                 function(e) {
