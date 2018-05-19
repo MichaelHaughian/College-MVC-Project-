@@ -133,8 +133,16 @@ namespace SpeedoModels.Controllers.Api
         public void CancelOrder(int id)
         {
             var order = _context.Orders.SingleOrDefault(c => c.Id == id);
+            order.OrderLines = _context.Orderlines.Where(c => c.OrderId == id).ToList();
+            var product = new Product();
 
             order.IsCancelled = true;
+
+            foreach (Orderline orderline in order.OrderLines)
+            {
+                product = _context.Products.SingleOrDefault(c => c.Id == orderline.ProductId);
+                product.Stock += orderline.Quantity;
+            }
 
             _context.SaveChanges();
         }

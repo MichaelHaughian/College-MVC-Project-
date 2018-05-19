@@ -73,7 +73,11 @@ namespace SpeedoModels.Controllers
             
             foreach (Product product in basket.Products.ToList())
             {
-                basketTotal += product.Price;
+                for (int i = 1; i <= product.Quantity; i++)
+                {
+                    basketTotal += product.Price;
+                }
+                
             }
 
             int amount = (int)(basketTotal * 100);

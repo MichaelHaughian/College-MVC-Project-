@@ -84,6 +84,10 @@
                                 function(confirmed) {
                                     if (confirmed) {
                                         $.ajax({
+                                            url: "/mail/sendordercancellation/",
+                                            method: "POST"
+                                        });
+                                        $.ajax({
                                             url: "/api/order/" + buttonId,
                                             method: "DELETE"
                                         }).done(function() {

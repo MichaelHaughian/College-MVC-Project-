@@ -25,7 +25,11 @@
                         contentType: "application/json",
                         traditional: true,
                         processData: false
-                    }).done(function() {
+                    }).done(function () {
+                        $.ajax({
+                            url: "/mail/SendOrderConfirmation",
+                            method: "POST"
+                        });
                         $.ajax({
                             url: "/basket/clearbasket",
                             method: "POST"
