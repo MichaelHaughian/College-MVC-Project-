@@ -11,7 +11,7 @@
     <script src="https://www.paypalobjects.com/api/checkout.js"></script>*@
 </head>
 
-<form id="orderForm">
+<form id="orderForm" action="/order/charge" method="POST">
     @*<div id="paypal-button-container"></div>
     <script>
         paypal.Button.render({
@@ -65,7 +65,6 @@
             data-description="Checkout"
             data-amount="">
     </script>
-    <button type="submit" id="submitOrder" name="SubmitOrder" class="btn btn-primary">Finalise Order</button>
     <br/>
     
 </form>
@@ -75,11 +74,6 @@
     <script>
         $(document).ready(function () {
             var orderTotal;
-            $(".Button-animationWrapper-child--primary").click(function (e) {
-                e.preventDefault();
-                var baseUrl = "@Url.Action("SubmitOrder","Order")";
-                window.location.href = baseUrl;
-            });
 
             $.ajax({
                 url: "/basket/getbasket/",

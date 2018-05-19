@@ -5,8 +5,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
+using SpeedoModels.Models;
+using Stripe;
 
 namespace SpeedoModels.Controllers
 {
@@ -47,6 +50,51 @@ namespace SpeedoModels.Controllers
             ViewBag.orderId = JsonConvert.SerializeObject(id);
 
             return View();
+        }
+
+        public ActionResult Charge(string stripeEmail, string stripeToken)
+        {
+            var customers = new StripeCustomerService();
+            var charges = new StripeChargeService();
+
+            Basket basket;
+            var cookie = Request.Cookies["Basket"];
+
+            try
+            {
+                basket = new JavaScriptSerializer().Deserialize<Basket>(cookie.Value);
+            }
+            catch
+            {
+                basket = new Basket();
+            }
+
+            decimal basketTotal = 0;
+            
+            foreach (Product product in basket.Products.ToList())
+            {
+                basketTotal += product.Price;
+            }
+
+            int amount = (int)(basketTotal * 100);
+
+            var customer = customers.Create(new StripeCustomerCreateOptions
+            {
+                Email = stripeEmail,
+                SourceToken = stripeToken
+            });
+
+            var charge = charges.Create(new StripeChargeCreateOptions
+            {
+                Amount = amount,//charge in cents
+                Description = "Speedo Models Checkout",
+                Currency = "gbp",
+                CustomerId = customer.Id
+            });
+
+            
+
+            return View("SubmitOrder");
         }
 
     }

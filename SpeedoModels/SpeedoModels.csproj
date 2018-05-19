@@ -321,6 +321,18 @@
     <Compile Include="Migrations\201805171317474_UpdateOrderWithIsCancelled.Designer.cs">
       <DependentUpon>201805171317474_UpdateOrderWithIsCancelled.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805191453355_AddedPayments.cs" />
+    <Compile Include="Migrations\201805191453355_AddedPayments.Designer.cs">
+      <DependentUpon>201805191453355_AddedPayments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805191510143_UpdatedPaymentModelWithStringCustomerId.cs" />
+    <Compile Include="Migrations\201805191510143_UpdatedPaymentModelWithStringCustomerId.Designer.cs">
+      <DependentUpon>201805191510143_UpdatedPaymentModelWithStringCustomerId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805191512464_UpdatedPaymentModelWithPaymentDate.cs" />
+    <Compile Include="Migrations\201805191512464_UpdatedPaymentModelWithPaymentDate.Designer.cs">
+      <DependentUpon>201805191512464_UpdatedPaymentModelWithPaymentDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Basket.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -329,6 +341,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Orderline.cs" />
+    <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\Supplier.cs" />
@@ -726,6 +739,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805171317474_UpdateOrderWithIsCancelled.resx">
       <DependentUpon>201805171317474_UpdateOrderWithIsCancelled.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805191453355_AddedPayments.resx">
+      <DependentUpon>201805191453355_AddedPayments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805191510143_UpdatedPaymentModelWithStringCustomerId.resx">
+      <DependentUpon>201805191510143_UpdatedPaymentModelWithStringCustomerId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805191512464_UpdatedPaymentModelWithPaymentDate.resx">
+      <DependentUpon>201805191512464_UpdatedPaymentModelWithPaymentDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

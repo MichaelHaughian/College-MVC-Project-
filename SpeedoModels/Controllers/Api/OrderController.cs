@@ -67,6 +67,7 @@ namespace SpeedoModels.Controllers.Api
         public void CreateOrder(Basket basket)
         {
             Order order = new Order();
+            Payment payment = new Payment();
             List<Orderline> orderlines = new List<Orderline>();
 
             order.CustomerId = basket.CustomerId;
@@ -110,6 +111,13 @@ namespace SpeedoModels.Controllers.Api
                 orderline.Product = null;
                 _context.Orderlines.Add(orderline);
             }
+
+            payment.CustomerId = order.CustomerId;
+            payment.OrderId = order.Id;
+            payment.PaymentTotal = order.OrderTotal;
+            payment.PaymentDate = DateTime.Now.Date;
+
+            _context.Payments.Add(payment);
 
             try
             {

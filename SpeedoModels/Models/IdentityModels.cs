@@ -31,6 +31,7 @@ namespace SpeedoModels.Models
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Orderline> Orderlines { get; set; }
+        public DbSet<Payment> Payments { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

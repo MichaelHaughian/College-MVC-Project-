@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -8,6 +9,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using AutoMapper;
 using SpeedoModels.App_Start;
+using Stripe;
 
 namespace SpeedoModels
 {
@@ -21,7 +23,8 @@ namespace SpeedoModels
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            
+            StripeConfiguration.SetApiKey(ConfigurationManager.AppSettings["stripeSecretKey"]);
+
         }
     }
 }
