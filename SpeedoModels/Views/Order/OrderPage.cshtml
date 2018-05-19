@@ -6,17 +6,76 @@
 
 <h2>OrderPage</h2>
 
+<head>
+    @*tried to get paypal working, checkout page wouldn't stay open
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>*@
+</head>
+
 <form id="orderForm">
+    @*<div id="paypal-button-container"></div>
+    <script>
+        paypal.Button.render({
+                env: 'sandbox', // sandbox | production
+
+                // Show the buyer a 'Pay Now' button in the checkout flow
+                commit: true,
+
+                // payment() is called when the button is clicked
+                payment: function() {
+
+                    // Set up a url on your server to create the payment
+                    var CREATE_URL = '/demo/checkout/api/paypal/payment/create/';
+
+                    // Make a call to your server to set up the payment
+                    return paypal.request.post(CREATE_URL)
+                        .then(function(res) {
+                            return res.paymentID;
+                        });
+                },
+
+                // onAuthorize() is called when the buyer approves the payment
+                onAuthorize: function(data, actions) {
+
+                    // Set up a url on your server to execute the payment
+                    var EXECUTE_URL = '/demo/checkout/api/paypal/payment/execute/';
+
+                    // Set up the data you need to pass to your server
+                    var data = {
+                        paymentID: data.paymentID,
+                        payerID: data.payerID
+                    };
+
+                    // Make a call to your server to execute the payment
+                    return paypal.request.post(EXECUTE_URL, data)
+                        .then(function(res) {
+                            window.alert('Payment Complete!');
+                        });
+                }
+
+            },
+            '#paypal-button-container');
+    </script>*@
+    <article>
+        <label id="stripeAmount"></label>
+    </article>
+    <script id="stripeScript" src="//checkout.stripe.com/v2/checkout.js"
+            class="stripe-button"
+            data-key="@ViewBag.StripePublishKey"
+            data-locale="auto"
+            data-description="Checkout"
+            data-amount="">
+    </script>
     <button type="submit" id="submitOrder" name="SubmitOrder" class="btn btn-primary">Finalise Order</button>
     <br/>
-    <label>Order Total: </label><input id="orderTotal" name="OrderTotal" value="" disabled />
+    
 </form>
 
 @section scripts
 {
     <script>
-        $(document).ready(function() {
-            $("#submitOrder").click(function (e) {
+        $(document).ready(function () {
+            var orderTotal;
+            $(".Button-animationWrapper-child--primary").click(function (e) {
                 e.preventDefault();
                 var baseUrl = "@Url.Action("SubmitOrder","Order")";
                 window.location.href = baseUrl;
@@ -28,7 +87,7 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (basket) {
-                    var orderTotal = 0;
+                    orderTotal = 0;
                     $.each(basket.Products, function (k, v) {
                         $("#orderForm").append("<div id='productDiv'>",
                             "<label>Product Name: </label> <input id='name" + v.Id + "' name='Name' disabled> </input>",
@@ -44,10 +103,17 @@
                         orderTotal += (v.Price * v.Quantity);
                     });
 
-                    $("#orderTotal").val(orderTotal);
+                    
                 }
+            }).done(function() {
+                $("#stripeAmount").text("Amount: £" + orderTotal);
+                $("#stripeScript").attr("data-amount", (orderTotal * 100));
             });
+
+            
         });
+
+        
 
         
     </script>

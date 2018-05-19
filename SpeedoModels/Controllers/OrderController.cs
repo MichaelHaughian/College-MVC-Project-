@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Helpers;
@@ -17,6 +18,9 @@ namespace SpeedoModels.Controllers
         public ActionResult OrderPage()
         {
             Session["Referrer"] = "";
+
+            var stripePublishKey = ConfigurationManager.AppSettings["stripePublishableKey"];
+            ViewBag.StripePublishKey = stripePublishKey;
 
             return View();
         }
