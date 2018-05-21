@@ -77,7 +77,6 @@ namespace SpeedoModels.Controllers
                 {
                     basketTotal += product.Price;
                 }
-                
             }
 
             int amount = (int)(basketTotal * 100);
@@ -90,7 +89,7 @@ namespace SpeedoModels.Controllers
 
             var charge = charges.Create(new StripeChargeCreateOptions
             {
-                Amount = amount,//charge in cents
+                Amount = amount, //charge in pence
                 Description = "Speedo Models Checkout",
                 Currency = "gbp",
                 CustomerId = customer.Id

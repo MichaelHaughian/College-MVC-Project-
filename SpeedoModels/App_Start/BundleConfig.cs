@@ -23,14 +23,20 @@ namespace SpeedoModels
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/bootbox.js",
                       "~/Scripts/respond.js",
+                      "~/Scripts/datatables/buttons.bootstrap.min.js",
+                      "~/Scripts/datatab/dataTables.buttons.min.js",
+                      "~/Scripts/datatab/dataTables.bootstrap.min.js",
                       "~/Scripts/datatables/jquery.datatables.js",
                       "~/Scripts/datatables/datatables.bootstrap.js",
+                      "~/Scripts/datatables/buttons.bootstrap.js",
+                      "~/Scripts/datatables/buttons.flash.js",
                       "~/scripts/typeahead.bundle.js",
                       "~/Scripts/toastr.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-simplex.css",
                       "~/Content/toastr.css",
+                      "~/Content/buttons.bootstrap.css",
                       "~/Content/Site.css"));
         }
     }

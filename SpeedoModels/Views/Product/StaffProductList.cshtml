@@ -30,7 +30,14 @@
                         url: "/api/product",
                         method: "GET",
                     dataSrc: ""
-                },
+                    },
+                    dom: "Bfrtip",
+                    buttons: [
+                        'copy',
+                        'excel',
+                        'csv',
+                        'pdf'
+                    ],
                 columns: [
                     {
                         data: "Name",
@@ -62,7 +69,7 @@
                     }
                 ]
             });
-
+            
             $("#products").on("click",
                 ".js-delete",
                 function() {

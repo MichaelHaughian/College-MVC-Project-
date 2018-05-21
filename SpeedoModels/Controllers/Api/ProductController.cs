@@ -11,6 +11,7 @@ using AutoMapper;
 using SpeedoModels.Dtos;
 using SpeedoModels.Models;
 using SpeedoModels.ViewModels;
+using System.Web.Mvc;
 
 namespace SpeedoModels.Controllers.Api
 {
@@ -93,34 +94,7 @@ namespace SpeedoModels.Controllers.Api
             }
         }
 
-        /*[HttpPost]
-        public IHttpActionResult CreateProduct(ProductDto productDto)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-
-            var product = Mapper.Map<ProductDto, Product>(productDto);
-
-            var supplier = _context.Suppliers.Single(c => c.Id == product.SupplierId);
-            product.Supplier = supplier;
-            _context.Products.Add(product);
-
-            try
-            {
-                _context.SaveChanges();
-            }
-            catch (Exception ex) { System.Diagnostics.Debug.WriteLine("AN ERROR HAS OCCURED: '{0}'", ex.InnerException.ToString()); }
-
-            
-
-            productDto.Id = product.Id;
-
-            return Created(new Uri(Request.RequestUri + "/" + product.Id), productDto);
-        }*/
-
-        [HttpDelete]
+        [System.Web.Http.HttpDelete]
         public void DeleteProduct(int id)
         {
             var productInDb = _context.Products.SingleOrDefault(c => c.Id == id);
@@ -133,25 +107,5 @@ namespace SpeedoModels.Controllers.Api
             _context.Products.Remove(productInDb);
             _context.SaveChanges();
         }
-
-        /*[HttpPost]
-        public void EditProduct(ProductDto productDto)
-        {
-            if (!ModelState.IsValid)
-            {
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
-            }
-
-            var product = _context.Products.SingleOrDefault(c => c.Id == productDto.Id);
-
-            if (product == null)
-            {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
-
-            Mapper.Map(productDto, product);
-
-            _context.SaveChanges();
-        }*/
     }
 }
