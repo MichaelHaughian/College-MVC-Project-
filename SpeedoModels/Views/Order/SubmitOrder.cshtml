@@ -8,6 +8,13 @@
 
 <text>You will be redirected soon</text>
 
+<div id="smsSettings">
+    <input type="hidden" id="smsNumber" value=""/>
+</div>
+<div>
+
+</div>
+
 @section scripts
 {
     <script>
@@ -28,6 +35,10 @@
                     }).done(function () {
                         $.ajax({
                             url: "/mail/SendOrderConfirmation",
+                            method: "POST"
+                        });
+                        $.ajax({
+                            url: "/SMS/SendMessage",
                             method: "POST"
                         });
                         $.ajax({
