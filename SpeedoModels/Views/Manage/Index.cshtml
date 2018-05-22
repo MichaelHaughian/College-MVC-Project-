@@ -20,6 +20,7 @@
     {
         <button id="createProduct" class="btn btn-primary">Create Product</button>
         <button id="viewProducts" class="btn btn-primary">View Products</button>
+        <button id="viewReports" class="btn btn-primary">View Reports</button>
     }
     <dl class="dl-horizontal">
         <dt>Edit Details:</dt>
@@ -110,6 +111,12 @@
             $("#viewProducts").click(function(e) {
                 e.preventDefault();
                 var baseUrl="@Url.Action("Index","Product")";
+                window.location.href=baseUrl;
+            });
+
+            $("#viewReports").click(function(e) {
+                e.preventDefault();
+                var baseUrl="@Url.Action("Stock","Report")";
                 window.location.href=baseUrl;
             });
 

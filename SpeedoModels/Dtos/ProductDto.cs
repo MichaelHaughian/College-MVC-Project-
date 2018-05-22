@@ -31,6 +31,6 @@ namespace SpeedoModels.Dtos
 
         public SupplierDto Supplier { get; set; }
 
-        public DateTime? DeliveryLeadTimes { get; set; }
+        public string DeliveryLeadTimes { get; set; }
     }
 }

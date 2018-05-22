@@ -33,14 +33,14 @@
                         traditional: true,
                         processData: false
                     }).done(function () {
-                        $.ajax({
+                        @*$.ajax({
                             url: "/mail/SendOrderConfirmation",
                             method: "POST"
                         });
                         $.ajax({
                             url: "/SMS/SendMessage",
                             method: "POST"
-                        });
+                        });*@
                         $.ajax({
                             url: "/basket/clearbasket",
                             method: "POST"

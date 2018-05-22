@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "Stock";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Stock</h2>
+
+<table id="products" class="table table-bordered table-hover">
+<thead>
+    <tr>
+        <th>Product</th>
+        <th>Description</th>
+        <th>Colour</th>
+        <th>Supplier</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Re-order Quantity</th>
+        <th>Delivery Lead Times</th>
+    </tr>
+</thead>
+<tbody></tbody>
+</table>
+
+@section scripts
+{
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/datatables.min.css" />
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/datatables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+                var table = $("#products").DataTable({
+                    ajax: {
+                        url: "/api/product",
+                        method: "GET",
+                    dataSrc: ""
+                    },
+                    dom: "Bfrtip",
+                    buttons: [
+                        'print',
+                        'excel',
+                        'pdf'
+                    ],
+                columns: [
+                    {
+                        data: "Name"
+                        
+                    },
+                    {
+                        data: "Description"
+                    },
+                    {
+                        data: "Colour"
+                    },
+                    {
+                        data: "Supplier.Name"
+                    },
+                    {
+                        data: "Price"
+                    },
+                    {
+                        data: "Stock"
+                    },
+                    {
+                        data: "ReorderQuantity"
+                    },
+                    {
+                        data: "DeliveryLeadTimes"
+                    }
+                ]
+            });
+        });
+    </script>
+}
+
+
+
+
+

@@ -29,7 +29,7 @@ namespace SpeedoModels.Models
 
         public int? ReorderQuantity { get; set; }
 
-        public DateTime? DeliveryLeadTimes { get; set; }
+        public string DeliveryLeadTimes { get; set; }
 
         public Supplier Supplier { get; set; }
 

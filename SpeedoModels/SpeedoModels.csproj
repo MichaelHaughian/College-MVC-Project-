@@ -341,6 +341,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\SMSController.cs" />
     <Compile Include="Dtos\CustomerDto.cs" />
     <Compile Include="Dtos\ProductDto.cs" />
@@ -423,6 +424,10 @@
     <Compile Include="Migrations\201805191512464_UpdatedPaymentModelWithPaymentDate.cs" />
     <Compile Include="Migrations\201805191512464_UpdatedPaymentModelWithPaymentDate.Designer.cs">
       <DependentUpon>201805191512464_UpdatedPaymentModelWithPaymentDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805221234537_UpdateProductDeliveryLeadTimes.cs" />
+    <Compile Include="Migrations\201805221234537_UpdateProductDeliveryLeadTimes.Designer.cs">
+      <DependentUpon>201805221234537_UpdateProductDeliveryLeadTimes.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Basket.cs" />
@@ -793,6 +798,7 @@
     <Content Include="Views\Emails\Web.config" />
     <Content Include="Views\Emails\SendOrderConfirmation.cshtml" />
     <Content Include="Views\Emails\SendOrderCancellation.cshtml" />
+    <Content Include="Views\Report\Stock.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -863,6 +869,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805191512464_UpdatedPaymentModelWithPaymentDate.resx">
       <DependentUpon>201805191512464_UpdatedPaymentModelWithPaymentDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805221234537_UpdateProductDeliveryLeadTimes.resx">
+      <DependentUpon>201805221234537_UpdateProductDeliveryLeadTimes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
