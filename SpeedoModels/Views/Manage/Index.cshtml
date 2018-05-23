@@ -14,6 +14,7 @@
     @if (User.IsInRole("Admin"))
     {
         <button id="createStaff" class="btn btn-primary">Create Staff</button>
+        <button id="viewAccounts" class="btn btn-primary">View Accounts</button>
     }
     
     @if (User.IsInRole("Admin")||User.IsInRole("Staff"))
@@ -117,6 +118,12 @@
             $("#viewReports").click(function(e) {
                 e.preventDefault();
                 var baseUrl="@Url.Action("Stock","Report")";
+                window.location.href=baseUrl;
+            });
+
+            $("#viewAccounts").click(function(e) {
+                e.preventDefault();
+                var baseUrl="@Url.Action("ViewAccounts","Account")";
                 window.location.href=baseUrl;
             });
 

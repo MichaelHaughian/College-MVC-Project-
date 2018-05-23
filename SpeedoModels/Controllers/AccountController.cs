@@ -18,9 +18,11 @@ namespace SpeedoModels.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext _context;
 
         public AccountController()
         {
+            _context = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -53,6 +55,12 @@ namespace SpeedoModels.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
+        public ActionResult ViewAccounts()
+        {
+            return View();
+        }
+
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -70,6 +78,13 @@ namespace SpeedoModels.Controllers
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = _context.Users.SingleOrDefault(c => c.UserName == model.UserName);
+
+            if (user.IsRegistered == false)
             {
                 return View(model);
             }
@@ -514,6 +529,8 @@ namespace SpeedoModels.Controllers
 
         protected override void Dispose(bool disposing)
         {
+            _context.Dispose();
+
             if (disposing)
             {
                 if (_userManager != null)

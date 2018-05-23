@@ -15,6 +15,7 @@ namespace SpeedoModels.Models
         public string FirstLineOfAddress { get; set; }
         public string SecondLineOfAddress { get; set; }
         public string Postcode { get; set; }
+        public bool IsRegistered { get; set; } = true;
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

@@ -330,6 +330,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\AccountController.cs" />
     <Compile Include="Controllers\Api\CustomerController.cs" />
     <Compile Include="Controllers\Api\OrderController.cs" />
     <Compile Include="Controllers\Api\OrderlineController.cs" />
@@ -428,6 +429,14 @@
     <Compile Include="Migrations\201805221234537_UpdateProductDeliveryLeadTimes.cs" />
     <Compile Include="Migrations\201805221234537_UpdateProductDeliveryLeadTimes.Designer.cs">
       <DependentUpon>201805221234537_UpdateProductDeliveryLeadTimes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805230908172_UpdateUsers.cs" />
+    <Compile Include="Migrations\201805230908172_UpdateUsers.Designer.cs">
+      <DependentUpon>201805230908172_UpdateUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805230936299_UpdatedLogin.cs" />
+    <Compile Include="Migrations\201805230936299_UpdatedLogin.Designer.cs">
+      <DependentUpon>201805230936299_UpdatedLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Basket.cs" />
@@ -799,6 +808,7 @@
     <Content Include="Views\Emails\SendOrderConfirmation.cshtml" />
     <Content Include="Views\Emails\SendOrderCancellation.cshtml" />
     <Content Include="Views\Report\Stock.cshtml" />
+    <Content Include="Views\Account\ViewAccounts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -872,6 +882,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805221234537_UpdateProductDeliveryLeadTimes.resx">
       <DependentUpon>201805221234537_UpdateProductDeliveryLeadTimes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805230908172_UpdateUsers.resx">
+      <DependentUpon>201805230908172_UpdateUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805230936299_UpdatedLogin.resx">
+      <DependentUpon>201805230936299_UpdatedLogin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
