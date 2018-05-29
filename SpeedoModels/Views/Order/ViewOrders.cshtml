@@ -83,14 +83,18 @@
                             bootbox.confirm("Are you sure you want to cancel this order?",
                                 function(confirmed) {
                                     if (confirmed) {
-                                        @*$.ajax({
+                                        $.ajax({
                                             url: "/mail/sendordercancellation/",
                                             method: "POST"
-                                        });*@
+                                        });
                                         $.ajax({
                                             url: "/api/order/" + buttonId,
                                             method: "DELETE"
                                         }).done(function() {
+                                            $.ajax({
+                                                url: "/SMS/SendCancelMessage",
+                                                method: "POST"
+                                            });
                                             window.location.reload();
                                         }).fail(function() {
                                             toastr.error("Something unexpected happened");

@@ -33,21 +33,22 @@
                         traditional: true,
                         processData: false
                     }).done(function () {
-                        @*$.ajax({
-                            url: "/mail/SendOrderConfirmation",
-                            method: "POST"
-                        });
-                        $.ajax({
-                            url: "/SMS/SendMessage",
-                            method: "POST"
-                        });*@
+                            $.ajax({
+                                url: "/mail/SendOrderConfirmation",
+                                method: "POST"
+                            });
+     
+                            @*$.ajax({
+                                url: "/SMS/SendOrderMessage",
+                                method: "POST"
+                            });*@
                         $.ajax({
                             url: "/basket/clearbasket",
                             method: "POST"
                         }).done(function() {
                             setTimeout(
                                 function () {
-                                    var baseUrl="@Url.Action("Index","Home")";
+                                    var baseUrl="@Url.Action("ViewProducts","Product")";
                                     window.location.href=baseUrl;
                                 }, 2000);
                         });

@@ -30,6 +30,8 @@ namespace SpeedoModels.Controllers
 
         public ActionResult SubmitOrder()
         {
+            //ViewBag.Email = UserManager.FindById(User.Identity.Name);
+
             return View();
         }
 
