@@ -10,20 +10,37 @@ using SpeedoModels.ViewModels;
 
 namespace SpeedoModels.Controllers
 {
+    /// <summary>
+    /// Class SMSController.
+    /// </summary>
+    /// <seealso cref="System.Web.Mvc.Controller" />
     public class SMSController : Controller
     {
+        /// <summary>
+        /// The context
+        /// </summary>
         private ApplicationDbContext _context;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SMSController"/> class.
+        /// </summary>
         public SMSController()
         {
             _context = new ApplicationDbContext();
         }
 
+        /// <summary>
+        /// Releases unmanaged resources and optionally releases managed resources.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected override void Dispose(bool disposing)
         {
             _context.Dispose();
         }
 
+        /// <summary>
+        /// Sends the order message.
+        /// </summary>
         public void SendOrderMessage()
         {
             string userId = User.Identity.GetUserId();
@@ -39,6 +56,9 @@ namespace SpeedoModels.Controllers
             });
         }
 
+        /// <summary>
+        /// Sends the cancel message.
+        /// </summary>
         public void SendCancelMessage()
         {
             string userId = User.Identity.GetUserId();

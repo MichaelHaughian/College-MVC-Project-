@@ -11,26 +11,48 @@ using System.Net.Http;
 
 namespace SpeedoModels.Controllers
 {
+    /// <summary>
+    /// Class ProductController.
+    /// </summary>
+    /// <seealso cref="System.Web.Mvc.Controller" />
     public class ProductController : Controller
     {
+        /// <summary>
+        /// The context
+        /// </summary>
         private ApplicationDbContext _context;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProductController"/> class.
+        /// </summary>
         public ProductController()
         {
             _context = new ApplicationDbContext();
         }
 
+        /// <summary>
+        /// Releases unmanaged resources and optionally releases managed resources.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected override void Dispose(bool disposing)
         {
             _context.Dispose();
         }
 
+        /// <summary>
+        /// Indexes this instance.
+        /// </summary>
+        /// <returns>ActionResult.</returns>
         [Authorize(Roles = "Admin, Staff")]
         public ActionResult Index()
         {
             return View("StaffProductList");
         }
 
+        /// <summary>
+        /// Views the products.
+        /// </summary>
+        /// <returns>ActionResult.</returns>
         public ActionResult ViewProducts()
         {
             
@@ -38,6 +60,11 @@ namespace SpeedoModels.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Views the product.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>ActionResult.</returns>
         public ActionResult ViewProduct(int id)
         {
             ViewBag.productId = id;
@@ -45,6 +72,10 @@ namespace SpeedoModels.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Creates this instance.
+        /// </summary>
+        /// <returns>ActionResult.</returns>
         [HttpGet]
         public ActionResult Create()
         {
@@ -52,6 +83,11 @@ namespace SpeedoModels.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Edits the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>ActionResult.</returns>
         public ActionResult Edit(int id)
         {
             ViewBag.productId = id;

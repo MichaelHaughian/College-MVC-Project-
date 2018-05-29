@@ -15,21 +15,39 @@ using System.Web.Mvc;
 
 namespace SpeedoModels.Controllers.Api
 {
+    /// <summary>
+    /// Class ProductController.
+    /// </summary>
+    /// <seealso cref="System.Web.Http.ApiController" />
     public class ProductController : ApiController
     {
+        /// <summary>
+        /// The context
+        /// </summary>
         private ApplicationDbContext _context;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProductController"/> class.
+        /// </summary>
         public ProductController()
         {
             _context = new ApplicationDbContext();
         }
 
+        /// <summary>
+        /// Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected override void Dispose(bool disposing)
         {
             _context.Dispose();
         }
 
 
+        /// <summary>
+        /// Gets the products.
+        /// </summary>
+        /// <returns>IHttpActionResult.</returns>
         public IHttpActionResult GetProducts()
         {
             var productDtos = _context.Products.Include(c => c.Supplier).ToList()
@@ -38,6 +56,11 @@ namespace SpeedoModels.Controllers.Api
             return Ok(productDtos);
         }
 
+        /// <summary>
+        /// Gets the product.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>IHttpActionResult.</returns>
         public IHttpActionResult GetProduct(int id)
         {
             var product = _context.Products.Include(c => c.Supplier).SingleOrDefault(c => c.Id == id);
@@ -50,6 +73,12 @@ namespace SpeedoModels.Controllers.Api
             return Ok(Mapper.Map<Product, ProductDto>(product));
         }
 
+        /// <summary>
+        /// Saves the product.
+        /// </summary>
+        /// <param name="productDto">The product dto.</param>
+        /// <returns>IHttpActionResult.</returns>
+        /// <exception cref="System.Web.Http.HttpResponseException"></exception>
         public IHttpActionResult SaveProduct(ProductDto productDto)
         {
             if (!ModelState.IsValid)
@@ -94,6 +123,11 @@ namespace SpeedoModels.Controllers.Api
             }
         }
 
+        /// <summary>
+        /// Deletes the product.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <exception cref="System.Web.Http.HttpResponseException"></exception>
         [System.Web.Http.HttpDelete]
         public void DeleteProduct(int id)
         {

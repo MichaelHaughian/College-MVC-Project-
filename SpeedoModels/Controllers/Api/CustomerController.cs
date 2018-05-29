@@ -16,20 +16,39 @@ using System.Diagnostics;
 
 namespace SpeedoModels.Controllers.Api
 {
+    /// <summary>
+    /// Class CustomerController.
+    /// </summary>
+    /// <seealso cref="System.Web.Http.ApiController" />
     public class CustomerController : ApiController
     {
+        /// <summary>
+        /// The context
+        /// </summary>
         private ApplicationDbContext _context;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CustomerController"/> class.
+        /// </summary>
         public CustomerController()
         {
             _context = new ApplicationDbContext();
         }
 
+        /// <summary>
+        /// Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected override void Dispose(bool disposing)
         {
             _context.Dispose();
         }
 
+        /// <summary>
+        /// Gets the customer.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>IHttpActionResult.</returns>
         public IHttpActionResult GetCustomer(string id)
         {
             var customer = _context.Users.SingleOrDefault(c => c.Id == id);
@@ -42,6 +61,12 @@ namespace SpeedoModels.Controllers.Api
             return Ok(customer);
         }
 
+        /// <summary>
+        /// Edits the customer.
+        /// </summary>
+        /// <param name="customerDto">The customer dto.</param>
+        /// <returns>IHttpActionResult.</returns>
+        /// <exception cref="System.Web.Http.HttpResponseException"></exception>
         public IHttpActionResult EditCustomer(CustomerDto customerDto)
         {
             if (!ModelState.IsValid)

@@ -6,6 +6,10 @@ using SpeedoModels.Models;
 
 namespace SpeedoModels.Dtos
 {
+    /// <summary>
+    /// Class CustomerDto.
+    /// </summary>
+    /// <seealso cref="SpeedoModels.Models.ApplicationUser" />
     public class CustomerDto : ApplicationUser
     {
 

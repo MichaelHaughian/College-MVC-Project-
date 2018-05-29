@@ -13,11 +13,18 @@ using Stripe;
 
 namespace SpeedoModels.Controllers
 {
+    /// <summary>
+    /// Class OrderController.
+    /// </summary>
+    /// <seealso cref="System.Web.Mvc.Controller" />
     [Authorize]
     public class OrderController : Controller
     {
         // GET: Order
-        
+        /// <summary>
+        /// Orders the page.
+        /// </summary>
+        /// <returns>ActionResult.</returns>
         public ActionResult OrderPage()
         {
             Session["Referrer"] = "";
@@ -28,6 +35,10 @@ namespace SpeedoModels.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Submits the order.
+        /// </summary>
+        /// <returns>ActionResult.</returns>
         public ActionResult SubmitOrder()
         {
             //ViewBag.Email = UserManager.FindById(User.Identity.Name);
@@ -35,6 +46,11 @@ namespace SpeedoModels.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Views the orders.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>ActionResult.</returns>
         public ActionResult ViewOrders(string id)
         {
             if (id.Equals("0"))
@@ -47,6 +63,11 @@ namespace SpeedoModels.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Views the order.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>ActionResult.</returns>
         public ActionResult ViewOrder(int id)
         {
             ViewBag.orderId = JsonConvert.SerializeObject(id);
@@ -54,6 +75,12 @@ namespace SpeedoModels.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Charges the specified stripe email.
+        /// </summary>
+        /// <param name="stripeEmail">The stripe email.</param>
+        /// <param name="stripeToken">The stripe token.</param>
+        /// <returns>ActionResult.</returns>
         public ActionResult Charge(string stripeEmail, string stripeToken)
         {
             var customers = new StripeCustomerService();

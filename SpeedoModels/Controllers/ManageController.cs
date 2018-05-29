@@ -10,22 +10,44 @@ using SpeedoModels.Models;
 
 namespace SpeedoModels.Controllers
 {
+    /// <summary>
+    /// Class ManageController.
+    /// </summary>
+    /// <seealso cref="System.Web.Mvc.Controller" />
     [Authorize]
     public class ManageController : Controller
     {
+        /// <summary>
+        /// The sign in manager
+        /// </summary>
         private ApplicationSignInManager _signInManager;
+        /// <summary>
+        /// The user manager
+        /// </summary>
         private ApplicationUserManager _userManager;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ManageController"/> class.
+        /// </summary>
         public ManageController()
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ManageController"/> class.
+        /// </summary>
+        /// <param name="userManager">The user manager.</param>
+        /// <param name="signInManager">The sign in manager.</param>
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
         }
 
+        /// <summary>
+        /// Gets the sign in manager.
+        /// </summary>
+        /// <value>The sign in manager.</value>
         public ApplicationSignInManager SignInManager
         {
             get
@@ -38,6 +60,10 @@ namespace SpeedoModels.Controllers
             }
         }
 
+        /// <summary>
+        /// Gets the user manager.
+        /// </summary>
+        /// <value>The user manager.</value>
         public ApplicationUserManager UserManager
         {
             get
@@ -52,6 +78,11 @@ namespace SpeedoModels.Controllers
 
         //
         // GET: /Manage/Index
+        /// <summary>
+        /// Indexes the specified message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <returns>Task&lt;ActionResult&gt;.</returns>
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -77,6 +108,12 @@ namespace SpeedoModels.Controllers
 
         //
         // POST: /Manage/RemoveLogin
+        /// <summary>
+        /// Removes the login.
+        /// </summary>
+        /// <param name="loginProvider">The login provider.</param>
+        /// <param name="providerKey">The provider key.</param>
+        /// <returns>Task&lt;ActionResult&gt;.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RemoveLogin(string loginProvider, string providerKey)
@@ -101,6 +138,10 @@ namespace SpeedoModels.Controllers
 
         //
         // GET: /Manage/AddPhoneNumber
+        /// <summary>
+        /// Adds the phone number.
+        /// </summary>
+        /// <returns>ActionResult.</returns>
         public ActionResult AddPhoneNumber()
         {
             return View();
@@ -108,6 +149,11 @@ namespace SpeedoModels.Controllers
 
         //
         // POST: /Manage/AddPhoneNumber
+        /// <summary>
+        /// Adds the phone number.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Task&lt;ActionResult&gt;.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
@@ -132,6 +178,10 @@ namespace SpeedoModels.Controllers
 
         //
         // POST: /Manage/EnableTwoFactorAuthentication
+        /// <summary>
+        /// Enables the two factor authentication.
+        /// </summary>
+        /// <returns>Task&lt;ActionResult&gt;.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EnableTwoFactorAuthentication()
@@ -147,6 +197,10 @@ namespace SpeedoModels.Controllers
 
         //
         // POST: /Manage/DisableTwoFactorAuthentication
+        /// <summary>
+        /// Disables the two factor authentication.
+        /// </summary>
+        /// <returns>Task&lt;ActionResult&gt;.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DisableTwoFactorAuthentication()
@@ -162,6 +216,11 @@ namespace SpeedoModels.Controllers
 
         //
         // GET: /Manage/VerifyPhoneNumber
+        /// <summary>
+        /// Verifies the phone number.
+        /// </summary>
+        /// <param name="phoneNumber">The phone number.</param>
+        /// <returns>Task&lt;ActionResult&gt;.</returns>
         public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
         {
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
@@ -171,6 +230,11 @@ namespace SpeedoModels.Controllers
 
         //
         // POST: /Manage/VerifyPhoneNumber
+        /// <summary>
+        /// Verifies the phone number.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Task&lt;ActionResult&gt;.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
@@ -196,6 +260,10 @@ namespace SpeedoModels.Controllers
 
         //
         // POST: /Manage/RemovePhoneNumber
+        /// <summary>
+        /// Removes the phone number.
+        /// </summary>
+        /// <returns>Task&lt;ActionResult&gt;.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RemovePhoneNumber()
@@ -215,6 +283,10 @@ namespace SpeedoModels.Controllers
 
         //
         // GET: /Manage/ChangePassword
+        /// <summary>
+        /// Changes the password.
+        /// </summary>
+        /// <returns>ActionResult.</returns>
         public ActionResult ChangePassword()
         {
             return View();
@@ -222,6 +294,11 @@ namespace SpeedoModels.Controllers
 
         //
         // POST: /Manage/ChangePassword
+        /// <summary>
+        /// Changes the password.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Task&lt;ActionResult&gt;.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
@@ -246,6 +323,10 @@ namespace SpeedoModels.Controllers
 
         //
         // GET: /Manage/SetPassword
+        /// <summary>
+        /// Sets the password.
+        /// </summary>
+        /// <returns>ActionResult.</returns>
         public ActionResult SetPassword()
         {
             return View();
@@ -253,6 +334,11 @@ namespace SpeedoModels.Controllers
 
         //
         // POST: /Manage/SetPassword
+        /// <summary>
+        /// Sets the password.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Task&lt;ActionResult&gt;.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SetPassword(SetPasswordViewModel model)
@@ -278,6 +364,11 @@ namespace SpeedoModels.Controllers
 
         //
         // GET: /Manage/ManageLogins
+        /// <summary>
+        /// Manages the logins.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <returns>Task&lt;ActionResult&gt;.</returns>
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -301,6 +392,11 @@ namespace SpeedoModels.Controllers
 
         //
         // POST: /Manage/LinkLogin
+        /// <summary>
+        /// Links the login.
+        /// </summary>
+        /// <param name="provider">The provider.</param>
+        /// <returns>ActionResult.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LinkLogin(string provider)
@@ -311,6 +407,10 @@ namespace SpeedoModels.Controllers
 
         //
         // GET: /Manage/LinkLoginCallback
+        /// <summary>
+        /// Links the login callback.
+        /// </summary>
+        /// <returns>Task&lt;ActionResult&gt;.</returns>
         public async Task<ActionResult> LinkLoginCallback()
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
@@ -322,6 +422,10 @@ namespace SpeedoModels.Controllers
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
 
+        /// <summary>
+        /// Releases unmanaged resources and optionally releases managed resources.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && _userManager != null)
@@ -333,10 +437,17 @@ namespace SpeedoModels.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
+        /// <summary>
+        /// The XSRF key
+        /// </summary>
         private const string XsrfKey = "XsrfId";
 
+        /// <summary>
+        /// Gets the authentication manager.
+        /// </summary>
+        /// <value>The authentication manager.</value>
         private IAuthenticationManager AuthenticationManager
         {
             get
@@ -345,6 +456,10 @@ namespace SpeedoModels.Controllers
             }
         }
 
+        /// <summary>
+        /// Adds the errors.
+        /// </summary>
+        /// <param name="result">The result.</param>
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
@@ -353,6 +468,10 @@ namespace SpeedoModels.Controllers
             }
         }
 
+        /// <summary>
+        /// Determines whether this instance has password.
+        /// </summary>
+        /// <returns><c>true</c> if this instance has password; otherwise, <c>false</c>.</returns>
         private bool HasPassword()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
@@ -363,6 +482,10 @@ namespace SpeedoModels.Controllers
             return false;
         }
 
+        /// <summary>
+        /// Determines whether [has phone number].
+        /// </summary>
+        /// <returns><c>true</c> if [has phone number]; otherwise, <c>false</c>.</returns>
         private bool HasPhoneNumber()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
@@ -373,14 +496,38 @@ namespace SpeedoModels.Controllers
             return false;
         }
 
+        /// <summary>
+        /// Enum ManageMessageId
+        /// </summary>
         public enum ManageMessageId
         {
+            /// <summary>
+            /// The add phone success
+            /// </summary>
             AddPhoneSuccess,
+            /// <summary>
+            /// The change password success
+            /// </summary>
             ChangePasswordSuccess,
+            /// <summary>
+            /// The set two factor success
+            /// </summary>
             SetTwoFactorSuccess,
+            /// <summary>
+            /// The set password success
+            /// </summary>
             SetPasswordSuccess,
+            /// <summary>
+            /// The remove login success
+            /// </summary>
             RemoveLoginSuccess,
+            /// <summary>
+            /// The remove phone success
+            /// </summary>
             RemovePhoneSuccess,
+            /// <summary>
+            /// The error
+            /// </summary>
             Error
         }
 

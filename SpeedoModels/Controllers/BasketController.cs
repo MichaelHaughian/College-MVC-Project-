@@ -11,8 +11,16 @@ using SpeedoModels.Models;
 
 namespace SpeedoModels.Controllers
 {
+    /// <summary>
+    /// Class BasketController.
+    /// </summary>
+    /// <seealso cref="System.Web.Mvc.Controller" />
     public class BasketController : Controller
     {
+        /// <summary>
+        /// Adds to basket.
+        /// </summary>
+        /// <param name="product">The product.</param>
         [HttpPost]
         public void AddToBasket(Product product)
         {
@@ -74,6 +82,10 @@ namespace SpeedoModels.Controllers
             
         }
 
+        /// <summary>
+        /// Gets the basket.
+        /// </summary>
+        /// <returns>JsonResult.</returns>
         public JsonResult GetBasket()
         {
             Basket basket;
@@ -91,6 +103,10 @@ namespace SpeedoModels.Controllers
             return Json(basket, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Removes the item from basket.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
         [HttpPost]
         public void RemoveItemFromBasket(int id)
         {
@@ -132,6 +148,9 @@ namespace SpeedoModels.Controllers
             }
         }
 
+        /// <summary>
+        /// Clears the basket.
+        /// </summary>
         public void ClearBasket()
         {
             var cookie = new HttpCookie("Basket")
@@ -143,6 +162,10 @@ namespace SpeedoModels.Controllers
             
         }
 
+        /// <summary>
+        /// Views the basket.
+        /// </summary>
+        /// <returns>ActionResult.</returns>
         public ActionResult ViewBasket()
         { 
             return View();

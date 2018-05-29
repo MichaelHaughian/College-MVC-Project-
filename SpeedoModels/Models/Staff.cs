@@ -5,6 +5,10 @@ using System.Web;
 
 namespace SpeedoModels.Models
 {
+    /// <summary>
+    /// Class Staff.
+    /// </summary>
+    /// <seealso cref="SpeedoModels.Models.ApplicationUser" />
     public class Staff : ApplicationUser
     {
     }

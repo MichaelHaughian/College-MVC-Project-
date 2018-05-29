@@ -13,20 +13,39 @@ using Microsoft.AspNet.Identity;
 
 namespace SpeedoModels.Controllers.Api
 {
+    /// <summary>
+    /// Class OrderController.
+    /// </summary>
+    /// <seealso cref="System.Web.Http.ApiController" />
     public class OrderController : ApiController
     {
+        /// <summary>
+        /// The context
+        /// </summary>
         private ApplicationDbContext _context;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OrderController"/> class.
+        /// </summary>
         public OrderController()
         {
             _context = new ApplicationDbContext();
         }
 
+        /// <summary>
+        /// Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected override void Dispose(bool disposing)
         {
             _context.Dispose();
         }
 
+        /// <summary>
+        /// Views the orders.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>IHttpActionResult.</returns>
         [System.Web.Http.HttpGet]
         public IHttpActionResult ViewOrders(string id)
         {
@@ -54,6 +73,11 @@ namespace SpeedoModels.Controllers.Api
             return Ok(orders);
         }
 
+        /// <summary>
+        /// Views the order.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>IHttpActionResult.</returns>
         [System.Web.Http.HttpGet]
         [System.Web.Http.Route("api/order/vieworder/{id}")]
         public IHttpActionResult ViewOrder(int id)
@@ -63,6 +87,10 @@ namespace SpeedoModels.Controllers.Api
             return Ok(order);
         }
 
+        /// <summary>
+        /// Creates the order.
+        /// </summary>
+        /// <param name="basket">The basket.</param>
         [System.Web.Http.HttpPost]
         public void CreateOrder(Basket basket)
         {
@@ -129,6 +157,10 @@ namespace SpeedoModels.Controllers.Api
             }
         }
 
+        /// <summary>
+        /// Cancels the order.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
         [System.Web.Http.HttpDelete]
         public void CancelOrder(int id)
         {
