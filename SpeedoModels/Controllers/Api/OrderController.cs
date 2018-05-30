@@ -25,7 +25,7 @@ namespace SpeedoModels.Controllers.Api
         private ApplicationDbContext _context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="OrderController"/> class.
+        /// Initializes a new instance of the <see cref="OrderController" /> class.
         /// </summary>
         public OrderController()
         {
@@ -52,6 +52,7 @@ namespace SpeedoModels.Controllers.Api
 
             var orders = _context.Orders.Where(c => c.CustomerId == id).ToList();
 
+            //if user is an admin or staff, return all orders, if logged in only return orders related to that customer
             if (User.IsInRole("Admin") || User.IsInRole("Staff"))
             {
                 orders = _context.Orders.ToList();
@@ -98,10 +99,15 @@ namespace SpeedoModels.Controllers.Api
             Payment payment = new Payment();
             List<Orderline> orderlines = new List<Orderline>();
 
+            //creating order details from basket
             order.CustomerId = basket.CustomerId;
             order.OrderDate = DateTime.Now.Date;
+
+            //generates random number for tracking number
             Random rnd = new Random();
             order.TrackingNumber = rnd.Next(100000000, 999999999);
+
+            //creates an orderline for each product in the basket
             foreach (Product product in basket.Products)
             {
                 Orderline orderline = new Orderline();
@@ -132,6 +138,7 @@ namespace SpeedoModels.Controllers.Api
                 Debug.WriteLine("ERROR: " + ex);
             }
 
+            //after adding order to the database, get the orders id and add it to the orderlines orderid and then saves to the database
             foreach (Orderline orderline in orderlines)
             {
                 orderline.OrderId = order.Id;
@@ -140,6 +147,7 @@ namespace SpeedoModels.Controllers.Api
                 _context.Orderlines.Add(orderline);
             }
 
+            //creates and saves payment information
             payment.CustomerId = order.CustomerId;
             payment.OrderId = order.Id;
             payment.PaymentTotal = order.OrderTotal;
@@ -168,8 +176,10 @@ namespace SpeedoModels.Controllers.Api
             order.OrderLines = _context.Orderlines.Where(c => c.OrderId == id).ToList();
             var product = new Product();
 
+            //sets order to cancelled
             order.IsCancelled = true;
 
+            //for each orderline of order that was cancelled, increase product stock
             foreach (Orderline orderline in order.OrderLines)
             {
                 product = _context.Products.SingleOrDefault(c => c.Id == orderline.ProductId);

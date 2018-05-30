@@ -86,6 +86,7 @@ namespace SpeedoModels.Controllers.Api
                 return BadRequest();
             }
 
+            //check if product has an id, if it doesn't it creates a new product in the database. if it has an id update exisiting product
             if (productDto.Id == 0)
             {
                 var product = Mapper.Map<ProductDto, Product>(productDto);

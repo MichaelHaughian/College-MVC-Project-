@@ -20,7 +20,8 @@
                 method: "GET",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function(basket) {
+                success: function (basket) {
+                    //for each product returned create html elements to build the basket page
                     $.each(basket.Products,
                         function(k, v) {
                             $("#basketForm").append("<div id='productDiv"+v.Id+"'>",
@@ -64,6 +65,7 @@
                 }
             });
 
+            //anytime the dropdown list value is changed, run jquery to dynamically change the quantity
             $("#basketForm").on("change", "select", function () {
                 var id = $(this).attr('data-internalid');
                 $.ajax({
@@ -81,12 +83,14 @@
                 
             });
 
+            //on click move to checkout
             $("#checkout").on("click",
                 function() {
                     var baseUrl="@Url.Action("OrderPage","Order")";
                     window.location.href=baseUrl;
                 });
 
+            //on click remove item from basket
             $("#basketForm").on("click",
                 ".js-delete",
                 function(e) {

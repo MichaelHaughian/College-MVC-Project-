@@ -37,7 +37,6 @@ namespace SpeedoModels.Controllers
             _context.Dispose();
         }
 
-        // GET: Mail
         /// <summary>
         /// Sends the order confirmation.
         /// </summary>

@@ -45,6 +45,7 @@ namespace SpeedoModels.Controllers
         {
             string userId = User.Identity.GetUserId();
             var user = _context.Users.SingleOrDefault(c => c.Id == userId);
+            //changes format from 07 to +447
             string telNo = user.PhoneNumber.Substring(1);
             string formattedTelNo = "+44" + telNo;
 
@@ -63,6 +64,7 @@ namespace SpeedoModels.Controllers
         {
             string userId = User.Identity.GetUserId();
             var user = _context.Users.SingleOrDefault(c => c.Id == userId);
+            //changes format from 07 to +447
             string telNo = user.PhoneNumber.Substring(1);
             string formattedTelNo = "+44" + telNo;
 

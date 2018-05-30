@@ -39,6 +39,7 @@
                 dataType: "json",
                 success: function (basket) {
                     orderTotal = 0;
+                    //for each product create html for order page
                     $.each(basket.Products, function (k, v) {
                         $("#orderForm").append("<div id='productDiv'>",
                             "<label>Product Name: </label> <input id='name" + v.Id + "' name='Name' disabled> </input>",

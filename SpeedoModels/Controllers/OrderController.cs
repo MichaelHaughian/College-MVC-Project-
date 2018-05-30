@@ -27,8 +27,10 @@ namespace SpeedoModels.Controllers
         /// <returns>ActionResult.</returns>
         public ActionResult OrderPage()
         {
+            //sets previous page to empty
             Session["Referrer"] = "";
 
+            //gets stripe publishable key and sets it to the viewbag
             var stripePublishKey = ConfigurationManager.AppSettings["stripePublishableKey"];
             ViewBag.StripePublishKey = stripePublishKey;
 
@@ -41,8 +43,6 @@ namespace SpeedoModels.Controllers
         /// <returns>ActionResult.</returns>
         public ActionResult SubmitOrder()
         {
-            //ViewBag.Email = UserManager.FindById(User.Identity.Name);
-
             return View();
         }
 
@@ -89,6 +89,7 @@ namespace SpeedoModels.Controllers
             Basket basket;
             var cookie = Request.Cookies["Basket"];
 
+            //try and retrieve basket, if empty and causes exception create new basket
             try
             {
                 basket = new JavaScriptSerializer().Deserialize<Basket>(cookie.Value);
@@ -108,8 +109,10 @@ namespace SpeedoModels.Controllers
                 }
             }
 
+            //changes basketTotal to an integer as amount needs to be an int
             int amount = (int)(basketTotal * 100);
 
+            //methods for creating stripe payment
             var customer = customers.Create(new StripeCustomerCreateOptions
             {
                 Email = stripeEmail,

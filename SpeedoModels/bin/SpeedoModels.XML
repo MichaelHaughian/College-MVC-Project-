@@ -1,0 +1,1907 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SpeedoModels</name>
+    </assembly>
+    <members>
+        <member name="T:SpeedoModels.Controllers.AccountController">
+            <summary>
+            Class AccountController.
+            </summary>
+            <seealso cref="T:System.Web.Mvc.Controller" />
+        </member>
+        <member name="F:SpeedoModels.Controllers.AccountController._signInManager">
+            <summary>
+            The sign in manager
+            </summary>
+        </member>
+        <member name="F:SpeedoModels.Controllers.AccountController._userManager">
+            <summary>
+            The user manager
+            </summary>
+        </member>
+        <member name="F:SpeedoModels.Controllers.AccountController._context">
+            <summary>
+            The context
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.AccountController"/> class.
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.#ctor(SpeedoModels.ApplicationUserManager,SpeedoModels.ApplicationSignInManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.AccountController"/> class.
+            </summary>
+            <param name="userManager">The user manager.</param>
+            <param name="signInManager">The sign in manager.</param>
+        </member>
+        <member name="P:SpeedoModels.Controllers.AccountController.SignInManager">
+            <summary>
+            Gets the sign in manager.
+            </summary>
+            <value>The sign in manager.</value>
+        </member>
+        <member name="P:SpeedoModels.Controllers.AccountController.UserManager">
+            <summary>
+            Gets the user manager.
+            </summary>
+            <value>The user manager.</value>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.ViewAccounts">
+            <summary>
+            Views the accounts.
+            </summary>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.Login(System.String)">
+            <summary>
+            Logins the specified return URL.
+            </summary>
+            <param name="returnUrl">The return URL.</param>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.Login(SpeedoModels.Models.LoginViewModel,System.String)">
+            <summary>
+            Logins the specified model.
+            </summary>
+            <param name="model">The model.</param>
+            <param name="returnUrl">The return URL.</param>
+            <returns>Task&lt;ActionResult&gt;.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.VerifyCode(System.String,System.String,System.Boolean)">
+            <summary>
+            Verifies the code.
+            </summary>
+            <param name="provider">The provider.</param>
+            <param name="returnUrl">The return URL.</param>
+            <param name="rememberMe">if set to <c>true</c> [remember me].</param>
+            <returns>Task&lt;ActionResult&gt;.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.VerifyCode(SpeedoModels.Models.VerifyCodeViewModel)">
+            <summary>
+            Verifies the code.
+            </summary>
+            <param name="model">The model.</param>
+            <returns>Task&lt;ActionResult&gt;.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.Register">
+            <summary>
+            Registers this instance.
+            </summary>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.Register(SpeedoModels.Models.RegisterViewModel)">
+            <summary>
+            Registers the specified model.
+            </summary>
+            <param name="model">The model.</param>
+            <returns>Task&lt;ActionResult&gt;.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.EditCustomer(System.String)">
+            <summary>
+            Edits the customer.
+            </summary>
+            <param name="id">The identifier.</param>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.RegisterStaff">
+            <summary>
+            Registers the staff.
+            </summary>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.RegisterStaff(SpeedoModels.Models.RegisterViewModel)">
+            <summary>
+            Registers the staff.
+            </summary>
+            <param name="model">The model.</param>
+            <returns>Task&lt;ActionResult&gt;.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.ConfirmEmail(System.String,System.String)">
+            <summary>
+            Confirms the email.
+            </summary>
+            <param name="userId">The user identifier.</param>
+            <param name="code">The code.</param>
+            <returns>Task&lt;ActionResult&gt;.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.ForgotPassword">
+            <summary>
+            Forgots the password.
+            </summary>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.ForgotPassword(SpeedoModels.Models.ForgotPasswordViewModel)">
+            <summary>
+            Forgots the password.
+            </summary>
+            <param name="model">The model.</param>
+            <returns>Task&lt;ActionResult&gt;.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.ForgotPasswordConfirmation">
+            <summary>
+            Forgots the password confirmation.
+            </summary>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.ResetPassword(System.String)">
+            <summary>
+            Resets the password.
+            </summary>
+            <param name="code">The code.</param>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.ResetPassword(SpeedoModels.Models.ResetPasswordViewModel)">
+            <summary>
+            Resets the password.
+            </summary>
+            <param name="model">The model.</param>
+            <returns>Task&lt;ActionResult&gt;.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.ResetPasswordConfirmation">
+            <summary>
+            Resets the password confirmation.
+            </summary>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.ExternalLogin(System.String,System.String)">
+            <summary>
+            Externals the login.
+            </summary>
+            <param name="provider">The provider.</param>
+            <param name="returnUrl">The return URL.</param>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.SendCode(System.String,System.Boolean)">
+            <summary>
+            Sends the code.
+            </summary>
+            <param name="returnUrl">The return URL.</param>
+            <param name="rememberMe">if set to <c>true</c> [remember me].</param>
+            <returns>Task&lt;ActionResult&gt;.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.SendCode(SpeedoModels.Models.SendCodeViewModel)">
+            <summary>
+            Sends the code.
+            </summary>
+            <param name="model">The model.</param>
+            <returns>Task&lt;ActionResult&gt;.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.ExternalLoginCallback(System.String)">
+            <summary>
+            Externals the login callback.
+            </summary>
+            <param name="returnUrl">The return URL.</param>
+            <returns>Task&lt;ActionResult&gt;.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.ExternalLoginConfirmation(SpeedoModels.Models.ExternalLoginConfirmationViewModel,System.String)">
+            <summary>
+            Externals the login confirmation.
+            </summary>
+            <param name="model">The model.</param>
+            <param name="returnUrl">The return URL.</param>
+            <returns>Task&lt;ActionResult&gt;.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.LogOff">
+            <summary>
+            Logs the off.
+            </summary>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.ExternalLoginFailure">
+            <summary>
+            Externals the login failure.
+            </summary>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged resources and optionally releases managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        </member>
+        <member name="F:SpeedoModels.Controllers.AccountController.XsrfKey">
+            <summary>
+            The XSRF key
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Controllers.AccountController.AuthenticationManager">
+            <summary>
+            Gets the authentication manager.
+            </summary>
+            <value>The authentication manager.</value>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.AddErrors(Microsoft.AspNet.Identity.IdentityResult)">
+            <summary>
+            Adds the errors.
+            </summary>
+            <param name="result">The result.</param>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.RedirectToLocal(System.String)">
+            <summary>
+            Redirects to local.
+            </summary>
+            <param name="returnUrl">The return URL.</param>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="T:SpeedoModels.Controllers.AccountController.ChallengeResult">
+            <summary>
+            Class ChallengeResult.
+            </summary>
+            <seealso cref="T:System.Web.Mvc.HttpUnauthorizedResult" />
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.ChallengeResult.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.AccountController.ChallengeResult"/> class.
+            </summary>
+            <param name="provider">The provider.</param>
+            <param name="redirectUri">The redirect URI.</param>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.ChallengeResult.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.AccountController.ChallengeResult"/> class.
+            </summary>
+            <param name="provider">The provider.</param>
+            <param name="redirectUri">The redirect URI.</param>
+            <param name="userId">The user identifier.</param>
+        </member>
+        <member name="P:SpeedoModels.Controllers.AccountController.ChallengeResult.LoginProvider">
+            <summary>
+            Gets or sets the login provider.
+            </summary>
+            <value>The login provider.</value>
+        </member>
+        <member name="P:SpeedoModels.Controllers.AccountController.ChallengeResult.RedirectUri">
+            <summary>
+            Gets or sets the redirect URI.
+            </summary>
+            <value>The redirect URI.</value>
+        </member>
+        <member name="P:SpeedoModels.Controllers.AccountController.ChallengeResult.UserId">
+            <summary>
+            Gets or sets the user identifier.
+            </summary>
+            <value>The user identifier.</value>
+        </member>
+        <member name="M:SpeedoModels.Controllers.AccountController.ChallengeResult.ExecuteResult(System.Web.Mvc.ControllerContext)">
+            <summary>
+            Enables processing of the result of an action method by a custom type that inherits from the <see cref="T:System.Web.Mvc.ActionResult" /> class.
+            </summary>
+            <param name="context">The context in which the result is executed. The context information includes the controller, HTTP content, request context, and route data.</param>
+        </member>
+        <member name="T:SpeedoModels.Controllers.Api.AccountController">
+            <summary>
+            Class AccountController.
+            </summary>
+            <seealso cref="T:System.Web.Http.ApiController" />
+        </member>
+        <member name="F:SpeedoModels.Controllers.Api.AccountController._context">
+            <summary>
+            The context
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Controllers.Api.AccountController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.Api.AccountController"/> class.
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Controllers.Api.AccountController.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        </member>
+        <member name="M:SpeedoModels.Controllers.Api.AccountController.ViewAccounts">
+            <summary>
+            Views the accounts.
+            </summary>
+            <returns>IHttpActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.Api.AccountController.DeleteAccount(System.String)">
+            <summary>
+            Deletes the account.
+            </summary>
+            <param name="id">The identifier.</param>
+        </member>
+        <member name="T:SpeedoModels.Controllers.Api.CustomerController">
+            <summary>
+            Class CustomerController.
+            </summary>
+            <seealso cref="T:System.Web.Http.ApiController" />
+        </member>
+        <member name="F:SpeedoModels.Controllers.Api.CustomerController._context">
+            <summary>
+            The context
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Controllers.Api.CustomerController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.Api.CustomerController"/> class.
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Controllers.Api.CustomerController.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        </member>
+        <member name="M:SpeedoModels.Controllers.Api.CustomerController.GetCustomer(System.String)">
+            <summary>
+            Gets the customer.
+            </summary>
+            <param name="id">The identifier.</param>
+            <returns>IHttpActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.Api.CustomerController.EditCustomer(SpeedoModels.Dtos.CustomerDto)">
+            <summary>
+            Edits the customer.
+            </summary>
+            <param name="customerDto">The customer dto.</param>
+            <returns>IHttpActionResult.</returns>
+            <exception cref="T:System.Web.Http.HttpResponseException"></exception>
+        </member>
+        <member name="T:SpeedoModels.Controllers.Api.OrderController">
+            <summary>
+            Class OrderController.
+            </summary>
+            <seealso cref="T:System.Web.Http.ApiController" />
+        </member>
+        <member name="F:SpeedoModels.Controllers.Api.OrderController._context">
+            <summary>
+            The context
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Controllers.Api.OrderController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.Api.OrderController" /> class.
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Controllers.Api.OrderController.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        </member>
+        <member name="M:SpeedoModels.Controllers.Api.OrderController.ViewOrders(System.String)">
+            <summary>
+            Views the orders.
+            </summary>
+            <param name="id">The identifier.</param>
+            <returns>IHttpActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.Api.OrderController.ViewOrder(System.Int32)">
+            <summary>
+            Views the order.
+            </summary>
+            <param name="id">The identifier.</param>
+            <returns>IHttpActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.Api.OrderController.CreateOrder(SpeedoModels.Models.Basket)">
+            <summary>
+            Creates the order.
+            </summary>
+            <param name="basket">The basket.</param>
+        </member>
+        <member name="M:SpeedoModels.Controllers.Api.OrderController.CancelOrder(System.Int32)">
+            <summary>
+            Cancels the order.
+            </summary>
+            <param name="id">The identifier.</param>
+        </member>
+        <member name="T:SpeedoModels.Controllers.Api.OrderlineController">
+            <summary>
+            Class OrderlineController.
+            </summary>
+            <seealso cref="T:System.Web.Http.ApiController" />
+        </member>
+        <member name="F:SpeedoModels.Controllers.Api.OrderlineController._context">
+            <summary>
+            The context
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Controllers.Api.OrderlineController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.Api.OrderlineController"/> class.
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Controllers.Api.OrderlineController.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        </member>
+        <member name="M:SpeedoModels.Controllers.Api.OrderlineController.ViewOrder(System.Int32)">
+            <summary>
+            Views the order.
+            </summary>
+            <param name="id">The identifier.</param>
+            <returns>IHttpActionResult.</returns>
+        </member>
+        <member name="T:SpeedoModels.Controllers.Api.ProductController">
+            <summary>
+            Class ProductController.
+            </summary>
+            <seealso cref="T:System.Web.Http.ApiController" />
+        </member>
+        <member name="F:SpeedoModels.Controllers.Api.ProductController._context">
+            <summary>
+            The context
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Controllers.Api.ProductController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.Api.ProductController"/> class.
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Controllers.Api.ProductController.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        </member>
+        <member name="M:SpeedoModels.Controllers.Api.ProductController.GetProducts">
+            <summary>
+            Gets the products.
+            </summary>
+            <returns>IHttpActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.Api.ProductController.GetProduct(System.Int32)">
+            <summary>
+            Gets the product.
+            </summary>
+            <param name="id">The identifier.</param>
+            <returns>IHttpActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.Api.ProductController.SaveProduct(SpeedoModels.Dtos.ProductDto)">
+            <summary>
+            Saves the product.
+            </summary>
+            <param name="productDto">The product dto.</param>
+            <returns>IHttpActionResult.</returns>
+            <exception cref="T:System.Web.Http.HttpResponseException"></exception>
+        </member>
+        <member name="M:SpeedoModels.Controllers.Api.ProductController.DeleteProduct(System.Int32)">
+            <summary>
+            Deletes the product.
+            </summary>
+            <param name="id">The identifier.</param>
+            <exception cref="T:System.Web.Http.HttpResponseException"></exception>
+        </member>
+        <member name="T:SpeedoModels.Controllers.Api.SupplierController">
+            <summary>
+            Class SupplierController.
+            </summary>
+            <seealso cref="T:System.Web.Http.ApiController" />
+        </member>
+        <member name="F:SpeedoModels.Controllers.Api.SupplierController._context">
+            <summary>
+            The context
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Controllers.Api.SupplierController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.Api.SupplierController"/> class.
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Controllers.Api.SupplierController.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        </member>
+        <member name="M:SpeedoModels.Controllers.Api.SupplierController.GetSuppliersr">
+            <summary>
+            Gets the suppliersr.
+            </summary>
+            <returns>IHttpActionResult.</returns>
+        </member>
+        <member name="T:SpeedoModels.Controllers.BasketController">
+            <summary>
+            Class BasketController.
+            </summary>
+            <seealso cref="T:System.Web.Mvc.Controller" />
+        </member>
+        <member name="M:SpeedoModels.Controllers.BasketController.AddToBasket(SpeedoModels.Models.Product)">
+            <summary>
+            Adds to basket.
+            </summary>
+            <param name="product">The product.</param>
+        </member>
+        <member name="M:SpeedoModels.Controllers.BasketController.GetBasket">
+            <summary>
+            Gets the basket.
+            </summary>
+            <returns>JsonResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.BasketController.RemoveItemFromBasket(System.Int32)">
+            <summary>
+            Removes the item from basket.
+            </summary>
+            <param name="id">The identifier.</param>
+        </member>
+        <member name="M:SpeedoModels.Controllers.BasketController.ClearBasket">
+            <summary>
+            Clears the basket.
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Controllers.BasketController.ViewBasket">
+            <summary>
+            Views the basket.
+            </summary>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="T:SpeedoModels.Controllers.HomeController">
+            <summary>
+            Class HomeController.
+            </summary>
+            <seealso cref="T:System.Web.Mvc.Controller" />
+        </member>
+        <member name="M:SpeedoModels.Controllers.HomeController.Index">
+            <summary>
+            Indexes this instance.
+            </summary>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.HomeController.About">
+            <summary>
+            Abouts this instance.
+            </summary>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.HomeController.Contact">
+            <summary>
+            Contacts this instance.
+            </summary>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="T:SpeedoModels.Controllers.MailController">
+            <summary>
+            Class MailController.
+            </summary>
+            <seealso cref="T:System.Web.Mvc.Controller" />
+        </member>
+        <member name="F:SpeedoModels.Controllers.MailController._context">
+            <summary>
+            The context
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Controllers.MailController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.MailController"/> class.
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Controllers.MailController.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged resources and optionally releases managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        </member>
+        <member name="M:SpeedoModels.Controllers.MailController.SendOrderConfirmation">
+            <summary>
+            Sends the order confirmation.
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Controllers.MailController.SendOrderCancellation">
+            <summary>
+            Sends the order cancellation.
+            </summary>
+        </member>
+        <member name="T:SpeedoModels.Controllers.ManageController">
+            <summary>
+            Class ManageController.
+            </summary>
+            <seealso cref="T:System.Web.Mvc.Controller" />
+        </member>
+        <member name="F:SpeedoModels.Controllers.ManageController._signInManager">
+            <summary>
+            The sign in manager
+            </summary>
+        </member>
+        <member name="F:SpeedoModels.Controllers.ManageController._userManager">
+            <summary>
+            The user manager
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ManageController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.ManageController"/> class.
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ManageController.#ctor(SpeedoModels.ApplicationUserManager,SpeedoModels.ApplicationSignInManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.ManageController"/> class.
+            </summary>
+            <param name="userManager">The user manager.</param>
+            <param name="signInManager">The sign in manager.</param>
+        </member>
+        <member name="P:SpeedoModels.Controllers.ManageController.SignInManager">
+            <summary>
+            Gets the sign in manager.
+            </summary>
+            <value>The sign in manager.</value>
+        </member>
+        <member name="P:SpeedoModels.Controllers.ManageController.UserManager">
+            <summary>
+            Gets the user manager.
+            </summary>
+            <value>The user manager.</value>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ManageController.Index(System.Nullable{SpeedoModels.Controllers.ManageController.ManageMessageId})">
+            <summary>
+            Indexes the specified message.
+            </summary>
+            <param name="message">The message.</param>
+            <returns>Task&lt;ActionResult&gt;.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ManageController.RemoveLogin(System.String,System.String)">
+            <summary>
+            Removes the login.
+            </summary>
+            <param name="loginProvider">The login provider.</param>
+            <param name="providerKey">The provider key.</param>
+            <returns>Task&lt;ActionResult&gt;.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ManageController.AddPhoneNumber">
+            <summary>
+            Adds the phone number.
+            </summary>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ManageController.AddPhoneNumber(SpeedoModels.Models.AddPhoneNumberViewModel)">
+            <summary>
+            Adds the phone number.
+            </summary>
+            <param name="model">The model.</param>
+            <returns>Task&lt;ActionResult&gt;.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ManageController.EnableTwoFactorAuthentication">
+            <summary>
+            Enables the two factor authentication.
+            </summary>
+            <returns>Task&lt;ActionResult&gt;.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ManageController.DisableTwoFactorAuthentication">
+            <summary>
+            Disables the two factor authentication.
+            </summary>
+            <returns>Task&lt;ActionResult&gt;.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ManageController.VerifyPhoneNumber(System.String)">
+            <summary>
+            Verifies the phone number.
+            </summary>
+            <param name="phoneNumber">The phone number.</param>
+            <returns>Task&lt;ActionResult&gt;.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ManageController.VerifyPhoneNumber(SpeedoModels.Models.VerifyPhoneNumberViewModel)">
+            <summary>
+            Verifies the phone number.
+            </summary>
+            <param name="model">The model.</param>
+            <returns>Task&lt;ActionResult&gt;.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ManageController.RemovePhoneNumber">
+            <summary>
+            Removes the phone number.
+            </summary>
+            <returns>Task&lt;ActionResult&gt;.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ManageController.ChangePassword">
+            <summary>
+            Changes the password.
+            </summary>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ManageController.ChangePassword(SpeedoModels.Models.ChangePasswordViewModel)">
+            <summary>
+            Changes the password.
+            </summary>
+            <param name="model">The model.</param>
+            <returns>Task&lt;ActionResult&gt;.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ManageController.SetPassword">
+            <summary>
+            Sets the password.
+            </summary>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ManageController.SetPassword(SpeedoModels.Models.SetPasswordViewModel)">
+            <summary>
+            Sets the password.
+            </summary>
+            <param name="model">The model.</param>
+            <returns>Task&lt;ActionResult&gt;.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ManageController.ManageLogins(System.Nullable{SpeedoModels.Controllers.ManageController.ManageMessageId})">
+            <summary>
+            Manages the logins.
+            </summary>
+            <param name="message">The message.</param>
+            <returns>Task&lt;ActionResult&gt;.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ManageController.LinkLogin(System.String)">
+            <summary>
+            Links the login.
+            </summary>
+            <param name="provider">The provider.</param>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ManageController.LinkLoginCallback">
+            <summary>
+            Links the login callback.
+            </summary>
+            <returns>Task&lt;ActionResult&gt;.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ManageController.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged resources and optionally releases managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        </member>
+        <member name="F:SpeedoModels.Controllers.ManageController.XsrfKey">
+            <summary>
+            The XSRF key
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Controllers.ManageController.AuthenticationManager">
+            <summary>
+            Gets the authentication manager.
+            </summary>
+            <value>The authentication manager.</value>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ManageController.AddErrors(Microsoft.AspNet.Identity.IdentityResult)">
+            <summary>
+            Adds the errors.
+            </summary>
+            <param name="result">The result.</param>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ManageController.HasPassword">
+            <summary>
+            Determines whether this instance has password.
+            </summary>
+            <returns><c>true</c> if this instance has password; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ManageController.HasPhoneNumber">
+            <summary>
+            Determines whether [has phone number].
+            </summary>
+            <returns><c>true</c> if [has phone number]; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="T:SpeedoModels.Controllers.ManageController.ManageMessageId">
+            <summary>
+            Enum ManageMessageId
+            </summary>
+        </member>
+        <member name="F:SpeedoModels.Controllers.ManageController.ManageMessageId.AddPhoneSuccess">
+            <summary>
+            The add phone success
+            </summary>
+        </member>
+        <member name="F:SpeedoModels.Controllers.ManageController.ManageMessageId.ChangePasswordSuccess">
+            <summary>
+            The change password success
+            </summary>
+        </member>
+        <member name="F:SpeedoModels.Controllers.ManageController.ManageMessageId.SetTwoFactorSuccess">
+            <summary>
+            The set two factor success
+            </summary>
+        </member>
+        <member name="F:SpeedoModels.Controllers.ManageController.ManageMessageId.SetPasswordSuccess">
+            <summary>
+            The set password success
+            </summary>
+        </member>
+        <member name="F:SpeedoModels.Controllers.ManageController.ManageMessageId.RemoveLoginSuccess">
+            <summary>
+            The remove login success
+            </summary>
+        </member>
+        <member name="F:SpeedoModels.Controllers.ManageController.ManageMessageId.RemovePhoneSuccess">
+            <summary>
+            The remove phone success
+            </summary>
+        </member>
+        <member name="F:SpeedoModels.Controllers.ManageController.ManageMessageId.Error">
+            <summary>
+            The error
+            </summary>
+        </member>
+        <member name="T:SpeedoModels.Controllers.OrderController">
+            <summary>
+            Class OrderController.
+            </summary>
+            <seealso cref="T:System.Web.Mvc.Controller" />
+        </member>
+        <member name="M:SpeedoModels.Controllers.OrderController.OrderPage">
+            <summary>
+            Orders the page.
+            </summary>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.OrderController.SubmitOrder">
+            <summary>
+            Submits the order.
+            </summary>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.OrderController.ViewOrders(System.String)">
+            <summary>
+            Views the orders.
+            </summary>
+            <param name="id">The identifier.</param>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.OrderController.ViewOrder(System.Int32)">
+            <summary>
+            Views the order.
+            </summary>
+            <param name="id">The identifier.</param>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.OrderController.Charge(System.String,System.String)">
+            <summary>
+            Charges the specified stripe email.
+            </summary>
+            <param name="stripeEmail">The stripe email.</param>
+            <param name="stripeToken">The stripe token.</param>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="T:SpeedoModels.Controllers.ProductController">
+            <summary>
+            Class ProductController.
+            </summary>
+            <seealso cref="T:System.Web.Mvc.Controller" />
+        </member>
+        <member name="F:SpeedoModels.Controllers.ProductController._context">
+            <summary>
+            The context
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ProductController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.ProductController"/> class.
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ProductController.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged resources and optionally releases managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ProductController.Index">
+            <summary>
+            Indexes this instance.
+            </summary>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ProductController.ViewProducts">
+            <summary>
+            Views the products.
+            </summary>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ProductController.ViewProduct(System.Int32)">
+            <summary>
+            Views the product.
+            </summary>
+            <param name="id">The identifier.</param>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ProductController.Create">
+            <summary>
+            Creates this instance.
+            </summary>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:SpeedoModels.Controllers.ProductController.Edit(System.Int32)">
+            <summary>
+            Edits the specified identifier.
+            </summary>
+            <param name="id">The identifier.</param>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="T:SpeedoModels.Controllers.ReportController">
+            <summary>
+            Class ReportController.
+            </summary>
+            <seealso cref="T:System.Web.Mvc.Controller" />
+        </member>
+        <member name="M:SpeedoModels.Controllers.ReportController.Stock">
+            <summary>
+            Stocks this instance.
+            </summary>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="T:SpeedoModels.Controllers.SMSController">
+            <summary>
+            Class SMSController.
+            </summary>
+            <seealso cref="T:System.Web.Mvc.Controller" />
+        </member>
+        <member name="F:SpeedoModels.Controllers.SMSController._context">
+            <summary>
+            The context
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Controllers.SMSController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.SMSController"/> class.
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Controllers.SMSController.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged resources and optionally releases managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        </member>
+        <member name="M:SpeedoModels.Controllers.SMSController.SendOrderMessage">
+            <summary>
+            Sends the order message.
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Controllers.SMSController.SendCancelMessage">
+            <summary>
+            Sends the cancel message.
+            </summary>
+        </member>
+        <member name="T:SpeedoModels.Dtos.CustomerDto">
+            <summary>
+            Class CustomerDto.
+            </summary>
+            <seealso cref="T:SpeedoModels.Models.ApplicationUser" />
+        </member>
+        <member name="T:SpeedoModels.Dtos.ProductDto">
+            <summary>
+            Class ProductDto.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Dtos.ProductDto.Id">
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>The identifier.</value>
+        </member>
+        <member name="P:SpeedoModels.Dtos.ProductDto.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:SpeedoModels.Dtos.ProductDto.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+            <value>The description.</value>
+        </member>
+        <member name="P:SpeedoModels.Dtos.ProductDto.Colour">
+            <summary>
+            Gets or sets the colour.
+            </summary>
+            <value>The colour.</value>
+        </member>
+        <member name="P:SpeedoModels.Dtos.ProductDto.Price">
+            <summary>
+            Gets or sets the price.
+            </summary>
+            <value>The price.</value>
+        </member>
+        <member name="P:SpeedoModels.Dtos.ProductDto.Quantity">
+            <summary>
+            Gets or sets the quantity.
+            </summary>
+            <value>The quantity.</value>
+        </member>
+        <member name="P:SpeedoModels.Dtos.ProductDto.Stock">
+            <summary>
+            Gets or sets the stock.
+            </summary>
+            <value>The stock.</value>
+        </member>
+        <member name="P:SpeedoModels.Dtos.ProductDto.ReorderQuantity">
+            <summary>
+            Gets or sets the reorder quantity.
+            </summary>
+            <value>The reorder quantity.</value>
+        </member>
+        <member name="P:SpeedoModels.Dtos.ProductDto.Supplier">
+            <summary>
+            Gets or sets the supplier.
+            </summary>
+            <value>The supplier.</value>
+        </member>
+        <member name="P:SpeedoModels.Dtos.ProductDto.DeliveryLeadTimes">
+            <summary>
+            Gets or sets the delivery lead times.
+            </summary>
+            <value>The delivery lead times.</value>
+        </member>
+        <member name="T:SpeedoModels.Dtos.SupplierDto">
+            <summary>
+            Class SupplierDto.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Dtos.SupplierDto.Id">
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>The identifier.</value>
+        </member>
+        <member name="P:SpeedoModels.Dtos.SupplierDto.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="T:SpeedoModels.Models.Basket">
+            <summary>
+            Class Basket.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Models.Basket.Products">
+            <summary>
+            Gets or sets the products.
+            </summary>
+            <value>The products.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Basket.CustomerId">
+            <summary>
+            Gets or sets the customer identifier.
+            </summary>
+            <value>The customer identifier.</value>
+        </member>
+        <member name="T:SpeedoModels.Models.Customer">
+            <summary>
+            Class Customer.
+            </summary>
+            <seealso cref="T:SpeedoModels.Models.ApplicationUser" />
+        </member>
+        <member name="T:SpeedoModels.Models.ExternalLoginConfirmationViewModel">
+            <summary>
+            Class ExternalLoginConfirmationViewModel.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Models.ExternalLoginConfirmationViewModel.Email">
+            <summary>
+            Gets or sets the email.
+            </summary>
+            <value>The email.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.ExternalLoginConfirmationViewModel.UserName">
+            <summary>
+            Gets or sets the name of the user.
+            </summary>
+            <value>The name of the user.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.ExternalLoginConfirmationViewModel.PhoneNumber">
+            <summary>
+            Gets or sets the phone number.
+            </summary>
+            <value>The phone number.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.ExternalLoginConfirmationViewModel.FirstName">
+            <summary>
+            Gets or sets the first name.
+            </summary>
+            <value>The first name.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.ExternalLoginConfirmationViewModel.LastName">
+            <summary>
+            Gets or sets the last name.
+            </summary>
+            <value>The last name.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.ExternalLoginConfirmationViewModel.FirstLineOfAddress">
+            <summary>
+            Gets or sets the first line of address.
+            </summary>
+            <value>The first line of address.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.ExternalLoginConfirmationViewModel.SecondLineOfAddress">
+            <summary>
+            Gets or sets the second line of address.
+            </summary>
+            <value>The second line of address.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.ExternalLoginConfirmationViewModel.Postcode">
+            <summary>
+            Gets or sets the postcode.
+            </summary>
+            <value>The postcode.</value>
+        </member>
+        <member name="T:SpeedoModels.Models.ExternalLoginListViewModel">
+            <summary>
+            Class ExternalLoginListViewModel.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Models.ExternalLoginListViewModel.ReturnUrl">
+            <summary>
+            Gets or sets the return URL.
+            </summary>
+            <value>The return URL.</value>
+        </member>
+        <member name="T:SpeedoModels.Models.SendCodeViewModel">
+            <summary>
+            Class SendCodeViewModel.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Models.SendCodeViewModel.SelectedProvider">
+            <summary>
+            Gets or sets the selected provider.
+            </summary>
+            <value>The selected provider.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.SendCodeViewModel.Providers">
+            <summary>
+            Gets or sets the providers.
+            </summary>
+            <value>The providers.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.SendCodeViewModel.ReturnUrl">
+            <summary>
+            Gets or sets the return URL.
+            </summary>
+            <value>The return URL.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.SendCodeViewModel.RememberMe">
+            <summary>
+            Gets or sets a value indicating whether [remember me].
+            </summary>
+            <value><c>true</c> if [remember me]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="T:SpeedoModels.Models.VerifyCodeViewModel">
+            <summary>
+            Class VerifyCodeViewModel.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Models.VerifyCodeViewModel.Provider">
+            <summary>
+            Gets or sets the provider.
+            </summary>
+            <value>The provider.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.VerifyCodeViewModel.Code">
+            <summary>
+            Gets or sets the code.
+            </summary>
+            <value>The code.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.VerifyCodeViewModel.ReturnUrl">
+            <summary>
+            Gets or sets the return URL.
+            </summary>
+            <value>The return URL.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.VerifyCodeViewModel.RememberBrowser">
+            <summary>
+            Gets or sets a value indicating whether [remember browser].
+            </summary>
+            <value><c>true</c> if [remember browser]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.VerifyCodeViewModel.RememberMe">
+            <summary>
+            Gets or sets a value indicating whether [remember me].
+            </summary>
+            <value><c>true</c> if [remember me]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="T:SpeedoModels.Models.ForgotViewModel">
+            <summary>
+            Class ForgotViewModel.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Models.ForgotViewModel.Email">
+            <summary>
+            Gets or sets the email.
+            </summary>
+            <value>The email.</value>
+        </member>
+        <member name="T:SpeedoModels.Models.LoginViewModel">
+            <summary>
+            Class LoginViewModel.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Models.LoginViewModel.UserName">
+            <summary>
+            Gets or sets the name of the user.
+            </summary>
+            <value>The name of the user.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.LoginViewModel.Password">
+            <summary>
+            Gets or sets the password.
+            </summary>
+            <value>The password.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.LoginViewModel.RememberMe">
+            <summary>
+            Gets or sets a value indicating whether [remember me].
+            </summary>
+            <value><c>true</c> if [remember me]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="T:SpeedoModels.Models.RegisterViewModel">
+            <summary>
+            Class RegisterViewModel.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Models.RegisterViewModel.Email">
+            <summary>
+            Gets or sets the email.
+            </summary>
+            <value>The email.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.RegisterViewModel.UserName">
+            <summary>
+            Gets or sets the name of the user.
+            </summary>
+            <value>The name of the user.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.RegisterViewModel.Password">
+            <summary>
+            Gets or sets the password.
+            </summary>
+            <value>The password.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.RegisterViewModel.ConfirmPassword">
+            <summary>
+            Gets or sets the confirm password.
+            </summary>
+            <value>The confirm password.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.RegisterViewModel.PhoneNumber">
+            <summary>
+            Gets or sets the phone number.
+            </summary>
+            <value>The phone number.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.RegisterViewModel.FirstName">
+            <summary>
+            Gets or sets the first name.
+            </summary>
+            <value>The first name.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.RegisterViewModel.LastName">
+            <summary>
+            Gets or sets the last name.
+            </summary>
+            <value>The last name.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.RegisterViewModel.FirstLineOfAddress">
+            <summary>
+            Gets or sets the first line of address.
+            </summary>
+            <value>The first line of address.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.RegisterViewModel.SecondLineOfAddress">
+            <summary>
+            Gets or sets the second line of address.
+            </summary>
+            <value>The second line of address.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.RegisterViewModel.Postcode">
+            <summary>
+            Gets or sets the postcode.
+            </summary>
+            <value>The postcode.</value>
+        </member>
+        <member name="T:SpeedoModels.Models.ResetPasswordViewModel">
+            <summary>
+            Class ResetPasswordViewModel.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Models.ResetPasswordViewModel.Email">
+            <summary>
+            Gets or sets the email.
+            </summary>
+            <value>The email.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.ResetPasswordViewModel.Password">
+            <summary>
+            Gets or sets the password.
+            </summary>
+            <value>The password.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.ResetPasswordViewModel.ConfirmPassword">
+            <summary>
+            Gets or sets the confirm password.
+            </summary>
+            <value>The confirm password.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.ResetPasswordViewModel.Code">
+            <summary>
+            Gets or sets the code.
+            </summary>
+            <value>The code.</value>
+        </member>
+        <member name="T:SpeedoModels.Models.ForgotPasswordViewModel">
+            <summary>
+            Class ForgotPasswordViewModel.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Models.ForgotPasswordViewModel.Email">
+            <summary>
+            Gets or sets the email.
+            </summary>
+            <value>The email.</value>
+        </member>
+        <member name="T:SpeedoModels.Models.ApplicationUser">
+            <summary>
+            Class ApplicationUser.
+            </summary>
+            <seealso cref="T:Microsoft.AspNet.Identity.EntityFramework.IdentityUser" />
+        </member>
+        <member name="P:SpeedoModels.Models.ApplicationUser.FirstName">
+            <summary>
+            Gets or sets the first name.
+            </summary>
+            <value>The first name.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.ApplicationUser.LastName">
+            <summary>
+            Gets or sets the last name.
+            </summary>
+            <value>The last name.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.ApplicationUser.FirstLineOfAddress">
+            <summary>
+            Gets or sets the first line of address.
+            </summary>
+            <value>The first line of address.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.ApplicationUser.SecondLineOfAddress">
+            <summary>
+            Gets or sets the second line of address.
+            </summary>
+            <value>The second line of address.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.ApplicationUser.Postcode">
+            <summary>
+            Gets or sets the postcode.
+            </summary>
+            <value>The postcode.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.ApplicationUser.IsRegistered">
+            <summary>
+            Gets or sets a value indicating whether this instance is registered.
+            </summary>
+            <value><c>true</c> if this instance is registered; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:SpeedoModels.Models.ApplicationUser.GenerateUserIdentityAsync(Microsoft.AspNet.Identity.UserManager{SpeedoModels.Models.ApplicationUser})">
+            <summary>
+            generate user identity as an asynchronous operation.
+            </summary>
+            <param name="manager">The manager.</param>
+            <returns>Task&lt;ClaimsIdentity&gt;.</returns>
+        </member>
+        <member name="T:SpeedoModels.Models.ApplicationDbContext">
+            <summary>
+            Class ApplicationDbContext.
+            </summary>
+            <seealso cref="!:Microsoft.AspNet.Identity.EntityFramework.IdentityDbContext&lt;SpeedoModels.Models.ApplicationUser&gt;" />
+        </member>
+        <member name="P:SpeedoModels.Models.ApplicationDbContext.Suppliers">
+            <summary>
+            Gets or sets the suppliers.
+            </summary>
+            <value>The suppliers.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.ApplicationDbContext.Products">
+            <summary>
+            Gets or sets the products.
+            </summary>
+            <value>The products.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.ApplicationDbContext.Orders">
+            <summary>
+            Gets or sets the orders.
+            </summary>
+            <value>The orders.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.ApplicationDbContext.Orderlines">
+            <summary>
+            Gets or sets the orderlines.
+            </summary>
+            <value>The orderlines.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.ApplicationDbContext.Payments">
+            <summary>
+            Gets or sets the payments.
+            </summary>
+            <value>The payments.</value>
+        </member>
+        <member name="M:SpeedoModels.Models.ApplicationDbContext.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SpeedoModels.Models.ApplicationDbContext"/> class.
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Models.ApplicationDbContext.Create">
+            <summary>
+            Creates this instance.
+            </summary>
+            <returns>ApplicationDbContext.</returns>
+        </member>
+        <member name="T:SpeedoModels.Models.IndexViewModel">
+            <summary>
+            Class IndexViewModel.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Models.IndexViewModel.HasPassword">
+            <summary>
+            Gets or sets a value indicating whether this instance has password.
+            </summary>
+            <value><c>true</c> if this instance has password; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.IndexViewModel.Logins">
+            <summary>
+            Gets or sets the logins.
+            </summary>
+            <value>The logins.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.IndexViewModel.PhoneNumber">
+            <summary>
+            Gets or sets the phone number.
+            </summary>
+            <value>The phone number.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.IndexViewModel.TwoFactor">
+            <summary>
+            Gets or sets a value indicating whether [two factor].
+            </summary>
+            <value><c>true</c> if [two factor]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.IndexViewModel.BrowserRemembered">
+            <summary>
+            Gets or sets a value indicating whether [browser remembered].
+            </summary>
+            <value><c>true</c> if [browser remembered]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="T:SpeedoModels.Models.ManageLoginsViewModel">
+            <summary>
+            Class ManageLoginsViewModel.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Models.ManageLoginsViewModel.CurrentLogins">
+            <summary>
+            Gets or sets the current logins.
+            </summary>
+            <value>The current logins.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.ManageLoginsViewModel.OtherLogins">
+            <summary>
+            Gets or sets the other logins.
+            </summary>
+            <value>The other logins.</value>
+        </member>
+        <member name="T:SpeedoModels.Models.FactorViewModel">
+            <summary>
+            Class FactorViewModel.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Models.FactorViewModel.Purpose">
+            <summary>
+            Gets or sets the purpose.
+            </summary>
+            <value>The purpose.</value>
+        </member>
+        <member name="T:SpeedoModels.Models.SetPasswordViewModel">
+            <summary>
+            Class SetPasswordViewModel.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Models.SetPasswordViewModel.NewPassword">
+            <summary>
+            Gets or sets the new password.
+            </summary>
+            <value>The new password.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.SetPasswordViewModel.ConfirmPassword">
+            <summary>
+            Gets or sets the confirm password.
+            </summary>
+            <value>The confirm password.</value>
+        </member>
+        <member name="T:SpeedoModels.Models.ChangePasswordViewModel">
+            <summary>
+            Class ChangePasswordViewModel.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Models.ChangePasswordViewModel.OldPassword">
+            <summary>
+            Gets or sets the old password.
+            </summary>
+            <value>The old password.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.ChangePasswordViewModel.NewPassword">
+            <summary>
+            Gets or sets the new password.
+            </summary>
+            <value>The new password.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.ChangePasswordViewModel.ConfirmPassword">
+            <summary>
+            Gets or sets the confirm password.
+            </summary>
+            <value>The confirm password.</value>
+        </member>
+        <member name="T:SpeedoModels.Models.AddPhoneNumberViewModel">
+            <summary>
+            Class AddPhoneNumberViewModel.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Models.AddPhoneNumberViewModel.Number">
+            <summary>
+            Gets or sets the number.
+            </summary>
+            <value>The number.</value>
+        </member>
+        <member name="T:SpeedoModels.Models.VerifyPhoneNumberViewModel">
+            <summary>
+            Class VerifyPhoneNumberViewModel.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Models.VerifyPhoneNumberViewModel.Code">
+            <summary>
+            Gets or sets the code.
+            </summary>
+            <value>The code.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.VerifyPhoneNumberViewModel.PhoneNumber">
+            <summary>
+            Gets or sets the phone number.
+            </summary>
+            <value>The phone number.</value>
+        </member>
+        <member name="T:SpeedoModels.Models.ConfigureTwoFactorViewModel">
+            <summary>
+            Class ConfigureTwoFactorViewModel.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Models.ConfigureTwoFactorViewModel.SelectedProvider">
+            <summary>
+            Gets or sets the selected provider.
+            </summary>
+            <value>The selected provider.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.ConfigureTwoFactorViewModel.Providers">
+            <summary>
+            Gets or sets the providers.
+            </summary>
+            <value>The providers.</value>
+        </member>
+        <member name="T:SpeedoModels.Models.Order">
+            <summary>
+            Class Order.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Models.Order.Id">
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>The identifier.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Order.CustomerId">
+            <summary>
+            Gets or sets the customer identifier.
+            </summary>
+            <value>The customer identifier.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Order.TrackingNumber">
+            <summary>
+            Gets or sets the tracking number.
+            </summary>
+            <value>The tracking number.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Order.OrderDate">
+            <summary>
+            Gets or sets the order date.
+            </summary>
+            <value>The order date.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Order.DateOfReturn">
+            <summary>
+            Gets or sets the date of return.
+            </summary>
+            <value>The date of return.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Order.ReasonForReturn">
+            <summary>
+            Gets or sets the reason for return.
+            </summary>
+            <value>The reason for return.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Order.ConditionOfItem">
+            <summary>
+            Gets or sets the condition of item.
+            </summary>
+            <value>The condition of item.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Order.OrderLines">
+            <summary>
+            Gets or sets the order lines.
+            </summary>
+            <value>The order lines.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Order.OrderTotal">
+            <summary>
+            Gets or sets the order total.
+            </summary>
+            <value>The order total.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Order.IsCancelled">
+            <summary>
+            Gets or sets a value indicating whether this instance is cancelled.
+            </summary>
+            <value><c>true</c> if this instance is cancelled; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:SpeedoModels.Models.Order.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SpeedoModels.Models.Order"/> class.
+            </summary>
+        </member>
+        <member name="T:SpeedoModels.Models.Orderline">
+            <summary>
+            Class Orderline.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Models.Orderline.Id">
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>The identifier.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Orderline.Quantity">
+            <summary>
+            Gets or sets the quantity.
+            </summary>
+            <value>The quantity.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Orderline.LineTotal">
+            <summary>
+            Gets or sets the line total.
+            </summary>
+            <value>The line total.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Orderline.Product">
+            <summary>
+            Gets or sets the product.
+            </summary>
+            <value>The product.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Orderline.ProductId">
+            <summary>
+            Gets or sets the product identifier.
+            </summary>
+            <value>The product identifier.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Orderline.OrderId">
+            <summary>
+            Gets or sets the order identifier.
+            </summary>
+            <value>The order identifier.</value>
+        </member>
+        <member name="T:SpeedoModels.Models.Payment">
+            <summary>
+            Class Payment.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Models.Payment.Id">
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>The identifier.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Payment.PaymentTotal">
+            <summary>
+            Gets or sets the payment total.
+            </summary>
+            <value>The payment total.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Payment.Customer">
+            <summary>
+            Gets or sets the customer.
+            </summary>
+            <value>The customer.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Payment.CustomerId">
+            <summary>
+            Gets or sets the customer identifier.
+            </summary>
+            <value>The customer identifier.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Payment.Order">
+            <summary>
+            Gets or sets the order.
+            </summary>
+            <value>The order.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Payment.OrderId">
+            <summary>
+            Gets or sets the order identifier.
+            </summary>
+            <value>The order identifier.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Payment.PaymentDate">
+            <summary>
+            Gets or sets the payment date.
+            </summary>
+            <value>The payment date.</value>
+        </member>
+        <member name="T:SpeedoModels.Models.Product">
+            <summary>
+            Class Product.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Models.Product.Id">
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>The identifier.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Product.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Product.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+            <value>The description.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Product.Colour">
+            <summary>
+            Gets or sets the colour.
+            </summary>
+            <value>The colour.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Product.Price">
+            <summary>
+            Gets or sets the price.
+            </summary>
+            <value>The price.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Product.Quantity">
+            <summary>
+            Gets or sets the quantity.
+            </summary>
+            <value>The quantity.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Product.Stock">
+            <summary>
+            Gets or sets the stock.
+            </summary>
+            <value>The stock.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Product.ReorderQuantity">
+            <summary>
+            Gets or sets the reorder quantity.
+            </summary>
+            <value>The reorder quantity.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Product.DeliveryLeadTimes">
+            <summary>
+            Gets or sets the delivery lead times.
+            </summary>
+            <value>The delivery lead times.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Product.Supplier">
+            <summary>
+            Gets or sets the supplier.
+            </summary>
+            <value>The supplier.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Product.SupplierId">
+            <summary>
+            Gets or sets the supplier identifier.
+            </summary>
+            <value>The supplier identifier.</value>
+        </member>
+        <member name="T:SpeedoModels.Models.Staff">
+            <summary>
+            Class Staff.
+            </summary>
+            <seealso cref="T:SpeedoModels.Models.ApplicationUser" />
+        </member>
+        <member name="T:SpeedoModels.Models.Supplier">
+            <summary>
+            Class Supplier.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.Models.Supplier.Id">
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>The identifier.</value>
+        </member>
+        <member name="P:SpeedoModels.Models.Supplier.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="T:SpeedoModels.ViewModels.CreateProductViewModel">
+            <summary>
+            Class CreateProductViewModel.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.ViewModels.CreateProductViewModel.Suppliers">
+            <summary>
+            Gets or sets the suppliers.
+            </summary>
+            <value>The suppliers.</value>
+        </member>
+        <member name="P:SpeedoModels.ViewModels.CreateProductViewModel.Product">
+            <summary>
+            Gets or sets the product.
+            </summary>
+            <value>The product.</value>
+        </member>
+        <member name="T:SpeedoModels.ViewModels.Message">
+            <summary>
+            Class Message.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.ViewModels.Message.To">
+            <summary>
+            Gets or sets to.
+            </summary>
+            <value>To.</value>
+        </member>
+        <member name="P:SpeedoModels.ViewModels.Message.ContentMsg">
+            <summary>
+            Gets or sets the content MSG.
+            </summary>
+            <value>The content MSG.</value>
+        </member>
+        <member name="T:SpeedoModels.ViewModels.EditProductViewModel">
+            <summary>
+            Class EditProductViewModel.
+            </summary>
+        </member>
+        <member name="P:SpeedoModels.ViewModels.EditProductViewModel.Supplier">
+            <summary>
+            Gets or sets the supplier.
+            </summary>
+            <value>The supplier.</value>
+        </member>
+        <member name="P:SpeedoModels.ViewModels.EditProductViewModel.Product">
+            <summary>
+            Gets or sets the product.
+            </summary>
+            <value>The product.</value>
+        </member>
+        <member name="M:SpeedoModels.ViewModels.EditProductViewModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SpeedoModels.ViewModels.EditProductViewModel"/> class.
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.ViewModels.EditProductViewModel.#ctor(SpeedoModels.Models.Product)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SpeedoModels.ViewModels.EditProductViewModel"/> class.
+            </summary>
+            <param name="product">The product.</param>
+        </member>
+    </members>
+</doc>

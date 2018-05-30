@@ -63,7 +63,8 @@
                     }
                 ]
             });
-
+            
+            //on click attempt to cancel an order. if the date is within 48 hours of being placed you will be able to cancel it.
             $(document).on("click", ".js-cancel",
                 function() {
                     var buttonId = $(this).attr("data-internalid");

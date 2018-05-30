@@ -26,11 +26,18 @@ namespace SpeedoModels.Controllers
         {
             Basket basket = new Basket();
             List<Product> products = new List<Product>();
+
+            //gets url of previous page
             string previousPage = (string)Session["Referrer"];
 
+            //assigns basket id from user identity
             basket.CustomerId = User.Identity.GetUserId();
+
+            //gets basketjson from GetBasket method
             JsonResult basketJsonResult = GetBasket();
             Basket loadedBasket = (Basket)basketJsonResult.Data;
+
+            //if there are no product in the basket create new basket cookie and add product, else add new product or update product quantity in existing product
             if (loadedBasket.Products == null)
             {
                 products.Add(product);
@@ -51,17 +58,20 @@ namespace SpeedoModels.Controllers
 
                 basket = new JavaScriptSerializer().Deserialize<Basket>(cookie.Value);
 
+                //for every product in the basket 
                 foreach (Product productLoop in basket.Products.ToList())
                 {
+                    //if the previous page session isn't null and the previous page was ViewBasket and a product, the current productLoop quantity becomes the product quantity
                     if (previousPage != null && previousPage.Equals("ViewBasket") && product.Id == productLoop.Id)
                     {
                         productLoop.Quantity = product.Quantity;
-                       
                     }
+                    //if product exists update productLoop quantity
                     else if (product.Id == productLoop.Id)
                     {
                         productLoop.Quantity += product.Quantity;
                     }
+                    //if previous page is just the product id, add new product to basket
                     else if(previousPage.Equals(Convert.ToString(product.Id)))
                     {
                         basket.Products.Add(product);
@@ -91,6 +101,7 @@ namespace SpeedoModels.Controllers
             Basket basket;
             var cookie = Request.Cookies["Basket"];
 
+            //gets basket from cookie, if empty creates new basket
             try
             {
                 basket = new JavaScriptSerializer().Deserialize<Basket>(cookie.Value);
@@ -116,6 +127,7 @@ namespace SpeedoModels.Controllers
 
             basket = new JavaScriptSerializer().Deserialize<Basket>(cookie.Value);
 
+            //loops through each product in basket, and if passed in id matches remove it from the basket.
             foreach (Product product in basket.Products.ToList())
             {
                 if (product.Id == id)
@@ -123,6 +135,7 @@ namespace SpeedoModels.Controllers
                     basket.Products.Remove(product);
                     
 
+                    //if there are still products in the basket, update cookie
                     if (basket.Products.Count > 0)
                     {
                         string basketJson = new JavaScriptSerializer().Serialize(basket);
@@ -133,6 +146,7 @@ namespace SpeedoModels.Controllers
 
                         HttpContext.Response.SetCookie(cookie);
                     }
+                    //if there are no products in the basket force the cookie to expire
                     else if(basket.Products.Count == 0)
                     {
                         string basketJson = new JavaScriptSerializer().Serialize(basket);

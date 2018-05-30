@@ -157,3 +157,4 @@ D:\CollegeStuff\HND\GradedUnit\SpeedoModels\SpeedoModels\bin\Microsoft.Extension
 D:\CollegeStuff\HND\GradedUnit\SpeedoModels\SpeedoModels\obj\Debug\SpeedoModels.Migrations.UpdateProductDeliveryLeadTimes.resources
 D:\CollegeStuff\HND\GradedUnit\SpeedoModels\SpeedoModels\obj\Debug\SpeedoModels.Migrations.UpdateUsers.resources
 D:\CollegeStuff\HND\GradedUnit\SpeedoModels\SpeedoModels\obj\Debug\SpeedoModels.Migrations.UpdatedLogin.resources
+D:\CollegeStuff\HND\GradedUnit\SpeedoModels\SpeedoModels\bin\SpeedoModels.XML
