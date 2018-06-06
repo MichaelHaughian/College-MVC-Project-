@@ -128,10 +128,14 @@ namespace SpeedoModels.Controllers
 
             var user = _context.Users.SingleOrDefault(c => c.UserName == model.UserName);
 
-            if (user.IsRegistered == false)
+            if (user != null)
             {
-                return View(model);
+                if (user.IsRegistered == false)
+                {
+                    return View(model);
+                }
             }
+            
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
@@ -150,7 +154,7 @@ namespace SpeedoModels.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Username or password is incorrect");
                     return View(model);
             }
         }
@@ -245,7 +249,8 @@ namespace SpeedoModels.Controllers
                     FirstLineOfAddress = model.FirstLineOfAddress,
                     SecondLineOfAddress = model.SecondLineOfAddress,
                     Postcode = model.Postcode,
-                    PhoneNumber = model.PhoneNumber
+                    PhoneNumber = model.PhoneNumber,
+                    IsRegistered = true
                 };
 
                 var result = await UserManager.CreateAsync(user, model.Password);
@@ -271,7 +276,7 @@ namespace SpeedoModels.Controllers
                     //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     //await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("ViewProducts", "Product");
                 }
                 AddErrors(result);
             }
@@ -341,7 +346,7 @@ namespace SpeedoModels.Controllers
                         // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                         // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("ViewProducts", "Product");
                     }
                     AddErrors(result);
                 }

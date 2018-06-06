@@ -87,9 +87,6 @@ namespace SpeedoModels.Controllers
 
                 Response.Cookies.Add(cookie);
             }
-
-            
-            
         }
 
         /// <summary>

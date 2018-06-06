@@ -26,6 +26,15 @@
 
     <script>
         $(document).ready(function () {
+            $.ajax({
+                url: "/api/order/" + @Html.Raw(ViewBag.userId),
+                method: "GET"
+            }).done(function(result) {
+                if (result.length === 0) {
+                    bootbox.alert("No orders have been created on this account");
+                }
+            });
+
             var table = $("#orders").DataTable({
                 ajax: {
                     url: "/api/order/" + @Html.Raw(ViewBag.userId),
@@ -62,7 +71,12 @@
                         }
                     }
                 ]
+
+
             });
+
+            
+            
             
             //on click attempt to cancel an order. if the date is within 48 hours of being placed you will be able to cancel it.
             $(document).on("click", ".js-cancel",

@@ -36,6 +36,7 @@ namespace SpeedoModels.Models
         /// Gets or sets the colour.
         /// </summary>
         /// <value>The colour.</value>
+        [Required]
         public string Colour { get; set; }
 
         /// <summary>
@@ -49,6 +50,7 @@ namespace SpeedoModels.Models
         /// Gets or sets the quantity.
         /// </summary>
         /// <value>The quantity.</value>
+        [Required]
         public int Quantity { get; set; }
 
         /// <summary>

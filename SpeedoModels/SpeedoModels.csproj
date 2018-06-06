@@ -439,6 +439,10 @@
     <Compile Include="Migrations\201805230936299_UpdatedLogin.Designer.cs">
       <DependentUpon>201805230936299_UpdatedLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806051403578_EditProduct.cs" />
+    <Compile Include="Migrations\201806051403578_EditProduct.Designer.cs">
+      <DependentUpon>201806051403578_EditProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Basket.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -889,6 +893,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805230936299_UpdatedLogin.resx">
       <DependentUpon>201805230936299_UpdatedLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806051403578_EditProduct.resx">
+      <DependentUpon>201806051403578_EditProduct.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

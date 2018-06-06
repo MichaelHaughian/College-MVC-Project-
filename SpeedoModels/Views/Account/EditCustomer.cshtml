@@ -9,35 +9,35 @@
 <form id="editCustomer">
     <div class="form-group">
         <label>Email</label>
-        <input id="email" name="Email" value="" class="form-control" />
+        <input id="email" name="Email" value="" class="form-control" required/>
     </div>
     <div class="form-group">
         <label>Username</label>
-        <input id="username" name="Username" value="" class="form-control" />
+        <input id="username" name="Username" value="" class="form-control" required/>
     </div>
     <div class="form-group">
         <label>First Name</label>
-        <input id="firstName" name="FirstName" value="" class="form-control" />
+        <input id="firstName" name="FirstName" value="" class="form-control" required/>
     </div>
     <div class="form-group">
         <label>Last Name</label>
-        <input id="lastName" name="LastName" value="" class="form-control" />
+        <input id="lastName" name="LastName" value="" class="form-control" required/>
     </div>
     <div class="form-group">
         <label>First Line of Address</label>
-        <input id="firstLineOfAddress" name="FirstLineOfAddress" value="" class="form-control" />
+        <input id="firstLineOfAddress" name="FirstLineOfAddress" value="" class="form-control" required/>
     </div>
     <div class="form-group">
         <label>Second Line of Address</label>
-        <input id="secondLineOfAddress" name="SecondLineOfAddress" value="" class="form-control" />
+        <input id="secondLineOfAddress" name="SecondLineOfAddress" value="" class="form-control" required/>
     </div>
     <div class="form-group">
         <label>Postcode</label>
-        <input id="postcode" name="Postcode" value="" class="form-control" />
+        <input id="postcode" name="Postcode" value="" class="form-control" required/>
     </div>
     <div class="form-group">
         <label>Phone Number</label>
-        <input id="phoneNumber" name="PhoneNumber" value="" class="form-control" />
+        <input id="phoneNumber" name="PhoneNumber" value="" class="form-control" required/>
     </div>
     
 
@@ -51,7 +51,7 @@
 @section scripts
 {
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $.ajax({
                 url: "/api/customer/" + $("#customerId").val(),
                 method: "GET",
@@ -68,28 +68,39 @@
                 }
             });
 
-            $("#submitForm").click(function(e) {
+            $('#editCustomer').submit(function (e) {
+                if ($.trim($("#editCustomer input").val()) === "") {
+                    e.preventDefault();
+                    alert('you did not fill out one of the fields');
+                } else {
+                    var data = $("#editCustomer").serialize() + '&Customer.Id=' + $("#customerId").val();
+                    $.ajax({
+                        url: "/api/customer/" + $("#customerId").val(),
+                        method: "POST",
+                        data: data
+                    }).done(function() {
+                        toastr.success("Customer Edited");
+                        setTimeout(
+                            function () {
+                                var baseUrl="@Url.Action("Index","Manage")";
+                                window.location.href=baseUrl;
+                            }, 2000);
+
+
+                    }).fail(function() {
+                        toastr.error("Something unexpected happened");
+                    });
+                }
+            });
+
+            @*$("#submitForm").click(function(e) {
                 e.preventDefault();
 
-                var data = $("#editCustomer").serialize() + '&Customer.Id=' + $("#customerId").val();
-                $.ajax({
-                    url: "/api/customer/" + $("#customerId").val(),
-                    method: "POST",
-                    data: data
-                }).done(function() {
-                    toastr.success("Customer Edited");
-                    setTimeout(
-                        function () {
-                            var baseUrl="@Url.Action("Index","Manage")";
-                            window.location.href=baseUrl;
-                        }, 2000);
+                
 
+            });*@
 
-                }).fail(function() {
-                    toastr.error("Something unexpected happened");
-                });
-
-            });
+            
         })
     </script>
 }

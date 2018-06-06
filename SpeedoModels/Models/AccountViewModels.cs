@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Security.AccessControl;
+using Microsoft.Ajax.Utilities;
 
 namespace SpeedoModels.Models
 {
@@ -219,7 +220,7 @@ namespace SpeedoModels.Models
         /// <value>The name of the user.</value>
         [Required]
         [Display(Name = "Username")]
-        [StringLength(255)]
+        [StringLength(255, ErrorMessage = "Username does not meet requirements", MinimumLength = 9)]
         public string UserName { get; set; }
 
         /// <summary>
@@ -227,7 +228,7 @@ namespace SpeedoModels.Models
         /// </summary>
         /// <value>The password.</value>
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Password does not meet requirements", MinimumLength = 9)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -238,7 +239,7 @@ namespace SpeedoModels.Models
         /// <value>The confirm password.</value>
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "Passwords do not match")]
         public string ConfirmPassword { get; set; }
 
         /// <summary>
@@ -247,6 +248,9 @@ namespace SpeedoModels.Models
         /// <value>The phone number.</value>
         [Required]
         [Phone]
+        [DataType(DataType.PhoneNumber)]
+        [StringLength(11, MinimumLength = 11, ErrorMessage = "Telephone format incorrect")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Telephone format incorrect")]
         [Display(Name = "Telephone Number")]
         public string PhoneNumber { get; set; }
 
@@ -288,6 +292,7 @@ namespace SpeedoModels.Models
         /// <value>The postcode.</value>
         [Required]
         [Display(Name = "Postcode")]
+        [RegularExpression("^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z])))) [0-9][A-Za-z]{2})$", ErrorMessage = "Postcode format incorrect")]
         public string Postcode { get; set; }
 
     }

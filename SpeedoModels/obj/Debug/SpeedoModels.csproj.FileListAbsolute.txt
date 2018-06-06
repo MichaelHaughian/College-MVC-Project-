@@ -105,7 +105,6 @@ D:\CollegeStuff\HND\GradedUnit\SpeedoModels\SpeedoModels\obj\Debug\SpeedoModels.
 D:\CollegeStuff\HND\GradedUnit\SpeedoModels\SpeedoModels\obj\Debug\SpeedoModels.Migrations.AddCustomerIdToOrder.resources
 D:\CollegeStuff\HND\GradedUnit\SpeedoModels\SpeedoModels\obj\Debug\SpeedoModels.Migrations.UpdateCustomerIdInOrder.resources
 D:\CollegeStuff\HND\GradedUnit\SpeedoModels\SpeedoModels\obj\Debug\SpeedoModels.Migrations.AddedDateToOrder.resources
-D:\CollegeStuff\HND\GradedUnit\SpeedoModels\SpeedoModels\obj\Debug\SpeedoModels.csprojResolveAssemblyReference.cache
 D:\CollegeStuff\HND\GradedUnit\SpeedoModels\SpeedoModels\obj\Debug\SpeedoModels.Migrations.UpdateOrderWithIsCancelled.resources
 D:\CollegeStuff\HND\GradedUnit\SpeedoModels\SpeedoModels\bin\log4net.dll
 D:\CollegeStuff\HND\GradedUnit\SpeedoModels\SpeedoModels\bin\PayPal.dll
@@ -158,3 +157,5 @@ D:\CollegeStuff\HND\GradedUnit\SpeedoModels\SpeedoModels\obj\Debug\SpeedoModels.
 D:\CollegeStuff\HND\GradedUnit\SpeedoModels\SpeedoModels\obj\Debug\SpeedoModels.Migrations.UpdateUsers.resources
 D:\CollegeStuff\HND\GradedUnit\SpeedoModels\SpeedoModels\obj\Debug\SpeedoModels.Migrations.UpdatedLogin.resources
 D:\CollegeStuff\HND\GradedUnit\SpeedoModels\SpeedoModels\bin\SpeedoModels.XML
+D:\CollegeStuff\HND\GradedUnit\SpeedoModels\SpeedoModels\obj\Debug\SpeedoModels.csprojResolveAssemblyReference.cache
+D:\CollegeStuff\HND\GradedUnit\SpeedoModels\SpeedoModels\obj\Debug\SpeedoModels.Migrations.EditProduct.resources

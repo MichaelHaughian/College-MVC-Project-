@@ -73,6 +73,13 @@
                 });
 
             });
+
+            $('#editProduct').submit(function(e) {
+                if ($.trim($("#editProduct input").val()) === "") {
+                    e.preventDefault();
+                    alert('you did not fill out one of the fields');
+                }
+            });
         })
     </script>
 }
