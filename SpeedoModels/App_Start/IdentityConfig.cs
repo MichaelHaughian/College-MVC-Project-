@@ -1,4 +1,11 @@
-﻿using System;
+﻿// ***********************************************************************
+// Assembly         : SpeedoModels
+// Author           : Michael Haughian
+// Created          : 04-07-2018
+//
+// Last Modified By : Michael Haughian
+// Last Modified On : 06-04-2018
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity;
@@ -18,8 +25,17 @@ using SpeedoModels.Models;
 
 namespace SpeedoModels
 {
+    /// <summary>
+    /// Class EmailService.
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNet.Identity.IIdentityMessageService" />
     public class EmailService : IIdentityMessageService
     {
+        /// <summary>
+        /// This method should send the message
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <returns>Task.</returns>
         public Task SendAsync(IdentityMessage message)
         {
             // Plug in your email service here to send an email.
@@ -27,6 +43,10 @@ namespace SpeedoModels
             return Task.Factory.StartNew(() => { sendMail(message); });
         }
 
+        /// <summary>
+        /// Sends the mail.
+        /// </summary>
+        /// <param name="message">The message.</param>
         void sendMail(IdentityMessage message)
         {
             #region formatter
@@ -51,8 +71,17 @@ namespace SpeedoModels
         }
     }
 
+    /// <summary>
+    /// Class SmsService.
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNet.Identity.IIdentityMessageService" />
     public class SmsService : IIdentityMessageService
     {
+        /// <summary>
+        /// This method should send the message
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <returns>Task.</returns>
         public Task SendAsync(IdentityMessage message)
         {
             // Plug in your SMS service here to send a text message.
@@ -61,13 +90,27 @@ namespace SpeedoModels
     }
 
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
+    /// <summary>
+    /// Class ApplicationUserManager.
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNet.Identity.UserManager{SpeedoModels.Models.ApplicationUser}" />
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="store">The store.</param>
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
             : base(store)
         {
         }
 
+        /// <summary>
+        /// Creates the specified options.
+        /// </summary>
+        /// <param name="options">The options.</param>
+        /// <param name="context">The context.</param>
+        /// <returns>ApplicationUserManager.</returns>
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
@@ -117,18 +160,38 @@ namespace SpeedoModels
     }
 
     // Configure the application sign-in manager which is used in this application.
+    /// <summary>
+    /// Class ApplicationSignInManager.
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNet.Identity.Owin.SignInManager{SpeedoModels.Models.ApplicationUser, System.String}" />
     public class ApplicationSignInManager : SignInManager<ApplicationUser, string>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApplicationSignInManager"/> class.
+        /// </summary>
+        /// <param name="userManager">The user manager.</param>
+        /// <param name="authenticationManager">The authentication manager.</param>
         public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager)
             : base(userManager, authenticationManager)
         {
         }
 
+        /// <summary>
+        /// Called to generate the ClaimsIdentity for the user, override to add additional claims before SignIn
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns>Task&lt;ClaimsIdentity&gt;.</returns>
         public override Task<ClaimsIdentity> CreateUserIdentityAsync(ApplicationUser user)
         {
             return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager);
         }
 
+        /// <summary>
+        /// Creates the specified options.
+        /// </summary>
+        /// <param name="options">The options.</param>
+        /// <param name="context">The context.</param>
+        /// <returns>ApplicationSignInManager.</returns>
         public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)
         {
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);

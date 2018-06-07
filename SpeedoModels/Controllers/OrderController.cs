@@ -1,4 +1,11 @@
-﻿using System;
+﻿// ***********************************************************************
+// Assembly         : SpeedoModels
+// Author           : Michael Haughian
+// Created          : 05-10-2018
+//
+// Last Modified By : Michael Haughian
+// Last Modified On : 05-30-2018
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;

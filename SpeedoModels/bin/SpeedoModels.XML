@@ -4,6 +4,152 @@
         <name>SpeedoModels</name>
     </assembly>
     <members>
+        <member name="T:SpeedoModels.BundleConfig">
+            <summary>
+            Class BundleConfig.
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.BundleConfig.RegisterBundles(System.Web.Optimization.BundleCollection)">
+            <summary>
+            Registers the bundles.
+            </summary>
+            <param name="bundles">The bundles.</param>
+        </member>
+        <member name="T:SpeedoModels.FilterConfig">
+            <summary>
+            Class FilterConfig.
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.FilterConfig.RegisterGlobalFilters(System.Web.Mvc.GlobalFilterCollection)">
+            <summary>
+            Registers the global filters.
+            </summary>
+            <param name="filters">The filters.</param>
+        </member>
+        <member name="T:SpeedoModels.EmailService">
+            <summary>
+            Class EmailService.
+            </summary>
+            <seealso cref="T:Microsoft.AspNet.Identity.IIdentityMessageService" />
+        </member>
+        <member name="M:SpeedoModels.EmailService.SendAsync(Microsoft.AspNet.Identity.IdentityMessage)">
+            <summary>
+            This method should send the message
+            </summary>
+            <param name="message">The message.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:SpeedoModels.EmailService.sendMail(Microsoft.AspNet.Identity.IdentityMessage)">
+            <summary>
+            Sends the mail.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="T:SpeedoModels.SmsService">
+            <summary>
+            Class SmsService.
+            </summary>
+            <seealso cref="T:Microsoft.AspNet.Identity.IIdentityMessageService" />
+        </member>
+        <member name="M:SpeedoModels.SmsService.SendAsync(Microsoft.AspNet.Identity.IdentityMessage)">
+            <summary>
+            This method should send the message
+            </summary>
+            <param name="message">The message.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="T:SpeedoModels.ApplicationUserManager">
+            <summary>
+            Class ApplicationUserManager.
+            </summary>
+            <seealso cref="!:Microsoft.AspNet.Identity.UserManager&lt;SpeedoModels.Models.ApplicationUser&gt;" />
+        </member>
+        <member name="M:SpeedoModels.ApplicationUserManager.#ctor(Microsoft.AspNet.Identity.IUserStore{SpeedoModels.Models.ApplicationUser})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="store">The store.</param>
+        </member>
+        <member name="M:SpeedoModels.ApplicationUserManager.Create(Microsoft.AspNet.Identity.Owin.IdentityFactoryOptions{SpeedoModels.ApplicationUserManager},Microsoft.Owin.IOwinContext)">
+            <summary>
+            Creates the specified options.
+            </summary>
+            <param name="options">The options.</param>
+            <param name="context">The context.</param>
+            <returns>ApplicationUserManager.</returns>
+        </member>
+        <member name="T:SpeedoModels.ApplicationSignInManager">
+            <summary>
+            Class ApplicationSignInManager.
+            </summary>
+            <seealso cref="!:Microsoft.AspNet.Identity.Owin.SignInManager&lt;SpeedoModels.Models.ApplicationUser, System.String&gt;" />
+        </member>
+        <member name="M:SpeedoModels.ApplicationSignInManager.#ctor(SpeedoModels.ApplicationUserManager,Microsoft.Owin.Security.IAuthenticationManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SpeedoModels.ApplicationSignInManager"/> class.
+            </summary>
+            <param name="userManager">The user manager.</param>
+            <param name="authenticationManager">The authentication manager.</param>
+        </member>
+        <member name="M:SpeedoModels.ApplicationSignInManager.CreateUserIdentityAsync(SpeedoModels.Models.ApplicationUser)">
+            <summary>
+            Called to generate the ClaimsIdentity for the user, override to add additional claims before SignIn
+            </summary>
+            <param name="user">The user.</param>
+            <returns>Task&lt;ClaimsIdentity&gt;.</returns>
+        </member>
+        <member name="M:SpeedoModels.ApplicationSignInManager.Create(Microsoft.AspNet.Identity.Owin.IdentityFactoryOptions{SpeedoModels.ApplicationSignInManager},Microsoft.Owin.IOwinContext)">
+            <summary>
+            Creates the specified options.
+            </summary>
+            <param name="options">The options.</param>
+            <param name="context">The context.</param>
+            <returns>ApplicationSignInManager.</returns>
+        </member>
+        <member name="T:SpeedoModels.App_Start.MappingProfile">
+            <summary>
+            Class MappingProfile.
+            </summary>
+            <seealso cref="T:AutoMapper.Profile" />
+        </member>
+        <member name="M:SpeedoModels.App_Start.MappingProfile.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SpeedoModels.App_Start.MappingProfile"/> class.
+            </summary>
+        </member>
+        <member name="T:SpeedoModels.RouteConfig">
+            <summary>
+            Class RouteConfig.
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.RouteConfig.RegisterRoutes(System.Web.Routing.RouteCollection)">
+            <summary>
+            Registers the routes.
+            </summary>
+            <param name="routes">The routes.</param>
+        </member>
+        <member name="T:SpeedoModels.Startup">
+            <summary>
+            Class Startup.
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.Startup.ConfigureAuth(Owin.IAppBuilder)">
+            <summary>
+            Configures the authentication.
+            </summary>
+            <param name="app">The application.</param>
+        </member>
+        <member name="T:SpeedoModels.WebApiConfig">
+            <summary>
+            Class WebApiConfig.
+            </summary>
+        </member>
+        <member name="M:SpeedoModels.WebApiConfig.Register(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Registers the specified configuration.
+            </summary>
+            <param name="config">The configuration.</param>
+        </member>
         <member name="T:SpeedoModels.Controllers.AccountController">
             <summary>
             Class AccountController.
@@ -27,12 +173,12 @@
         </member>
         <member name="M:SpeedoModels.Controllers.AccountController.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.AccountController"/> class.
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.AccountController" /> class.
             </summary>
         </member>
         <member name="M:SpeedoModels.Controllers.AccountController.#ctor(SpeedoModels.ApplicationUserManager,SpeedoModels.ApplicationSignInManager)">
             <summary>
-            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.AccountController"/> class.
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.AccountController" /> class.
             </summary>
             <param name="userManager">The user manager.</param>
             <param name="signInManager">The sign in manager.</param>
@@ -254,14 +400,14 @@
         </member>
         <member name="M:SpeedoModels.Controllers.AccountController.ChallengeResult.#ctor(System.String,System.String)">
             <summary>
-            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.AccountController.ChallengeResult"/> class.
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.AccountController.ChallengeResult" /> class.
             </summary>
             <param name="provider">The provider.</param>
             <param name="redirectUri">The redirect URI.</param>
         </member>
         <member name="M:SpeedoModels.Controllers.AccountController.ChallengeResult.#ctor(System.String,System.String,System.String)">
             <summary>
-            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.AccountController.ChallengeResult"/> class.
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.AccountController.ChallengeResult" /> class.
             </summary>
             <param name="provider">The provider.</param>
             <param name="redirectUri">The redirect URI.</param>
@@ -304,7 +450,7 @@
         </member>
         <member name="M:SpeedoModels.Controllers.Api.AccountController.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.Api.AccountController"/> class.
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.Api.AccountController" /> class.
             </summary>
         </member>
         <member name="M:SpeedoModels.Controllers.Api.AccountController.Dispose(System.Boolean)">
@@ -338,7 +484,7 @@
         </member>
         <member name="M:SpeedoModels.Controllers.Api.CustomerController.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.Api.CustomerController"/> class.
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.Api.CustomerController" /> class.
             </summary>
         </member>
         <member name="M:SpeedoModels.Controllers.Api.CustomerController.Dispose(System.Boolean)">
@@ -423,7 +569,7 @@
         </member>
         <member name="M:SpeedoModels.Controllers.Api.OrderlineController.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.Api.OrderlineController"/> class.
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.Api.OrderlineController" /> class.
             </summary>
         </member>
         <member name="M:SpeedoModels.Controllers.Api.OrderlineController.Dispose(System.Boolean)">
@@ -452,7 +598,7 @@
         </member>
         <member name="M:SpeedoModels.Controllers.Api.ProductController.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.Api.ProductController"/> class.
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.Api.ProductController" /> class.
             </summary>
         </member>
         <member name="M:SpeedoModels.Controllers.Api.ProductController.Dispose(System.Boolean)">
@@ -502,7 +648,7 @@
         </member>
         <member name="M:SpeedoModels.Controllers.Api.SupplierController.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.Api.SupplierController"/> class.
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.Api.SupplierController" /> class.
             </summary>
         </member>
         <member name="M:SpeedoModels.Controllers.Api.SupplierController.Dispose(System.Boolean)">
@@ -589,7 +735,7 @@
         </member>
         <member name="M:SpeedoModels.Controllers.MailController.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.MailController"/> class.
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.MailController" /> class.
             </summary>
         </member>
         <member name="M:SpeedoModels.Controllers.MailController.Dispose(System.Boolean)">
@@ -626,12 +772,12 @@
         </member>
         <member name="M:SpeedoModels.Controllers.ManageController.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.ManageController"/> class.
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.ManageController" /> class.
             </summary>
         </member>
         <member name="M:SpeedoModels.Controllers.ManageController.#ctor(SpeedoModels.ApplicationUserManager,SpeedoModels.ApplicationSignInManager)">
             <summary>
-            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.ManageController"/> class.
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.ManageController" /> class.
             </summary>
             <param name="userManager">The user manager.</param>
             <param name="signInManager">The sign in manager.</param>
@@ -882,7 +1028,7 @@
         </member>
         <member name="M:SpeedoModels.Controllers.ProductController.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.ProductController"/> class.
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.ProductController" /> class.
             </summary>
         </member>
         <member name="M:SpeedoModels.Controllers.ProductController.Dispose(System.Boolean)">
@@ -948,7 +1094,7 @@
         </member>
         <member name="M:SpeedoModels.Controllers.SMSController.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.SMSController"/> class.
+            Initializes a new instance of the <see cref="T:SpeedoModels.Controllers.SMSController" /> class.
             </summary>
         </member>
         <member name="M:SpeedoModels.Controllers.SMSController.Dispose(System.Boolean)">

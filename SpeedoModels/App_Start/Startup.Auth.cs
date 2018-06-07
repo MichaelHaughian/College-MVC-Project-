@@ -1,4 +1,11 @@
-﻿using System;
+﻿// ***********************************************************************
+// Assembly         : SpeedoModels
+// Author           : Michael Haughian
+// Created          : 04-07-2018
+//
+// Last Modified By : Michael Haughian
+// Last Modified On : 04-08-2018
+using System;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
@@ -9,9 +16,16 @@ using SpeedoModels.Models;
 
 namespace SpeedoModels
 {
+    /// <summary>
+    /// Class Startup.
+    /// </summary>
     public partial class Startup
     {
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
+        /// <summary>
+        /// Configures the authentication.
+        /// </summary>
+        /// <param name="app">The application.</param>
         public void ConfigureAuth(IAppBuilder app)
         {
             // Configure the db context, user manager and signin manager to use a single instance per request

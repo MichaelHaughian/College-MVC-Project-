@@ -1,4 +1,11 @@
-﻿using System;
+﻿// ***********************************************************************
+// Assembly         : SpeedoModels
+// Author           : Michael Haughian
+// Created          : 05-19-2018
+//
+// Last Modified By : Michael Haughian
+// Last Modified On : 06-06-2018
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -21,7 +28,7 @@ namespace SpeedoModels.Controllers
         private ApplicationDbContext _context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MailController"/> class.
+        /// Initializes a new instance of the <see cref="MailController" /> class.
         /// </summary>
         public MailController()
         {

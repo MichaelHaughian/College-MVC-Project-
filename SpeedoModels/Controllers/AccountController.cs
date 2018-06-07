@@ -1,4 +1,11 @@
-﻿using System;
+﻿// ***********************************************************************
+// Assembly         : SpeedoModels
+// Author           : Michael Haughian
+// Created          : 04-07-2018
+//
+// Last Modified By : Michael Haughian
+// Last Modified On : 06-05-2018
+using System;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -34,7 +41,7 @@ namespace SpeedoModels.Controllers
         private ApplicationDbContext _context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AccountController"/> class.
+        /// Initializes a new instance of the <see cref="AccountController" /> class.
         /// </summary>
         public AccountController()
         {
@@ -42,7 +49,7 @@ namespace SpeedoModels.Controllers
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AccountController"/> class.
+        /// Initializes a new instance of the <see cref="AccountController" /> class.
         /// </summary>
         /// <param name="userManager">The user manager.</param>
         /// <param name="signInManager">The sign in manager.</param>
@@ -758,7 +765,7 @@ namespace SpeedoModels.Controllers
         internal class ChallengeResult : HttpUnauthorizedResult
         {
             /// <summary>
-            /// Initializes a new instance of the <see cref="ChallengeResult"/> class.
+            /// Initializes a new instance of the <see cref="ChallengeResult" /> class.
             /// </summary>
             /// <param name="provider">The provider.</param>
             /// <param name="redirectUri">The redirect URI.</param>
@@ -768,7 +775,7 @@ namespace SpeedoModels.Controllers
             }
 
             /// <summary>
-            /// Initializes a new instance of the <see cref="ChallengeResult"/> class.
+            /// Initializes a new instance of the <see cref="ChallengeResult" /> class.
             /// </summary>
             /// <param name="provider">The provider.</param>
             /// <param name="redirectUri">The redirect URI.</param>

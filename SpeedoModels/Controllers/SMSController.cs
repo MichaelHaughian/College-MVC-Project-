@@ -1,4 +1,11 @@
-﻿using System;
+﻿// ***********************************************************************
+// Assembly         : SpeedoModels
+// Author           : Michael Haughian
+// Created          : 05-21-2018
+//
+// Last Modified By : Michael Haughian
+// Last Modified On : 05-30-2018
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,7 +29,7 @@ namespace SpeedoModels.Controllers
         private ApplicationDbContext _context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SMSController"/> class.
+        /// Initializes a new instance of the <see cref="SMSController" /> class.
         /// </summary>
         public SMSController()
         {

@@ -1,4 +1,11 @@
-﻿using System;
+﻿// ***********************************************************************
+// Assembly         : SpeedoModels
+// Author           : Michael Haughian
+// Created          : 05-02-2018
+//
+// Last Modified By : Michael Haughian
+// Last Modified On : 05-29-2018
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -28,7 +35,7 @@ namespace SpeedoModels.Controllers.Api
         private ApplicationDbContext _context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CustomerController"/> class.
+        /// Initializes a new instance of the <see cref="CustomerController" /> class.
         /// </summary>
         public CustomerController()
         {

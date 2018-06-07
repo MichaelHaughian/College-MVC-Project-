@@ -1,4 +1,11 @@
-﻿using System;
+﻿// ***********************************************************************
+// Assembly         : SpeedoModels
+// Author           : Michael Haughian
+// Created          : 05-15-2018
+//
+// Last Modified By : Michael Haughian
+// Last Modified On : 05-29-2018
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -21,7 +28,7 @@ namespace SpeedoModels.Controllers.Api
         private ApplicationDbContext _context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="OrderlineController"/> class.
+        /// Initializes a new instance of the <see cref="OrderlineController" /> class.
         /// </summary>
         public OrderlineController()
         {

@@ -1,4 +1,11 @@
-﻿using System;
+﻿// ***********************************************************************
+// Assembly         : SpeedoModels
+// Author           : Michael Haughian
+// Created          : 04-07-2018
+//
+// Last Modified By : Michael Haughian
+// Last Modified On : 05-29-2018
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -27,14 +34,14 @@ namespace SpeedoModels.Controllers
         private ApplicationUserManager _userManager;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ManageController"/> class.
+        /// Initializes a new instance of the <see cref="ManageController" /> class.
         /// </summary>
         public ManageController()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ManageController"/> class.
+        /// Initializes a new instance of the <see cref="ManageController" /> class.
         /// </summary>
         /// <param name="userManager">The user manager.</param>
         /// <param name="signInManager">The sign in manager.</param>
